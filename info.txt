@@ -1,6 +1,0 @@
-user: andreas.ardi1@gmail.com
-pass: andre-55713
-id : Administrator
-
-database :
-- ci-mlvl-login
