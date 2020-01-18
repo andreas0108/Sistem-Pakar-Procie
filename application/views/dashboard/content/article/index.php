@@ -102,48 +102,20 @@
 										</td>
 										<td class="project-actions">
 											<center>
-												<?php if ($lA['penulis_id'] == $this->session->userdata('id') || $this->session->userdata('role_id') == 1) : ?>
-													<div class="btn-group">
-														<a href="<?= base_url('blog/read/') . $lA['slug']; ?>" title="lihat artikel" type="button" class="btn btn-success btn-flat btn-sm">
-															<i class="fas fa-fw fa-eye" style="color: white">
-															</i>
-														</a>
-														<a href="<?= base_url('dashboard/content/edita/') . $lA['id']; ?>" title="ubah artikel" type="button" class="btn btn-info btn-flat btn-sm">
-															<i class="fas fa-fw fa-pencil-alt" style="color: white">
-															</i>
-														</a>
-														<a href="<?= base_url('dashboard/content/deletea/') . $lA['id']; ?>" title="hapus artikel" type="button" class="btn btn-danger btn-flat btn-sm btn-hapus-artikel">
-															<i class="fas fa-fw fa-trash" style="color: white">
-															</i>
-														</a>
-													</div>
-												<?php elseif ($lA['penulis_id'] == $this->session->userdata('id')) : ?>
-													<div class="btn-group">
-														<a href="<?= base_url('blog/read/') . $lA['slug']; ?>" title="lihat artikel" type="button" class="btn btn-success btn-flat btn-sm">
-															<i class="fas fa-fw fa-eye" style="color: white">
-															</i>
-														</a>
-														<a href="<?= base_url('dashboard/content/edita/') . $lA['id']; ?>" title="ubah artikel" type="button" class="btn btn-info btn-flat btn-sm">
-															<i class="fas fa-fw fa-pencil-alt" style="color: white">
-															</i>
-														</a>
-														<a href="<?= base_url('dashboard/content/deletea/') . $lA['id']; ?>" title="hapus artikel" type="button" class="btn btn-danger btn-flat btn-sm btn-hapus-artikel">
-															<i class="fas fa-fw fa-trash" style="color: white">
-															</i>
-														</a>
-													</div>
-												<?php else : ?>
-													<div class="btn-group">
-														<a href="<?= base_url('blog/read/') . $lA['slug']; ?>" title="lihat artikel" type="button" class="btn btn-success btn-flat btn-sm">
-															<i class="fas fa-fw fa-eye" style="color: white">
-															</i>
-														</a>
-														<a href="<?= base_url('dashboard/content/edita/') . $lA['id']; ?>" title="ubah artikel" type="button" class="btn btn-info btn-flat btn-sm">
-															<i class="fas fa-fw fa-pencil-alt" style="color: white">
-															</i>
-														</a>
-													</div>
-												<?php endif ?>
+												<div class="btn-group">
+													<a href="<?= base_url('blog/read/') . $lA['slug']; ?>" title="lihat artikel" type="button" class="btn btn-success btn-flat btn-sm">
+														<i class="fas fa-fw fa-eye" style="color: white">
+														</i>
+													</a>
+													<a href="<?= base_url('dashboard/content/edita/') . $lA['id']; ?>" title="ubah artikel" type="button" class="btn btn-info btn-flat btn-sm">
+														<i class="fas fa-fw fa-pencil-alt" style="color: white">
+														</i>
+													</a>
+													<a href="<?= base_url('dashboard/content/deletea/') . $lA['id']; ?>" title="hapus artikel" type="button" class="btn btn-danger btn-flat btn-sm btn-remove" data-text="<?= $title3 ?>">
+														<i class="fas fa-fw fa-trash" style="color: white">
+														</i>
+													</a>
+												</div>
 											</center>
 										</td>
 									</tr>

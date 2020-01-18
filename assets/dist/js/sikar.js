@@ -90,26 +90,6 @@ $('.btn-remove-user').on('click', function (e) {
 	});
 })
 
-// artikel
-$('.btn-hapus-artikel').on('click', function (e) {
-	e.preventDefault();
-	const href = $(this).attr('href');
-	Swal.fire({
-		title: 'Peringatan !',
-		text: "Artikel akan dihapus, apakah anda yakin ?",
-		type: 'warning',
-		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
-		confirmButtonText: 'Hapus',
-		cancelButtonColor: '#d33',
-		cancelButtonText: 'Batal'
-	}).then((result) => {
-		if (result.value) {
-			document.location.href = href;
-		}
-	});
-})
-
 // komponen
 const flashData = $('.flash-data').data('flashdata');
 if (flashData) {
