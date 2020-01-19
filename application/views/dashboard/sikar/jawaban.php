@@ -26,7 +26,7 @@
 				<h3 class="card-title"><?= $title3 ?></h3>
 
 				<div class="card-tools">
-					<a href="javascript:void(0)" type="button" class="btn btn-sm btn-outline-primary addKomponen" id="addKomponen" data-toggle="modal" data-target="#modalKomponen">Add <?= $title3 ?></a>
+					<a href="javascript:void(0)" type="button" class="btn btn-sm btn-outline-primary" id="add<?= $title3 ?>" data-toggle="modal" data-target="#modal<?= $title3 ?>">Add <?= $title3 ?></a>
 					<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
 						<i class="fas fa-minus"></i>
 					</button>
@@ -46,78 +46,55 @@
 				<table class="table table-bordered table-hover" id="tablekomponen">
 					<thead>
 						<tr class="text-center">
-							<th style="width: 5%">
+							<th style="width: 2%">
 								#
 							</th>
-							<th>
-								Name
+							<th style="width: 5%">
+								ID
 							</th>
-							<th>
-								Manufacture
-							</th>
-							<th>
-								Category
-							</th>
-							<th style="width: 30%">
-								Description
+							<th style="width: 70%">
+								Pertanyaan
 							</th>
 							<th style="width: 10%">
-								Price
-							</th>
-							<th style="width: auto">
 								Status
 							</th>
-							<th style="width: auto">
+							<th style="width: 13%">
 
 							</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php $num = 1; ?>
-						<?php foreach ($komponen as $kom) : ?>
+						<?php foreach ($jawab as $jw) : ?>
 							<tr>
 								<td>
 									<?= $num ?>
 								</td>
 								<td>
-									<?= $kom['name'] ?>
+									<?= $jw['id'] ?>
 								</td>
 								<td>
-									<?php if ($kom['manufacture'] == 1) {
-										echo "AMD";
-									} else {
-										echo "Intel";
-									}
-									?>
-								</td>
-								<td>
-									<?= $kom['kategori'] ?>
-								</td>
-								<td>
-									<?= $kom['desc'] ?>
-								</td>
-								<td>
-									<?= "Rp. " . number_format($kom['price'], "0", "", ".") ?>
+									<?= $jw['jawaban_content'] ?>
 								</td>
 								<td class="text-center">
-									<?php if ($kom['status'] == 1) {
+									<?php if ($jw['status'] == 1) {
 										echo 	'<div class="alert alert-success" role="alert">
-													Integrated to System
+													Enable
 												</div>';
 									} else {
 										echo 	'<div class="alert alert-danger" role="alert">
-													Not Integrated to System
+													Disable
 												</div>';
 									}
 									?>
 								</td>
 								<td class="project-actions text-right">
 									<button class="btn btn-group">
-										<a class="btn btn-info btn-sm ubahKomponen" href="#" id="ubahKomponen" data-toggle="modal" data-target="#modalKomponen" data-komponenid="<?= $kom['id'] ?>" title="Edit">
+										<a class="btn btn-info btn-sm ubah<?= $title3 ?>" href="#" id="ubah<?= $title3 ?>" data-toggle="modal" data-target="#modal<?= $title3 ?>" data-jwid="<?= $jw['id'] ?>" title="Edit">
 											<i class="fas fa-fw fa-pencil-alt">
 											</i>
 										</a>
-										<a class="btn btn-danger btn-sm btn-remove" href="<?= base_url('dashboard/sikar/deleteK/') . $kom['id']; ?>" data-text="<?= $title3 ?>" title="Remove">
+										<a class="btn btn-danger btn-sm btn-remove" href="<?= base_url('dashboard/sikar/deleteJ/') . $jw['id']; ?>" data-text="<?= $title3 ?>" title="Remove">
 											<i class="fas fa-fw fa-trash">
 											</i>
 										</a>

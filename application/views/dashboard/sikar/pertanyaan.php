@@ -89,16 +89,16 @@
 									?>
 								</td>
 								<td class="project-actions text-right">
-									<a class="btn btn-info btn-sm ubahPertanyaan" href="#" id="ubahKomponen" data-toggle="modal" data-target="#modalPertanyaan" data-pertid="<?= $pt['id'] ?>">
-										<i class="fas fa-fw fa-eye">
-										</i>
-										Config
-									</a>
-									<a class="btn btn-danger btn-sm btn-remove" href="<?= base_url('dashboard/sikar/deleteP/') . $pt['id']; ?>" data-text="<?= $title3 ?>">
-										<i class="fas fa-trash">
-										</i>
-										Delete
-									</a>
+									<button class="btn btn-group">
+										<a class="btn btn-info btn-sm ubahPertanyaan" href="#" id="ubahKomponen" data-toggle="modal" data-target="#modalPertanyaan" data-pertid="<?= $pt['id'] ?>" title="Edit">
+											<i class="fas fa-fw fa-pencil-alt">
+											</i>
+										</a>
+										<a class="btn btn-danger btn-sm btn-remove" href="<?= base_url('dashboard/sikar/deleteP/') . $pt['id']; ?>" data-text="<?= $title3 ?>" title="Remove">
+											<i class="fas fa-fw fa-trash">
+											</i>
+										</a>
+									</button>
 								</td>
 							</tr>
 						<?php $num++;

@@ -7,7 +7,7 @@ class Home extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('homeBlog_model', 'hB');
-		$this->load->helper('limitword');
+		$this->load->helper(['limitword', 'tanggal-indo']);
 	}
 
 	public function index()
@@ -15,8 +15,11 @@ class Home extends CI_Controller
 		$data['appname'] = 'PROCIE';
 		$data['title'] = ' | HOME';
 
-		$data['lA'] = $this->hB->listAllBlogLimited(1, 1);
+		$data['lA'] = $this->hB->listAllBlogLimited(1, 0);
 		$data['nK'] = $this->hB->getNewKomponen();
+
+		// var_dump($data['nK']);
+		// die;
 
 		$this->load->view('home/parts/Header', $data);
 		$this->load->view('home/parts/Navbar', $data);

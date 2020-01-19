@@ -135,8 +135,8 @@
 						<div class="div">
 							<h4 class="mt-4 bold"><?= $lA['judul'] ?></h4>
 							<p class="small text-black-50 pt-1">
-								<?= limit_word($lA['isi'], 10) ?><br>
-								<a href="<?= base_url('blog/read/') . $lA['slug'] ?>" class="text-info">(Read More.)</a>
+								<?= limit_word_regex($lA['isi'], 10) ?><br>
+								<a href="<?= base_url('blog/read/') . $lA['slug'] ?>" target="_blank" class="text-info mt-1">(Read More.)</a>
 							</p>
 						</div>
 					</div>
@@ -145,16 +145,17 @@
 
 			<div class="col-md-6 col-sm-12 mb-3 mb-md-0">
 				<div class="card py-4 h-100">
-					<div class="card-body text-center">
-						<h4 class="text-uppercase m-0">New Part</h4>
+					<div class="card-body">
+						<h4 class="text-uppercase m-0 text-center">System Update : </h4>
 						<hr class="my-4">
-						<div class="div">
-							<h4 class="mt-4 bold">
-								<a href="#"><?= $nK['komponen_name'] ?></a>
-							</h4>
-							<p class="small text-black-50 pt-1">
-								<?= limit_word($nK['desc'], 10) ?>
-							</p>
+						<div class="row">
+							<div class="offset-2 col-md-8">
+								<?php foreach ($nK as $K) : ?>
+									<p class="small text-black-50 pt-1">
+										<?= date_indo(date("Y-m-d H:i:s", $K['date_added'])) ?> | <b><a href="#"><?= $K['name'] ?></a></b>
+									</p>
+								<?php endforeach ?>
+							</div>
 						</div>
 					</div>
 				</div>

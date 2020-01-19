@@ -49,7 +49,7 @@ class HomeBlog_model extends CI_Model
 
 	public function getNewKomponen()
 	{
-		$x = "SELECT * FROM komponen WHERE status = 1 ORDER BY id DESC LIMIT 1";
-		return $this->db->query($x)->row_array();
+		$x = "SELECT * FROM komponen WHERE status = 1 ORDER BY date_added DESC LIMIT 3";
+		return $this->db->query($x)->result_array();
 	}
 }
