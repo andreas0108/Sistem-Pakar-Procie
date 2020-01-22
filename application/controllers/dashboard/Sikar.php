@@ -348,4 +348,54 @@ class Sikar extends CI_Controller
 
 	// ./Jawaban Side //
 
+	//  Rules //
+
+	public function Rules()
+	{
+		$data['title'] = $this->config->item('site_name');
+		$data['title2'] = 'Content';
+		$data['title3'] = 'Rules';
+
+		// user data for session
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')
+		])->row_array();
+
+		$this->load->view('dashboard/parts/header', $data);
+		$this->load->view('dashboard/parts/sidebar', $data);
+		$this->load->view('dashboard/parts/navbar', $data);
+		$this->load->view('dashboard/default', $data);
+		$this->load->view('dashboard/parts/javascript');
+		// $this->load->view('dashboard/sikar/js-pert', $data);
+		$this->load->view('dashboard/parts/modal');
+		$this->load->view('dashboard/parts/footer');
+	}
+
+	// ./Rules //
+
+	// History //
+
+	public function History()
+	{
+		$data['title'] = $this->config->item('site_name');
+		$data['title2'] = 'Content';
+		$data['title3'] = 'History';
+
+		// user data for session
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')
+		])->row_array();
+
+		$this->load->view('dashboard/parts/header', $data);
+		$this->load->view('dashboard/parts/sidebar', $data);
+		$this->load->view('dashboard/parts/navbar', $data);
+		$this->load->view('dashboard/default', $data);
+		$this->load->view('dashboard/parts/javascript');
+		// $this->load->view('dashboard/sikar/js-pert', $data);
+		$this->load->view('dashboard/parts/modal');
+		$this->load->view('dashboard/parts/footer');
+	}
+
+	// ./History //
+
 }

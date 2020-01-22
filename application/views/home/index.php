@@ -146,10 +146,10 @@
 			<div class="col-md-6 col-sm-12 mb-3 mb-md-0">
 				<div class="card py-4 h-100">
 					<div class="card-body">
-						<h4 class="text-uppercase m-0 text-center">System Update : </h4>
+						<h4 class="text-uppercase m-0 text-center">System Update</h4>
 						<hr class="my-4">
 						<div class="row">
-							<div class="offset-2 col-md-8">
+							<div class="offset-md-1 col-md-10 offset-sm-1 col-sm-10">
 								<?php foreach ($nK as $K) : ?>
 									<p class="small text-black-50 pt-1">
 										<?= date_indo(date("Y-m-d H:i:s", $K['date_added'])) ?> | <b><a href="#"><?= $K['name'] ?></a></b>

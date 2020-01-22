@@ -13,8 +13,7 @@
 	<title><?= $appname . $title ?></title>
 
 	<!-- Bootstrap core CSS -->
-	<link href="<?= base_url() ?>assets/front/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+	<link href="<?= base_url() ?>assets/front/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 	<!-- Custom fonts for this template -->
 	<link href="<?= base_url() ?>assets/front/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -23,6 +22,9 @@
 
 	<!-- Custom styles for this template -->
 	<link href="<?= base_url() ?>assets/front/css/grayscale.min.css" rel="stylesheet">
+
+	<!-- Include SmartWizard CSS -->
+	<link href="<?= base_url() ?>assets/front/vendor/SmartWizard/dist/css/smart_wizard.css" rel="stylesheet" type="text/css" />
 
 </head>
 

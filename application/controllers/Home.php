@@ -32,6 +32,13 @@ class Home extends CI_Controller
 		$data['appname'] = 'PROCIE';
 		$data['title'] = ' | LANDING';
 
+		$data['pert'] = $this->db->get('pertanyaan')->result_array();
+		$data['jawab'] = $this->db->get('jawaban')->result_array();
+
+		// var_dump($data['pert']);
+		// var_dump($data['jawab']);
+		// die;
+
 		$this->load->view('home/parts/Header', $data);
 		$this->load->view('home/parts/Navbar-p', $data);
 		$this->load->view('home/Procie/index', $data);

@@ -31,9 +31,58 @@
 
 <!-- Custom scripts for this template -->
 <script src="<?= base_url() ?>assets/front/js/grayscale.min.js"></script>
+<!-- Include SmartWizard JavaScript source -->
+<script type="text/javascript" src="<?= base_url() ?>assets/front/vendor/SmartWizard/dist/js/jquery.smartWizard.min.js"></script>
+<!-- Include jQuery Validator plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
 
 <script type="text/javascript">
-	// ajax search
+	$(document).ready(function() {
+
+		// Toolbar extra buttons
+		var btnCancel = $('<button></button>').text('Reset')
+			.addClass('btn btn-danger')
+			.on('click', function() {
+				$('#smartwizard').smartWizard("reset");
+			});
+
+		// Smart Wizard
+		$('#smartwizard').smartWizard({
+			selected: 0,
+			theme: 'default',
+			transitionEffect: 'slide',
+			toolbarSettings: {
+				toolbarPosition: 'bottom',
+				toolbarExtraButtons: [btnCancel]
+			},
+			anchorSettings: {
+				markDoneStep: true, // add done css
+				markAllPreviousStepsAsDone: false, // When a step selected by url hash, all previous steps are marked done
+				removeDoneStepOnNavigateBack: false, // While navigate back done step after active step will be cleared
+				enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
+			},
+			lang: { // Language variables
+				next: 'Selanjutnya',
+				previous: 'Sebelumnya'
+			},
+		});
+
+		$("#smartwizard").on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
+			var elmForm = $("#form-step-" + stepNumber);
+			// stepDirection === 'forward' :- this condition allows to do the form validation
+			// only on forward navigation, that makes easy navigation on backwards still do the validation when going next
+			if (stepDirection === 'forward' && elmForm) {
+				elmForm.validator('validate');
+				var elmErr = elmForm.children('.has-error');
+				if (elmErr && elmErr.length > 0) {
+					// Form validation failed
+					return false;
+				}
+			}
+			return true;
+		});
+
+	});
 </script>
 
 </html>
