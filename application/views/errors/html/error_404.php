@@ -1,137 +1,64 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
-?>
-<!DOCTYPE html>
+defined('BASEPATH') OR exit('No direct script access allowed');
+?><!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="utf-8">
-	<title>404 Page Not Found</title>
-	<link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.css">
-	<link rel="icon" href="/assets/logo.ico" type="image/x-icon">
-	<style type="text/css">
-		a,
-		a:focus,
-		a:hover {
-			color: #fff;
-		}
+<meta charset="utf-8">
+<title>404 Page Not Found</title>
+<style type="text/css">
 
-		/* Custom default button */
-		.btn-secondary,
-		.btn-secondary:hover,
-		.btn-secondary:focus {
-			color: #333;
-			text-shadow: none;
-			/* Prevent inheritance from `body` */
-			background-color: #fff;
-			border: .05rem solid #fff;
-		}
+::selection { background-color: #E13300; color: white; }
+::-moz-selection { background-color: #E13300; color: white; }
 
-		html,
-		body {
-			height: 100%;
-			background-color: #333;
-		}
+body {
+	background-color: #fff;
+	margin: 40px;
+	font: 13px/20px normal Helvetica, Arial, sans-serif;
+	color: #4F5155;
+}
 
-		body {
-			display: -ms-flexbox;
-			display: -webkit-box;
-			display: flex;
-			-ms-flex-pack: center;
-			-webkit-box-pack: center;
-			justify-content: center;
-			color: #fff;
-			text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-			box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-		}
+a {
+	color: #003399;
+	background-color: transparent;
+	font-weight: normal;
+}
 
-		.cover-container {
-			max-width: 42em;
-		}
+h1 {
+	color: #444;
+	background-color: transparent;
+	border-bottom: 1px solid #D0D0D0;
+	font-size: 19px;
+	font-weight: normal;
+	margin: 0 0 14px 0;
+	padding: 14px 15px 10px 15px;
+}
 
-		.masthead {
-			margin-bottom: 2rem;
-		}
+code {
+	font-family: Consolas, Monaco, Courier New, Courier, monospace;
+	font-size: 12px;
+	background-color: #f9f9f9;
+	border: 1px solid #D0D0D0;
+	color: #002166;
+	display: block;
+	margin: 14px 0 14px 0;
+	padding: 12px 10px 12px 10px;
+}
 
-		.masthead-brand {
-			margin-bottom: 0;
-		}
+#container {
+	margin: 10px;
+	border: 1px solid #D0D0D0;
+	box-shadow: 0 0 8px #D0D0D0;
+}
 
-		.nav-masthead .nav-link {
-			padding: .25rem 0;
-			font-weight: 700;
-			color: rgba(255, 255, 255, .5);
-			background-color: transparent;
-			border-bottom: .25rem solid transparent;
-		}
-
-		.nav-masthead .nav-link:hover,
-		.nav-masthead .nav-link:focus {
-			border-bottom-color: rgba(255, 255, 255, .25);
-		}
-
-		.nav-masthead .nav-link+.nav-link {
-			margin-left: 1rem;
-		}
-
-		.nav-masthead .active {
-			color: #fff;
-			border-bottom-color: #fff;
-		}
-
-		@media (min-width: 48em) {
-			.masthead-brand {
-				float: left;
-			}
-
-			.nav-masthead {
-				float: right;
-			}
-		}
-
-		.cover {
-			padding: 0 1.5rem;
-		}
-
-		.cover .btn-lg {
-			padding: .75rem 1.25rem;
-			font-weight: 700;
-		}
-
-		.mastfoot {
-			color: rgba(255, 255, 255, .5);
-		}
-	</style>
+p {
+	margin: 12px 15px 12px 15px;
+}
+</style>
 </head>
-
-<body class="text-center">
-
-	<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-		<header class="masthead mb-auto">
-		</header>
-
-		<main role="main" class="inner cover">
-			<h1 class="cover-heading">Error <?php echo $heading; ?></h1>
-			<p class="lead"><?php echo $message; ?></p>
-			<p class="lead mt-lg-5">
-				<a href="/" class="btn btn-md btn-secondary">Home</a>
-			</p>
-		</main>
-
-		<footer class="mastfoot mt-auto">
-		</footer>
+<body>
+	<div id="container">
+		<h1><?php echo $heading; ?></h1>
+		<?php echo $message; ?>
 	</div>
-
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script>
-		window.jQuery || document.write('<script src="/assets/plugins/jquery/jquery.slim.min.js"><\/script>')
-	</script>
-	<script src="/assets/plugins/popper/popper.min.js"></script>
-	<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 </body>
-
 </html>

@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'file', 'security', 'multi-level-login', 'slug');
+$autoload['helper'] = array('url', 'file', 'security', 'multi-level-login', 'slug', 'limitword', 'tanggal-indo');
 
 /*
 | -------------------------------------------------------------------

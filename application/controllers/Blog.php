@@ -6,26 +6,25 @@ class Blog extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('homeBlog_model', 'hB');
-		$this->load->helper('tanggal-indo');
-		$this->load->helper('limitword');
+
+		$this->load->library('pagination');
+		$this->load->model('');
 	}
 
 	public function index()
 	{
-		$data['appname'] = 'PROCIE';
-		$data['title'] = ' | BLOG';
+		$data['title'] = 'Blog';
 
-		$this->load->library('pagination');
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')
+		])->row_array();
 
 		$config['base_url'] = base_url() . 'blog/';
-		$config['total_rows'] = $this->db->where('status', 1)->from("content_article")->count_all_results();
+		$config['total_rows'] = $this->db->where('status', 1)->from("article")->count_all_results();
 		$config['per_page'] = 5;
 
 		$config['first_link']		= '<<';
 		$config['last_link']		= '>>';
-		// $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		// $config['full_tag_close']   = '</ul></nav></div>';
 		$config['full_tag_open']    = '<div class="pagging text-center mx-auto"><nav><ul class="pagination justify-content-center">';
 		$config['full_tag_close']   = '</ul></nav></div>';
 		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
@@ -49,32 +48,26 @@ class Blog extends CI_Controller
 
 		$this->pagination->initialize($config);
 
-		$data['liBo'] = $this->hB->listAllBlogLimited($config['per_page'], $data['start']);
-		// var_dump($data['liBo']);
-		// die;
+		$this->db->limit($config['per_page'], $data['start']);
+		$this->db->order_by('tgl_buat', 'DESC');
+		$data['blogpost'] = $this->db->get_where('article', 'status = 1')->result_array();
 
-		$this->load->view('home/parts/header', $data);
-		$this->load->view('home/parts/navbar', $data);
-		$this->load->view('home/blog/index', $data);
-		$this->load->view('home/parts/footer', $data);
+		$this->load->view('Blog/index', $data);
 	}
 
 	public function read($slug)
 	{
-		$data['appname'] = 'PROCIE';
+		$this->db->select('article.judul, article.isi , user.name, article.tgl_buat, article.slug, article.gambar ');
+		$this->db->join('user', 'user.id = article.penulis_id');
+		$x = $this->db->get_where('article', ['slug' => $slug])->row_array();
 
-		$tmp = $this->hB->getArticleBySlug($slug);
-		$data['title'] = ' | ' . $tmp[0]['judul'];
-		$data['arti'] = $tmp[0];
+		$data['arti'] = $x;
 
-		// var_dump($data['title']);
-		// die;
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')
+		])->row_array();
 
-		$this->load->view('home/parts/header', $data);
-		$this->load->view('home/parts/navbar', $data);
-		$this->load->view('home/blog/read', $data);
-		$this->load->view('home/parts/footer', $data);
+		$data['title'] = $x['judul'];
+		$this->load->view('Blog/read', $data);
 	}
-
-	// controller search
 }

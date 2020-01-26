@@ -6,42 +6,58 @@ class Home extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('homeBlog_model', 'hB');
-		$this->load->helper(['limitword', 'tanggal-indo']);
+
+		$this->load->model('');
 	}
 
 	public function index()
 	{
-		$data['appname'] = 'PROCIE';
-		$data['title'] = ' | HOME';
+		$data['title'] = 'Home';
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')
+		])->row_array();
 
-		$data['lA'] = $this->hB->listAllBlogLimited(1, 0);
-		$data['nK'] = $this->hB->getNewKomponen();
-
-		// var_dump($data['nK']);
+		// var_dump($data['user']);
 		// die;
 
-		$this->load->view('home/parts/Header', $data);
-		$this->load->view('home/parts/Navbar', $data);
-		$this->load->view('home/index', $data);
-		$this->load->view('home/parts/Footer', $data);
+		$this->load->view('index', $data);
 	}
 
-	public function procie()
+	public function dashboard()
 	{
-		$data['appname'] = 'PROCIE';
-		$data['title'] = ' | LANDING';
+		$data['title'] = 'Dashboard';
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')
+		])->row_array();
+		$data['desc'] = 'Procie is a tools to recommend you the best and suitable processor for you based on your answer from my simple question.';
 
-		$data['pert'] = $this->db->get('pertanyaan')->result_array();
-		$data['jawab'] = $this->db->get('jawaban')->result_array();
+		$this->load->view('Home/index', $data);
+	}
 
-		// var_dump($data['pert']);
-		// var_dump($data['jawab']);
+	public function konsultasi()
+	{
+		$data['title'] = 'Konsultasi';
+		$data['desc'] = 'Procie is a tools to recommend you the best and suitable processor for you based on your answer from my simple question.';
+
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')
+		])->row_array();
+		// var_dump($data['user']);
 		// die;
 
-		$this->load->view('home/parts/Header', $data);
-		$this->load->view('home/parts/Navbar-p', $data);
-		$this->load->view('home/Procie/index', $data);
-		$this->load->view('home/parts/Footer', $data);
+		$this->load->view('Home/index', $data);
+	}
+
+	public function about()
+	{
+		$data['title'] = 'About';
+
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')
+		])->row_array();
+		// var_dump($data['user']);
+		// die;
+
+		$this->load->view('Home/index2', $data);
 	}
 }
