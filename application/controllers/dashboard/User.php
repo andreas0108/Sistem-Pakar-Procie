@@ -21,7 +21,7 @@ class User extends CI_Controller
 		// var_dump($data['user']);
 		// die;
 
-		$this->load->view('index', $data);
+		$this->load->view('Dashboard/User/index', $data);
 	}
 	public function konsultasi()
 	{
