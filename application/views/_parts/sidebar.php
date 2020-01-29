@@ -26,7 +26,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="#edit">
+								<a href="#user-settings">
 									<span class="link-collapse">Edit Profile</span>
 								</a>
 							</li>
@@ -42,17 +42,30 @@
 		<?php endif ?>
 		<!-- default sidebar -->
 		<ul class="nav nav-primary">
-			<li class="nav-item <?php echo $this->uri->segment(1) == '' ? 'active' : '' ?>">
-				<a href="<?= base_url() ?>">
-					<i class="fas fa-home"></i>
-					<p>Home</p>
-				</a>
+			<li class="nav-section">
+				<span class="sidebar-mini-icon">
+					<i class="fa fa-ellipsis-h"></i>
+				</span>
+				<h4 class="text-section">Home</h4>
 			</li>
 			<?php if ($this->session->userdata('email')) : ?>
-				<li class="nav-item <?php echo $this->uri->segment(1) == 'dashboard' ? 'active' : '' ?>">
-					<a href="<?= base_url('dashboard') ?>">
+				<li class="nav-item <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+					<a href="<?= base_url() ?>">
 						<i class="fas fa-tachometer-alt"></i>
 						<p>Dashboard</p>
+					</a>
+				</li>
+				<li class="nav-item <?= $this->uri->segment(2) == 'user' ? 'active' : '' ?>">
+					<a href="<?= base_url('dashboard/user') ?>">
+						<i class="fas fa-user"></i>
+						<p>User</p>
+					</a>
+				</li>
+			<?php else : ?>
+				<li class="nav-item <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+					<a href="<?= base_url() ?>">
+						<i class="fas fa-home"></i>
+						<p>Home</p>
 					</a>
 				</li>
 			<?php endif ?>
@@ -69,13 +82,13 @@
 					<p>Konsultasi</p>
 				</a>
 			</li>
-			<li class="nav-item <?php echo $this->uri->segment(1) == 'blog' ? 'active' : '' ?>">
+			<li class="nav-item <?= $this->uri->segment(1) == 'blog' ? 'active' : '' ?>">
 				<a href="<?= base_url('blog') ?>">
 					<i class="fas fa-comment-alt"></i>
 					<p>Blog</p>
 				</a>
 			</li>
-			<li class="nav-item <?php echo $this->uri->segment(1) == 'about' ? 'active' : '' ?>">
+			<li class="nav-item <?= $this->uri->segment(1) == 'about' ? 'active' : '' ?>">
 				<a href="<?= base_url('about') ?>">
 					<i class="fas fa-question"></i>
 					<p>About</p>
@@ -96,8 +109,8 @@
 
 					foreach ($submenu as $sm) : ?>
 
-						<li class="nav-item <?php echo $this->uri->segment(2) == strtolower($sm['title']) ? 'active' : '' ?>">
-							<a href="<?= $sm['url'] ?>">
+						<li class="nav-item <?= $this->uri->segment(2) == strtolower($sm['title']) ? 'active' : '' ?>">
+							<a href="<?= base_url() . $sm['url'] ?>">
 								<i class="<?= $sm['icon'] ?>"></i>
 								<p><?= $sm['title'] ?></p>
 							</a>

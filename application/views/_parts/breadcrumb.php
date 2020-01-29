@@ -2,7 +2,7 @@
 
 <!-- Breadcrumbs-->
 <li class="nav-home">
-	<a href="<?= base_url() ?>">
+	<a href="<?= base_url() ?>" class="text-primary" title="Home">
 		<i class="flaticon-home"></i>
 	</a>
 </li>
@@ -18,9 +18,9 @@
 
 	<li class="nav-item">
 		<?php if ($is_active) : ?>
-			<?php echo ucfirst($segment) ?>
+			<span title="Halaman saat ini"><?= ucfirst($segment) ?></span>
 		<?php else : ?>
-			<a href="<?php echo site_url($url) ?>"><?php echo ucfirst($segment) ?></a>
+			<a href="<?= site_url($url) ?>" class="text-primary" title="<?= ucfirst($segment) ?>"><?= ucfirst($segment) ?></a>
 		<?php endif; ?>
 	</li>
 <?php endforeach; ?>

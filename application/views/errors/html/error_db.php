@@ -1,64 +1,62 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<title>Database Error</title>
-<style type="text/css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title><?php echo $heading; ?></title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="/assets/img/icon.ico" type="image/x-icon" />
 
-::selection { background-color: #E13300; color: white; }
-::-moz-selection { background-color: #E13300; color: white; }
+	<!-- Fonts and icons -->
+	<script src="/assets/js/plugin/webfont/webfont.min.js"></script>
+	<script>
+		WebFont.load({
+			google: {
+				"families": ["Lato:300,400,700,900"]
+			},
+			custom: {
+				"families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
+				urls: ['../assets/css/fonts.min.css']
+			},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
 
-body {
-	background-color: #fff;
-	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
-	color: #4F5155;
-}
-
-a {
-	color: #003399;
-	background-color: transparent;
-	font-weight: normal;
-}
-
-h1 {
-	color: #444;
-	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
-	font-weight: normal;
-	margin: 0 0 14px 0;
-	padding: 14px 15px 10px 15px;
-}
-
-code {
-	font-family: Consolas, Monaco, Courier New, Courier, monospace;
-	font-size: 12px;
-	background-color: #f9f9f9;
-	border: 1px solid #D0D0D0;
-	color: #002166;
-	display: block;
-	margin: 14px 0 14px 0;
-	padding: 12px 10px 12px 10px;
-}
-
-#container {
-	margin: 10px;
-	border: 1px solid #D0D0D0;
-	box-shadow: 0 0 8px #D0D0D0;
-}
-
-p {
-	margin: 12px 15px 12px 15px;
-}
-</style>
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/css/atlantis.css">
 </head>
-<body>
-	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
+
+<body class="page-not-found">
+	<div class="wrapper not-found">
+		<?php $hdg = explode(' ', $heading); ?>
+		<div class="text-center animated fadeIn">
+			<h1><?= $hdg[1] . ' ' . $hdg[2] ?></h1>
+		</div>
+		<?php
+		$x = str_replace('<p>', '', $message);
+		$msg = explode('</p>', $x);
+		?>
+		<div class="container desc animated fadeIn"><span><?= $msg[0] ?></span><br /><?= $msg[1] ?>
+			<div class="card card-black mt-1">
+				<div class="card-body mt-0 mb-0">
+					<code><?= $msg[2] . '<br>' . $msg[3] . ' at ' . $msg[4] ?></code>
+				</div>
+			</div>
+		</div>
+		<a href="/" class="btn btn-primary btn-back-home mt-4 animated fadeInUp">
+			<span class="btn-label mr-2">
+				<i class="flaticon-home"></i>
+			</span>
+			Back To Home
+		</a>
 	</div>
+	<script src="/assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="/assets/js/core/popper.min.js"></script>
+	<script src="/assets/js/core/bootstrap.min.js"></script>
 </body>
+
 </html>

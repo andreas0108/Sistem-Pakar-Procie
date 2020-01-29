@@ -2,7 +2,7 @@
 
 <!-- Breadcrumbs-->
 <li class="nav-home">
-	<a href="<?= base_url() ?>">
+	<a href="<?= base_url() ?>" class="text-primary" title="Home">
 		<i class="flaticon-home"></i>
 	</a>
 </li>
@@ -18,6 +18,6 @@ $item = [
 		<i class="flaticon-right-arrow"></i>
 	</li>
 	<li class="nav-item">
-		<a href="<?= $i['url'] ?>"><?= $i['title'] ?></a>
+		<a href="<?= $i['url'] ?>" title="<?= $i['title'] ?>"><?= $i['title'] ?></a>
 	</li>
 <?php endforeach ?>

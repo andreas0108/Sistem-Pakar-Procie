@@ -1,7 +1,11 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<title><?= ucfirst($title) . ' - ' . $this->config->item('site_name'); ?></title>
+<?php if ($this->uri->segment(1) == '') : ?>
+	<title><?= ucfirst($title); ?></title>
+<?php else : ?>
+	<title><?= ucfirst($title) . ' - ' . $this->config->item('site_name'); ?></title>
+<?php endif ?>
 
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 <link rel="icon" href="<?= base_url('assets/') ?>img/icon.ico" type="image/x-icon" />
@@ -24,6 +28,7 @@
 </script>
 
 <!-- CSS Files -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= base_url('assets/') ?>css/bootstrap.min.css">
 <link rel="stylesheet" href="<?= base_url('assets/') ?>css/atlantis.css">
 

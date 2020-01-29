@@ -8,33 +8,31 @@
 	<?php $this->load->view('_parts/head'); ?>
 </head>
 
-<body class="login masthead">
+<body class="login" style="background: linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22, 22, 22, 0.71) 75%,#161616 100%),url(/assets/img/bg-masthead.jpg)">
+	<div class="flash-data" data-flashdata="<?= $this->session->flashdata('flashmsg'); ?>"></div>
+	<div class="flash-err" data-flasherror="<?= $this->session->flashdata('flasherr'); ?>"></div>
 	<div class="wrapper wrapper-login">
 		<div class="container container-login animated fadeIn">
-			<h3 class="text-center">Sign In To Admin</h3>
-			<?php $this->session->flashdata('flashmsg'); ?>
-			<div class="login-form">
-				<form action="<?= base_url('auth') ?>" method="post">
-					<div class="input-group form-floating-label">
-						<input id="email" name="email" type="email" class="form-control input-border-bottom mt-1" value="<?= $this->input->post('email'); ?>" required>
-						<label for=" email" class="placeholder">Email</label>
-					</div>
-					<div class="input-group form-floating-label mt-3">
-						<input id="password" name="password" type="password" class="form-control input-border-bottom mt-1" required>
-						<label for="password" class="placeholder">Password</label>
-						<div class="show-password">
-							<i class="icon-eye"></i>
-						</div>
-					</div>
-					<div class="row form-sub m-0">
-						<div class="custom-control custom-checkbox">
-							<!-- <input type="checkbox" class="custom-control-input" id="rememberme">
-						<label class="custom-control-label" for="rememberme">Remember Me</label> -->
-						</div>
+			<h2 class="text-center mb-0">SISTEM <b>PAKAR</b></h2>
+			<p class="text-center text-black-50">You must login to access the <b><?= strtoupper($this->config->item('site_name')) ?> </b>system.</p>
 
-						<a href="javascript:void(0)" class="link float-right">Forget Password ?</a>
+			<div class="login-form mb-0">
+				<form action="<?= base_url('auth') ?>" method="post" id="login-form">
+					<div class="form-group">
+						<label for="email" class="placeholder">Alamat Email</label>
+						<input id="email" name="email" type="email" class="form-control mt-1 mb-0" value="<?= $this->input->post('email'); ?>" required>
 					</div>
-					<div class="form-action mb-3">
+					<div class="form-group mt-0">
+						<label for="password" class="placeholder">Password</label>
+						<a href="javascript:void(0)" class="link float-right">Forget Password ?</a>
+						<div class="input-icon">
+							<input id="password" name="password" type="password" class="form-control mt-1" required>
+							<span class="show-password input-icon-addon">
+								<i class="icon-eye"></i>
+							</span>
+						</div>
+					</div>
+					<div class="form-action mt--2 mb-0 pb-0">
 						<button type="submit" class="btn btn-primary btn-rounded btn-login">Sign In</button>
 					</div>
 				</form>
@@ -48,6 +46,7 @@
 
 	<!-- JS Files   -->
 	<?php $this->load->view('_parts/js'); ?>
+	<?php $this->load->view('js/js-auth'); ?>
 	<!-- ./JS Files -->
 </body>
 

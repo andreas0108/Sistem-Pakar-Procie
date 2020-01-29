@@ -110,6 +110,35 @@ if (flashData) {
 
 }
 
+const flashError = $('.flash-err').data('flasherror');
+if (flashError) {
+	Swal.fire({
+		title: 'ERROR',
+		icon: 'error',
+		html: flashError
+	})
+
+}
+
+const flashInfo = $('.flash-info').data('flashinf');
+if (flashInfo) {
+	Swal.fire({
+		title: 'Informasi',
+		icon: 'info',
+		html: flashInfo
+	})
+
+}
+
+const flashForme = $('.flash-data').data('forme');
+if (flashForme) {
+	Swal.fire({
+		title: 'ERROR',
+		icon: 'error',
+		html: flashForme
+	})
+}
+
 
 $('.btn-remove').on('click', function (e) {
 	e.preventDefault();
@@ -152,4 +181,31 @@ if (!toggle_customSidebar) {
 	})
 	);
 	toggle_customSidebar = true;
+}
+
+function check() {
+	var bte = document.getElementById('submite');
+	var btp = document.getElementById('submitp');
+	var bta = document.getElementById('submita');
+
+	if (emailb.value != '') {
+		bte.disabled = false;
+	} else if (password1.value != '' && password2.value != '') {
+		btp.disabled = false;
+	} else {
+		btp.disabled = true;
+		bte.disabled = true;
+	}
+
+	if (emailb.value != '' && password2.value != '') {
+		if (password1.value != password2.value && cpassword.value != '') {
+			$('#submita').removeClass('animated fadeIn').addClass('animated fadeOut');
+		} else {
+			$('#submita').removeClass('animated fadeOut').addClass('animated fadeIn');
+			bta.hidden = false;
+		}
+	} else {
+		$('#submita').removeClass('animated fadeIn').addClass('animated fadeOut');
+	}
+
 }

@@ -14393,7 +14393,7 @@ body {
 }
 
 .masthead h1 {
-  font-family: 'Varela Round';
+  font-family: 'Montserrat', sans-serif;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.8rem;
@@ -14416,7 +14416,7 @@ body {
 
 @media (min-width: 992px) {
   .masthead {
-    height: 100vh;
+    height: 90vh;
     padding: 0;
   }
   .masthead h1 {

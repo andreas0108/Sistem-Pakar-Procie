@@ -8,6 +8,7 @@ $route['blog/(:num)'] = 'blog/index/$1';
 
 $route['login'] = 'auth';
 $route['logout'] = 'auth/logout';
+$route['konsultasi/hasil'] = 'home/hasil';
 
 $route['default_controller'] = 'home';
 

@@ -14,14 +14,14 @@ class Auth extends CI_Controller
 	{
 		// check if in the session already have userdata
 		if ($this->session->userdata('email')) {
-			redirect('home');
+			redirect(base_url());
 		}
 
 		// set the form validation
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		if ($this->form_validation->run() == false) {
-			$data['title'] = $this->config->item('site_name') . ' | Login';
+			$data['title'] = 'Login';
 
 			$this->load->view('auth/login', $data);
 		} else {
@@ -52,32 +52,22 @@ class Auth extends CI_Controller
 				$this->db->where('id', $user['id']);
 				$this->db->update('user');
 
-				redirect('dashboard');
+				redirect(base_url());
 			} else {
 				// false
 				$this->session->set_flashdata(
-					'flashmsg',
-					'<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Wrong password!</strong> Please check again.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>'
+					'flasherr',
+					'<strong>Password yang anda masukkan salah!</strong> Priksa kembali.'
 				);
-				redirect('auth');
+				redirect('login');
 			}
 		} else {
 			// jika salah
 			$this->session->set_flashdata(
-				'flashmsg',
-				'<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Email / Password wrong !</strong> Please check again.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>'
+				'flasherr',
+				'<strong>Email tidak diketemukan.</strong> Priksa kembali.'
 			);
-			redirect('auth');
+			redirect('login');
 		}
 	}
 

@@ -9,12 +9,25 @@
 </head>
 
 <body>
-	<div class="wrapper">
+	<div class="wrapper sidebar_minimize">
 		<!-- Header -->
 		<div class="main-header">
 			<!-- Logo -->
 			<div class="logo-header" data-background-color="white">
-				<?php $this->load->view('_parts/header'); ?>
+				<a href="<?= base_url('') ?>" class="logo">
+					<img src="<?= base_url('assets/') ?>logo2.png" alt="navbar brand" class="navbar-brand" style="height: 35px">
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="icon-menu"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+				<div class="nav-toggle">
+					<button class="btn btn-toggle toggle-sidebar">
+						<i class="icon-menu"></i>
+					</button>
+				</div>
 			</div>
 			<!-- ./Logo -->
 
@@ -45,17 +58,26 @@
 									<?php $this->load->view('Blog/bc'); ?>
 								</ul>
 							</div>
-							<div class="mt--2 mb-3">
-								<small>Writted by <b><?= $arti['name'] ?></b> on <b title="<?= longdate_indo(gmdate("Y-m-d H:i", $arti['tgl_buat'])) ?>"><?= date_indo(gmdate("Y-m-d H:i:s", $arti['tgl_buat'])) ?></b></small>
+							<div class="mb-3">
+								<span class="badge badge-count">
+									Writted by <b><?= $arti['name'] ?></b>
+								</span>
+								<span class="badge badge-info" title="<?= unix_indo2($arti['tgl_buat'], "htjs") . ' WIB' ?>">
+									<b><?= unix_indo2($arti['tgl_buat'], "tgl") ?></b>
+								</span>
 							</div>
 
 							<div class="card full-height">
-								<div class="card-body">
+								<div class="card-body image-gallery">
 									<center>
 										<?php if ($arti['gambar'] == '' || null) : ?>
-											<img src="https://via.placeholder.com/400x200?text=No+Image" alt="<?= $arti['slug'] . '-img' ?>" srcset="" class="img img-thumbnail m-2">
+											<a href="https://via.placeholder.com/400x200?text=No+Image">
+												<img src="https://via.placeholder.com/400x200?text=No+Image" alt="<?= $arti['slug'] . '-img' ?>" class="img-fluid img-thumbnail mb-3">
+											</a>
 										<?php else : ?>
-											<img src="<?= base_url('assets/img/article/poster/') . $arti['gambar'] ?>" alt="" srcset="" class="img img-thumbnail m-2" style="width:25%;">
+											<a href="<?= base_url('assets/img/article/poster/') . $arti['gambar'] ?>">
+												<img src="<?= base_url('assets/img/article/poster/') . $arti['gambar'] ?>" alt="" class="img-fluid img-thumbnail mb-3" style="width:25%;">
+											</a>
 										<?php endif ?>
 									</center>
 									<?= $arti['isi'] ?>
@@ -106,6 +128,7 @@
 
 	<!-- JS Files   -->
 	<?php $this->load->view('_parts/js'); ?>
+	<?php $this->load->view('js/js-blog-read'); ?>
 	<!-- ./JS Files -->
 </body>
 

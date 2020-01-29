@@ -8,7 +8,7 @@
 	<?php $this->load->view('_parts/head'); ?>
 </head>
 
-<body>
+<body style="background: linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22, 22, 22, 0.71) 75%,#161616 100%),url(/assets/img/bg-masthead.jpg)">
 	<div class="wrapper overlay-sidebar">
 		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('flashmsg'); ?>"></div>
 		<!-- Header -->

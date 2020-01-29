@@ -78,14 +78,5 @@
 <!-- Custom Sikar JS -->
 <script src="<?= base_url('assets/') ?>js/sikar.js"></script>
 <script>
-	// Code for the Validator
-	var $validator = $('.wizard-container form').validate({
-		validClass: "success",
-		highlight: function(element) {
-			$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-		},
-		success: function(element) {
-			$(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-		}
-	});
+
 </script>

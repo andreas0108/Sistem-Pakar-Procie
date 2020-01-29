@@ -58,16 +58,16 @@
 											</div>
 											<div class="col-md-11 col-sm-12">
 												<a href="<?= base_url('blog/read/') . $bp['slug'] ?>" target="_blank" rel="noopener noreferrer">
-													<h2 class="mb-0"><?= $bp['judul'] ?></h2>
+													<h2 class="mb-0"><?= $bp['judul'] . ' '; ?> <span class="badge badge-count"><?= ' ' . unix_indo($bp['tgl_buat']); ?></span></h2>
 												</a>
-												<small class="mb-0"><?= date_indo(gmdate("Y-m-d H:i:s", $bp['tgl_buat'])) ?></small>
+												<!-- <small class="mb-0"><?= date_indo(gmdate("Y-m-d H:i:s", $bp['tgl_buat'])) ?></small> -->
 												<hr class="mb-2">
 												<p class="mt-0">
-													<?= substr(html_escape(preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', '', $bp['isi'])), 0, 300)  ?>
 													<?php if ($bp['isi'] == '' || null) : ?>
 														<p class="text-sm text-info italic">Kosong</p>
 													<?php else : ?>
-														...
+														<?= limit_word_regex($bp['isi'], 15) ?><br>
+														<a href="<?= base_url('blog/read/') . $bp['slug'] ?>" target="_blank" rel="noopener noreferrer" class="badge badge-primary">Read More.</a>
 													<?php endif ?>
 												</p>
 											</div>
