@@ -117,7 +117,7 @@
 						</li>
 					<?php endforeach ?>
 				<?php endforeach ?>
-				<li class="nav-section">
+				<!-- <li class="nav-section">
 					<span class="sidebar-mini-icon">
 						<i class="fa fa-ellipsis-h"></i>
 					</span>
@@ -136,28 +136,7 @@
 						<p>Boards</p>
 						<span class="badge badge-count">4</span>
 					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= base_url('assets/') ?>invoice.html">
-						<i class="fas fa-file-invoice-dollar"></i>
-						<p>Invoices</p>
-						<span class="badge badge-count">6</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= base_url('assets/') ?>pricing.html">
-						<i class="fas fa-tag"></i>
-						<p>Pricing</p>
-						<span class="badge badge-count">6</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= base_url('assets/') ?>faqs.html">
-						<i class="far fa-question-circle"></i>
-						<p>Faqs</p>
-						<span class="badge badge-count">6</span>
-					</a>
-				</li>
+				</li> -->
 			<?php endif ?>
 		</ul>
 	</div>

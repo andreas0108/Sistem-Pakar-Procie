@@ -20,9 +20,9 @@ class User extends CI_Controller
 			'email' => $this->session->userdata('email')
 		])->row_array();
 
-		$this->form_validation->set_rules('name', 'Nama', 'required', ['name' => 'Nama wajib diisi']);
-		$this->form_validation->set_rules('address', 'Alamat', 'required', ['address' => 'Alamat wajib diisi']);
-		$this->form_validation->set_rules('phone', 'Nomer Telpon', 'required', ['phone' => 'Nomer Telpon wajib diisi']);
+		$this->form_validation->set_rules('name', 'Nama', 'required', ['required' => 'Nama wajib diisi']);
+		$this->form_validation->set_rules('address', 'Alamat', 'required', ['required' => 'Alamat wajib diisi']);
+		$this->form_validation->set_rules('phone', 'Nomer Telpon', 'required', ['required' => 'Nomer Telpon wajib diisi']);
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('Dashboard/User/index', $data);

@@ -11,21 +11,27 @@ class Home extends CI_Controller
 		$this->load->model('');
 	}
 
+	public function test()
+	{
+		$data['title'] = 'Landing';
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')
+		])->row_array();
+
+		$this->load->view('index2', $data);
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('email')) {
 			$data['title'] = 'Dashboard';
-			$data['user'] = $this->db->get_where('user', [
-				'email' => $this->session->userdata('email')
-			])->row_array();
-			$data['desc'] = 'Procie is a tools to recommend you the best and suitable processor for you based on your answer from my simple question.';
+			$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+			$data['desc'] = 'Selamat datang ' . $data['user']['name'] . ' di Dashboard Aplikasi Sistem Pakar ' . $this->config->item('site_name');
 
 			$this->load->view('Home/index', $data);
 		} else {
 			$data['title'] = 'Landing';
-			$data['user'] = $this->db->get_where('user', [
-				'email' => $this->session->userdata('email')
-			])->row_array();
+			$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
 			// var_dump($data['user']);
 			// die;
@@ -43,9 +49,7 @@ class Home extends CI_Controller
 		$data['title'] = 'Konsultasi';
 		$data['desc'] = 'Procie is a tools to recommend you the best and suitable processor for you based on your answer from my simple question.';
 
-		$data['user'] = $this->db->get_where('user', [
-			'email' => $this->session->userdata('email')
-		])->row_array();
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		// var_dump($data['user']);
 		// die;
 
@@ -57,11 +61,6 @@ class Home extends CI_Controller
 		$x = think($_POST);
 
 		$data['hasil'] = $this->db->get_where('komponen', ['id' => $x['komponen_id']])->row_array();
-
-		// var_dump($x);
-		// var_dump($_POST);
-		// var_dump($data);
-		// die;
 
 		$data['title'] = 'Rekomendasi';
 		$data['desc'] = 'Procie is a tools to recommend you the best and suitable processor for you based on your answer from my simple question.';
@@ -82,12 +81,8 @@ class Home extends CI_Controller
 	{
 		$data['title'] = 'About';
 
-		$data['user'] = $this->db->get_where('user', [
-			'email' => $this->session->userdata('email')
-		])->row_array();
-		// var_dump($data['user']);
-		// die;
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$this->load->view('Home/index2', $data);
+		$this->load->view('Home/about', $data);
 	}
 }

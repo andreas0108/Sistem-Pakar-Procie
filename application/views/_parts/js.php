@@ -43,12 +43,6 @@
 <!-- Dropzone -->
 <script src="<?= base_url(); ?>assets/js/plugin/dropzone/dropzone.min.js"></script>
 
-<!-- Fullcalendar -->
-<script src="<?= base_url(); ?>assets/js/plugin/fullcalendar/fullcalendar.min.js"></script>
-
-<!-- DateTimePicker -->
-<script src="<?= base_url(); ?>assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
-
 <!-- Bootstrap Tagsinput -->
 <script src="<?= base_url(); ?>assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 
@@ -73,8 +67,15 @@
 <!-- Magnific Popup -->
 <script src="<?= base_url(); ?>assets/js/plugin/jquery.magnific-popup/jquery.magnific-popup.min.js"></script>
 
+<!-- Holder Popup -->
+<script src="<?= base_url(); ?>assets/js/plugin/jquery-mask-plugin/jquery.maskplugin.min.js"></script>
+
+<!-- Input Mask -->
+<script src="<?= base_url(); ?>assets/js/plugin/holder/holder.js"></script>
+
 <!-- Atlantis JS -->
 <script src="<?= base_url(); ?>assets/js/atlantis.min.js"></script>
+
 <!-- Custom Sikar JS -->
 <script src="<?= base_url('assets/') ?>js/sikar.js"></script>
 <script>

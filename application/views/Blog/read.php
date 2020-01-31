@@ -65,6 +65,9 @@
 								<span class="badge badge-info" title="<?= unix_indo2($arti['tgl_buat'], "htjs") . ' WIB' ?>">
 									<b><?= unix_indo2($arti['tgl_buat'], "tgl") ?></b>
 								</span>
+								<span class="badge badge-success" title=>
+									Tags :<b><?= $arti['tags'] ?></b>
+								</span>
 							</div>
 
 							<div class="card full-height">

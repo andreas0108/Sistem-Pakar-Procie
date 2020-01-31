@@ -81,7 +81,7 @@
 																<label class="imagecheck mb-4">
 																	<input name="data<?= $pi['id'] ?>" type="radio" value="<?= $j['id'] ?>" class="imagecheck-input">
 																	<figure class="imagecheck-figure m-1">
-																		<img src="https://via.placeholder.com/300?text=<?= str_replace(' ', '+', $j['jawaban_content']) ?>" alt="title" class="imagecheck-image">
+																		<img src="holder.js/200x200?text=<?= str_replace(' ', ' ', $j['jawaban_content']) ?>" alt="title" class="imagecheck-image">
 																	</figure>
 																</label>
 															<?php endforeach ?>
@@ -127,6 +127,8 @@
 
 	<!-- JS Files   -->
 	<?php $this->load->view('_parts/js'); ?>
+	<script>
+	</script>
 	<!-- ./JS Files -->
 </body>
 

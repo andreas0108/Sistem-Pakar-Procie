@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<div class="wrapper">
+	<div class="wrapper sidebar_minimize">
 		<!-- Header -->
 		<div class="main-header">
 			<!-- Logo -->
@@ -60,7 +60,6 @@
 												<a href="<?= base_url('blog/read/') . $bp['slug'] ?>" target="_blank" rel="noopener noreferrer">
 													<h2 class="mb-0"><?= $bp['judul'] . ' '; ?> <span class="badge badge-count"><?= ' ' . unix_indo($bp['tgl_buat']); ?></span></h2>
 												</a>
-												<!-- <small class="mb-0"><?= date_indo(gmdate("Y-m-d H:i:s", $bp['tgl_buat'])) ?></small> -->
 												<hr class="mb-2">
 												<p class="mt-0">
 													<?php if ($bp['isi'] == '' || null) : ?>

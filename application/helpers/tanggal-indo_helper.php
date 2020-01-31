@@ -1,5 +1,21 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+if (!function_exists('unix_indo')) {
+	function unix_indo($tgl)
+	{
+		$x = explode("-", gmdate("d-m-Y", $tgl));
+		return $x[0] . ' ' . bulan($x[1]) . ' ' . $x[2];
+	}
+}
+
+if (!function_exists('unix_indoshort')) {
+	function unix_indoshort($tgl)
+	{
+		$x = explode("-", gmdate("d-m-Y", $tgl));
+		return $x[0] . '-' . medium_bulan($x[1]) . '-' . $x[2];
+	}
+}
+
 if (!function_exists('unix_indo2')) {
 	/** 
 	 * Konversi UNIX Time stamp ke Tanggal Indonesia
@@ -68,114 +84,25 @@ if (!function_exists('unix_indo2')) {
 				break;
 
 			case "tgl":
-				$x = explode("-", gmdate("n-m-Y", $tgl));
+				$x = explode("-", gmdate("d-m-Y", $tgl));
 				return $x[0] . ' ' . bulan($x[1]) . ' ' . $x[2];
 				break;
 
 			case "htg":
 				$a = hari(gmdate("l", $tgl));
-				$x = explode("-", gmdate("n-m-Y", $tgl));
+				$x = explode("-", gmdate("d-m-Y", $tgl));
 				$b = $x[0] . ' ' . bulan($x[1]) . ' ' . $x[2];
 				return $a . ', ' . $b;
 				break;
 
 			case "htjs":
 				$a = hari(gmdate("l", $tgl));
-				$x = explode("-", gmdate("n-m-Y", $tgl));
+				$x = explode("-", gmdate("d-m-Y", $tgl));
 				$b = $x[0] . ' ' . bulan($x[1]) . ' ' . $x[2];
 				$c = gmdate("H:i:s", $tgl);
 				return $a . ', ' . $b . ' ' . $c;
 				break;
 		}
-	}
-}
-
-if (!function_exists('unix_indo')) {
-	function unix_indo($tgl)
-	{
-		$catch = gmdate("n-m-Y", $tgl);
-		$tgl = explode("-", $catch);
-
-		return $tgl[0] . ' ' . bulan($tgl[1]) . ' ' . $tgl[2];
-	}
-}
-
-if (!function_exists('unix_namahari')) {
-	function unix_indohari($tgl)
-	{
-		$tggl = unix_indo($tgl);
-
-		return hari(gmdate("l", $tgl)) . ', ' . $tggl;
-	}
-}
-
-if (!function_exists('unix_harijam')) {
-	function unix_harijam($tgl)
-	{
-		return gmdate("H:i:s", $tgl);
-	}
-}
-
-if (!function_exists('tgl_indo')) {
-	function date_indo($tgl)
-	{
-		$ubah = gmdate($tgl, time() + 60 * 60 * 8);
-		$pisah = explode(" ", $ubah);
-		$pecah = explode("-", $pisah[0]);
-		$jam = $pisah[1];
-		$tanggal = $pecah[2];
-		$bulan = bulan($pecah[1]);
-		$tahun = $pecah[0];
-		return $tanggal . ' ' . $bulan . ' ' . $tahun;
-	}
-}
-
-//Format Shortdate + jam
-if (!function_exists('tgl_indo_jam')) {
-	function date_indo_jam($tgl)
-	{
-		$ubah = gmdate($tgl, time() + 60 * 60 * 8);
-		$pisah = explode(" ", $ubah);
-		$pecah = explode("-", $pisah[0]);
-		$jam = $pisah[1];
-		$tanggal = $pecah[2];
-		$bulan = bulan($pecah[1]);
-		$tahun = $pecah[0];
-		return $jam . ' ' . $tanggal . ' ' . $bulan . ' ' . $tahun;
-	}
-}
-
-//Long date indo Format
-if (!function_exists('longdate_indo')) {
-	function longdate_indo($tanggal)
-	{
-		$ubah = gmdate($tanggal, time() + 60 * 60 * 8);
-		$pisah = explode(" ", $ubah);
-		$pecah = explode("-", $pisah[0]);
-		$jam = $pisah[1];
-		$tgl = $pecah[2];
-		$bln = $pecah[1];
-		$thn = $pecah[0];
-		$bulan = bulan($pecah[1]);
-
-		$nama = date("l", mktime(0, 0, 0, $bln, $tgl, $thn));
-		$nama_hari = "";
-		if ($nama == "Sunday") {
-			$nama_hari = "Minggu";
-		} else if ($nama == "Monday") {
-			$nama_hari = "Senin";
-		} else if ($nama == "Tuesday") {
-			$nama_hari = "Selasa";
-		} else if ($nama == "Wednesday") {
-			$nama_hari = "Rabu";
-		} else if ($nama == "Thursday") {
-			$nama_hari = "Kamis";
-		} else if ($nama == "Friday") {
-			$nama_hari = "Jumat";
-		} else if ($nama == "Saturday") {
-			$nama_hari = "Sabtu";
-		}
-		return $nama_hari . ', ' . $tgl . ' ' . $bulan . ' ' . $thn . ' ' . $jam . ' WIB';
 	}
 }
 
@@ -253,22 +180,7 @@ if (!function_exists('bulan')) {
 	}
 }
 
-//Format Shortdate
-if (!function_exists('shortdate_indo')) {
-	function shortdate_indo($tgl)
-	{
-		$ubah = gmdate($tgl, time() + 60 * 60 * 8);
-		$pisah = explode(" ", $ubah);
-		$pecah = explode("-", $pisah[0]);
-		$jam = $pisah[1];
-		$tanggal = $pecah[2];
-		$bulan = short_bulan($pecah[1]);
-		$tahun = $pecah[0];
-		return $tanggal . '/' . $bulan . '/' . $tahun;
-	}
-}
-
-if (!function_exists('short_bulan')) {
+if (!function_exists('short_bulan')) { //tgl/bln/tahun
 	function short_bulan($bln)
 	{
 		switch ($bln) {
@@ -312,22 +224,8 @@ if (!function_exists('short_bulan')) {
 	}
 }
 
-//Format Medium date
-if (!function_exists('mediumdate_indo')) {
-	function mediumdate_indo($tgl)
-	{
-		$ubah = gmdate($tgl, time() + 60 * 60 * 8);
-		$pisah = explode(" ", $ubah);
-		$pecah = explode("-", $pisah[0]);
-		$jam = $pisah[1];
-		$tanggal = $pecah[2];
-		$bulan = medium_bulan($pecah[1]);
-		$tahun = $pecah[0];
-		return $tanggal . '-' . $bulan . '-' . $tahun;
-	}
-}
 
-if (!function_exists('medium_bulan')) {
+if (!function_exists('medium_bulan')) { // tgl-bln-thn
 	function medium_bulan($bln)
 	{
 		switch ($bln) {

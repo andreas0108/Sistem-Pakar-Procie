@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<div class="wrapper">
+	<div class="wrapper sidebar_minimize">
 		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('flashmsg'); ?>"></div>
 		<div class="flash-err" data-flasherror="<?= $this->session->flashdata('flasherr'); ?>"></div>
 		<!-- Header -->

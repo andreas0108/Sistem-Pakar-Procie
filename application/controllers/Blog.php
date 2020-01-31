@@ -57,7 +57,7 @@ class Blog extends CI_Controller
 
 	public function read($slug)
 	{
-		$this->db->select('article.judul, article.isi , user.name, article.tgl_buat, article.slug, article.gambar ');
+		$this->db->select('article.judul, article.isi , user.name, article.tgl_buat, article.slug, article.gambar, article.tags ');
 		$this->db->join('user', 'user.id = article.penulis_id');
 		$x = $this->db->get_where('article', ['slug' => $slug])->row_array();
 
