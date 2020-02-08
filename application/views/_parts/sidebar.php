@@ -84,7 +84,7 @@
 			</li>
 			<li class="nav-item <?= $this->uri->segment(1) == 'blog' ? 'active' : '' ?>">
 				<a href="<?= base_url('blog') ?>">
-					<i class="fas fa-comment-alt"></i>
+					<i class="fas fa-book"></i>
 					<p>Blog</p>
 				</a>
 			</li>
@@ -129,14 +129,19 @@
 						<p>Projects</p>
 						<span class="badge badge-count">5</span>
 					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= base_url('assets/') ?>boards.html">
-						<i class="fas fa-th-list"></i>
-						<p>Boards</p>
-						<span class="badge badge-count">4</span>
-					</a>
 				</li> -->
+				<li class="nav-section">
+					<span class="sidebar-mini-icon">
+						<i class="fa fa-ellipsis-h"></i>
+					</span>
+					<h4 class="text-section">Application Menu</h4>
+				</li>
+				<li class="nav-item <?= $this->uri->segment(2) == 'log' ? 'active' : '' ?>">
+					<a href="<?= base_url('dashboard/log') ?>">
+						<i class="fas fa-server"></i>
+						<p>System Logs</p>
+					</a>
+				</li>
 			<?php endif ?>
 		</ul>
 	</div>

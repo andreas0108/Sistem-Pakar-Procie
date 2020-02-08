@@ -6,6 +6,11 @@ $(window).resize(function () {
 	$(window).width();
 });
 
+$('#showTable').DataTable({
+	"ordering": false,
+	"autoWidth": false
+});
+
 $('.useradd').on('click', function () {
 	$('#addUserModalTitle').html('Add User');
 	$('.modal-footer button[type=button]').html('Cancel');
@@ -209,3 +214,70 @@ function check() {
 	}
 
 }
+
+const label = $('#dailySalesChart').data('label');
+const jumlah = $('#dailySalesChart').data('jumlah');
+
+// console.log(label);
+// console.log(jumlah);
+
+var dailySalesChart = document.getElementById('dailySalesChart').getContext('2d');
+var myDailySalesChart = new Chart(dailySalesChart, {
+	type: 'line',
+	data: {
+		// labels: ["January",	"February",	"March", "April", "May", "June", "July", "August", "September"],
+		labels: label,
+		datasets: [{
+			label: "Jumlah Konsultasi",
+			fill: !0,
+			backgroundColor: "rgba(255,255,255,0.2)",
+			borderColor: "#fff",
+			borderCapStyle: "butt",
+			borderDash: [],
+			borderDashOffset: 0,
+			pointBorderColor: "#fff",
+			pointBackgroundColor: "#fff",
+			pointBorderWidth: 1,
+			pointHoverRadius: 5,
+			pointHoverBackgroundColor: "#fff",
+			pointHoverBorderColor: "#fff",
+			pointHoverBorderWidth: 1,
+			pointRadius: 1,
+			pointHitRadius: 5,
+			// data: [65, 59, 80, 81, 56, 55, 40, 35, 30]
+			data: jumlah
+		}]
+	},
+	options: {
+		maintainAspectRatio: !1,
+		legend: {
+			display: !1
+		}
+		, animation: {
+			easing: "easeInOutBack"
+		}
+		, scales: {
+			yAxes: [{
+				display: !1, ticks: {
+					fontColor: "rgba(0,0,0,0.5)",
+					fontStyle: "bold",
+					beginAtZero: !0,
+					maxTicksLimit: 10,
+					padding: 0
+				}
+				, gridLines: {
+					drawTicks: !1, display: !1
+				}
+			}
+			], xAxes: [{
+				display: !1, gridLines: {
+					zeroLineColor: "transparent"
+				}
+				, ticks: {
+					padding: -20, fontColor: "rgba(255,255,255,0.2)", fontStyle: "bold"
+				}
+			}
+			]
+		}
+	}
+});

@@ -1,16 +1,24 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+// $ci = get_instance();
 
-$route['dashboard'] = 'home/dashboard';
+$route['default_controller'] = 'home';
+
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
+
+$route['dashboard'] = 'home/redirect';
 $route['konsultasi'] = 'home/konsultasi';
 $route['about'] = 'home/about';
 $route['blog/(:num)'] = 'blog/index/$1';
 
 $route['login'] = 'auth';
 $route['logout'] = 'auth/logout';
-$route['konsultasi/hasil'] = 'home/hasil';
+$route['konsultasi/proses'] = 'home/proses';
+$route['konsultasi/hasil/(:any)'] = 'dashboard/komponen/tampil/$1';
 
-$route['default_controller'] = 'home';
+$route['komponen'] = 'dashboard/komponen/redir';
 
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+// redirect blank breadcrumbs
+$route['dashboard/komponen/ubah'] = 'dashboard/komponen/redir';
+$route['dashboard/article/ubah'] = 'dashboard/article/redir';

@@ -25,49 +25,47 @@ class Auth extends CI_Controller
 
 			$this->load->view('auth/login', $data);
 		} else {
-			$this->_login();
-		}
-	}
+			// var_dump($_POST);
+			// die;
+			$email = $this->input->post('email');
+			$password = $this->input->post('password');
 
-	private function _login()
-	{
-		$email = $this->input->post('email');
-		$password = $this->input->post('password');
+			$user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-		$user = $this->db->get_where('user', ['email' => $email])->row_array();
+			// if user already registered
+			if ($user) {
+				// cek password
+				// true
+				if (password_verify($password, $user['password'])) {
+					$data = [
+						'email' => $user['email'],
+						'umail' => $user['email'],
+						'id' => $user['id'],
+						'name' => $user['name']
+					];
+					$this->session->set_userdata($data);
 
-		// if user already registered
-		if ($user) {
-			// cek password
-			// true
-			if (password_verify($password, $user['password'])) {
-				$data = [
-					'email' => $user['email'],
-					'role_id' => $user['role_id'],
-					'id' => $user['id'],
-				];
-				$this->session->set_userdata($data);
+					$this->db->set('status', '1');
+					$this->db->where('id', $user['id']);
+					$this->db->update('user');
 
-				$this->db->set('status', '1');
-				$this->db->where('id', $user['id']);
-				$this->db->update('user');
-
-				redirect(base_url());
+					redirect(base_url());
+				} else {
+					// false
+					$this->session->set_flashdata(
+						'flasherr',
+						'<strong>Password yang anda masukkan salah!</strong> Priksa kembali.'
+					);
+					redirect('auth');
+				}
 			} else {
-				// false
+				// jika salah
 				$this->session->set_flashdata(
 					'flasherr',
-					'<strong>Password yang anda masukkan salah!</strong> Priksa kembali.'
+					'<strong>Email tidak diketemukan.</strong> Priksa kembali.'
 				);
 				redirect('login');
 			}
-		} else {
-			// jika salah
-			$this->session->set_flashdata(
-				'flasherr',
-				'<strong>Email tidak diketemukan.</strong> Priksa kembali.'
-			);
-			redirect('login');
 		}
 	}
 

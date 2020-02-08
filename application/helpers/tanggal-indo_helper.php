@@ -44,6 +44,8 @@ if (!function_exists('unix_indo2')) {
 
 	function unix_indo2($tgl, $format)
 	{
+		$tgl = $tgl + (7 * 60 * 60);
+
 		switch ($format) {
 				// Single Digit
 			case "d":

@@ -53,12 +53,12 @@
 												<div class="col-7 col-stats">
 													<div class="numbers">
 														<p class="card-category">Jumlah Konsultasi</p>
-														<h4 class="card-title">0</h4>
+														<h4 class="card-title"><?= count($this->db->get('history')->result_array()) ?></h4>
 													</div>
 												</div>
 											</div>
 											<hr style="border-color:white">
-											<a href="javascript:void(0)" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
+											<a href="<?= base_url('dashboard/history') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
 														<p class="card-category">More Info.</p>
@@ -80,7 +80,7 @@
 												<div class="col-7 col-stats">
 													<div class="numbers">
 														<p class="card-category">Feedback</p>
-														<h4 class="card-title">0</h4>
+														<h4 class="card-title"><?= count($this->db->get('feedback')->result_array()) ?></h4>
 													</div>
 												</div>
 											</div>
@@ -140,7 +140,7 @@
 															$x = $this->db->get('log')->row_array();
 															?>
 
-															<?= unix_indoshort($x['tgl_data']) ?>
+															<?= $x == '' || null ? 'Loading Failed...' : unix_indoshort($x['tgl_data']) ?>
 														</h4>
 													</div>
 												</div>
@@ -277,9 +277,82 @@
 									</div>
 								</div>
 							</div>
-							<div class="card full-height">
-								<div class="card-body">
-									Inner page content goes here
+							<hr class="mt-0 mb-2 pt-0 pb-3" style="border-color: #1572E8; border-width: 2px;">
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-sm-12">
+									<div class="card card-primary">
+										<div class="card-header">
+											<div class="card-title">Statistik Pengguna</div>
+											<div class="float-right">
+												<h1><?= $statsper ?></h1>
+											</div>
+											<div class="card-category">
+												<p>Konsultasi hari ini (<?= gmdate('d-m-Y', time()) ?>) : </p>
+												<h4 class="mb-4"><?= $statscnt ?> konsultasi</h4>
+											</div>
+										</div>
+										<div class="card-body pt-1 pb-0">
+											<div class="pull-in">
+												<canvas id="dailySalesChart" class="chartjs-render-monitor" style="display: block; height: 28vh; width: 100%;padding-top: 5px;" data-label="<?= '[' . arrtostr($this->Simo->jsonlabelHasil()) . ']' ?>" data-jumlah="<?= '[' . arrtostr($this->Simo->jsonCountHasil()) . ']' ?>"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="card full-height">
+										<div class="card-header">
+											History
+										</div>
+										<div class="card-body mb-0 pb-0">
+											<?php foreach ($history as $h) : ?>
+												<div class="d-flex">
+													<div class="flex-1">
+														<h6 class="fw-bold mb-1">
+															<?= substr(ucfirst($h['user_name']), 0, 15) ?>
+															<span class="text-info pl-1">
+																(<?= substr($h['email'], 0, 15) ?>...)
+															</span>
+														</h6>
+														<span class="text-muted">
+															<b>Hasil : </b><?= substr($h['hasil'], 0, 25) ?>...
+														</span>
+													</div>
+													<div class="ml-1 float-right">
+														<small class="text-info pl-1">
+															ID : <?= $h['id'] ?>
+														</small>
+													</div>
+												</div>
+												<div class="separator-dashed"></div>
+											<?php endforeach ?>
+										</div>
+										<div class="card-footer">
+											<a href="#" class="btn btn-sm btn-primary btn-fill" style="width: 100%; bottom:0px;">Lihat Log</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="card full-height">
+										<div class="card-header">
+											System Logs
+										</div>
+										<div class="card-body mb-0 pb-0">
+											<?php foreach ($log as $l) : ?>
+												<div class="d-flex">
+													<div class="flex-1">
+														<span title="<?= $l['keterangan'] ?>"><?= substr($l['keterangan'], 0, 36) ?>...</span>
+													</div>
+													<div class="ml-1 float-right">
+														<small title="<?= gmdate('d-M-Y H:i:s', ($l['tgl_data'] + (7 * 3600))) . ' WIB' ?>"><?= unix_indo2($l['tgl_data'], 'tgl') ?></small>
+													</div>
+												</div>
+												<div class="separator-dashed"></div>
+											<?php endforeach ?>
+										</div>
+										<div class="card-footer">
+											<a href="#" class="btn btn-sm btn-primary btn-fill" style="width: 100%">Lihat Log</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

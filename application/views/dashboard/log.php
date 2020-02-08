@@ -56,9 +56,6 @@
 						<div class="col-md-12">
 							<div class="tab-content mb-3" id="pills-tabContent">
 								<div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
-									<div class="mt-1 float-right">
-										<a href="<?= base_url('dashboard/komponen/tambah') ?>" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-default" href="">Tambah Komponen</button></a>
-									</div>
 									<div class="page-header">
 										<h4 class="page-title"><?= strtoupper($title) ?></h4>
 										<ul class="breadcrumbs">
@@ -68,51 +65,31 @@
 									<div class="card">
 										<div class="card-body">
 											<div class="table-responsive">
-												<table id="table-komponen" class="display table table-striped table-hover table-head-bg-primary" cellspacing="0" width="100%">
+												<table id="table-komponen" class="display table table-bordered table-striped table-hover table-head-bg-primary" cellspacing="0" width="100%">
 													<thead>
 														<tr class="text-center">
 															<th scope="col" style="width:5%">#</th>
-															<th scope="col">Manufacture</th>
-															<th scope="col">Kategori</th>
-															<th scope="col">Nama Komponen</th>
-															<th scope="col">Deskripsi</th>
-															<th scope="col">Harga</th>
-															<th scope="col">Ditambahkan</th>
-															<th scope="col" style="width: 5%"></th>
+															<th scope="col" style="width:65%">Keterangan</th>
+															<th scope="col" style="width:10%">User</th>
+															<th scope="col" style="width:20%">Tanggal Data</th>
 														</tr>
 													</thead>
 													<tbody>
 														<?php
 														$i = 1;
-														foreach ($kompo as $k) : ?>
+														foreach ($log as $l) : ?>
 															<tr>
 																<td>
 																	<?= $i++ ?>
 																</td>
 																<td>
-																	<p class="card-text mb-0"><?= $k['manufacture'] == 1 ? 'AMD' : 'Intel' ?></p>
+																	<p class="card-text mb-0"><?= $l['keterangan'] ?></p>
 																</td>
 																<td>
-																	<p class="card-text mb-0"><?= $k['kategori'] ?></p>
+																	<p class="card-text mb-0"><?= $l['user'] ?></p>
 																</td>
 																<td>
-																	<p class="card-text mb-0"><?= $k['name'] ?></p>
-																</td>
-																<td>
-																	<p class="card-text mb-0"><?= limit_word_regex($k['desc'], 5) ?>...</p>
-																</td>
-																<td>
-																	<p class="card-text mb-0"><?= "Rp " . number_format($k['price'], null, null, '.'); ?></p>
-																</td>
-																<td style="text-align: right">
-																	<p class="card-text"><?= unix_indo2($k['ditambahkan'], 'tgl') ?></p>
-																</td>
-																<td>
-																	<div class="btn-group float-right" role="group" aria-label="Basic example">
-																		<a href="<?= base_url('dashboard/komponen/ubah/') . $k['id']; ?>" title="update komponen" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
-																		<a href="<?= base_url('dashboard/komponen/tampil/') . $k['slug']; ?>" title="lihat komponen" type="button" class="btn btn-sm btn-success" target="_blank"><i style="color: white" class="fa fa-eye"></i></a>
-																		<a href="<?= base_url('dashboard/komponen/hapus/') . $k['id']; ?>" title="hapus komponen" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Komponen"><i style="color: white" class="fa fa-trash"></i></a>
-																	</div>
+																	<p class="card-text"><?= unix_indo2($l['tgl_data'], 'htjs') . ' WIB' ?></p>
 																</td>
 															</tr>
 														<?php endforeach ?>

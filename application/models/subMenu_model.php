@@ -20,6 +20,6 @@ class subMenu_model extends CI_Model
                       ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
 				   WHERE `user_sub_menu`.`id` = $id
         ";
-		return $this->db->query($query)->result_array();
+		return $this->db->query($query)->row_array();
 	}
 }

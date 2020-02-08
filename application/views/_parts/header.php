@@ -11,6 +11,6 @@
 </button>
 <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
 <div class="nav-toggle">
-	<button class="btn btn-toggle toggle-sidebar"><i class="icon-menu"></i></button>
+	<button class="btn btn-toggle toggle-sidebar"><i class="icon-options-vertica"></i></button>
 </div>
 <!-- End Logo Header -->

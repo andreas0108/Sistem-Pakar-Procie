@@ -78,6 +78,3 @@
 
 <!-- Custom Sikar JS -->
 <script src="<?= base_url('assets/') ?>js/sikar.js"></script>
-<script>
-
-</script>

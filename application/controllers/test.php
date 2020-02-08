@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Test extends CI_Controller {
+class Test extends CI_Controller
+{
 
 	/**
 	 * Index Page for this controller.
@@ -20,7 +21,20 @@ class Test extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
-		echo "<center>Test</center>";
+		$du = array('Dummy User', 'Testing', 'Testing User', 'Dummy');
+		$de = array('user@@email.com', 'Testing@email.com', 'Testing.User@email.com', 'Dummy@email.com');
+
+		$data['x'] = $du[rand(0, 3)];
+		$data['y'] = $de[rand(0, 3)];
+
+		echo $du[rand(0, 3)] . '<br>';
+		echo $de[rand(0, 3)] . '<br>';
+		var_dump($data);
+		die;
+	}
+
+	public function array()
+	{
+		$this->load->view('test/array');
 	}
 }

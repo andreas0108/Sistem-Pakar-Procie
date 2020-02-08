@@ -46,7 +46,7 @@
 						</ul>
 					</div>
 					<!-- Content -->
-					<form action="<?= base_url('dashboard/komponen/tambah'); ?>" method="post" enctype="multipart/form-data">
+					<form method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-3 col-sm-12">
 								<div class="card">
@@ -62,7 +62,7 @@
 											</div>
 										</div>
 										<center>
-											<img src="https://placehold.it/400?text=Gambar+Komponen" id="preview" class="img-fluid img-thumbnail animated fadeIn" style="object-position: center; object-fit: cover">
+											<img src="<?= $kompo['img'] != '' ? base_url('assets/img/komponen/') . $kompo['img'] : 'https://placehold.it/300?text=Gambar+Komponen' ?>" id="preview" class="img-thumbnail animated fadeIn" style="object-position: center; object-fit: cover">
 										</center>
 									</div>
 								</div>
@@ -75,7 +75,7 @@
 											<div class="col-md-8 col-sm-12">
 												<div class="form-group">
 													<label for="nama">Nama</label>
-													<input type="text" name="nama" class="form-control focus" placeholder="[merk] [seri] [versi]" required>
+													<input type="text" name="nama" class="form-control focus" placeholder="[merk] [seri] [versi]" value="<?= $kompo['name'] ?>" required>
 												</div>
 											</div>
 											<div class="col-md-4 col-sm-12">
@@ -85,7 +85,7 @@
 														<div class="input-group-prepend">
 															<span class="input-group-text" id="basic-addon1">Rp</span>
 														</div>
-														<input type="text" class="form-control text-left" id="harga" name="harga" data-mask="000.000.000.000" data-mask-reverse="true">
+														<input type="text" class="form-control text-left" id="harga" name="harga" data-mask="000.000.000.000" data-mask-reverse="true" value="<?= $kompo['price'] ?>">
 													</div>
 												</div>
 											</div>
@@ -94,7 +94,7 @@
 											<div class="col">
 												<div class="form-group mb-0 pb-0">
 													<label for="isi">Deskripsi</label>
-													<textarea name="isi" id="isi" class="form-control" placeholder="Deskripsi" style="height: 100px;" required></textarea>
+													<textarea name="isi" id="isi" class="form-control" placeholder="Deskripsi" style="height: 100px;" required><?= $kompo['desc'] ?></textarea>
 												</div>
 											</div>
 										</div>
@@ -111,21 +111,36 @@
 													<label for="">Manufacture :</label>
 													<select class="form-control" name="manuf" required>
 														<option value="">Pilih</option>
-														<option value="1">AMD</option>
-														<option value="2">Intel</option>
+														<?php if ($kompo['manufacture'] == 1) : ?>
+															<option selected value="1">AMD</option>
+															<option value="2">Intel</option>
+														<?php else : ?>
+															<option value="1">AMD</option>
+															<option selected value="2">Intel</option>
+														<?php endif ?>
 													</select>
 												</div>
 												<div class="row">
+													<?php
+													$x = explode('/', $kompo['spek_ct']);
+													if ($kompo['spek_ct'] != '' || null) {
+														$cr = $x[0];
+														$th = $x[1];
+													} else {
+														$cr = 0;
+														$th = 0;
+													}
+													?>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label for="spek_core"># Core</label>
-															<input type="number" name="spek_core" class="form-control" placeholder="Jumlah Core">
+															<input type="number" name="spek_core" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Core" value="<?= $cr ?>">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label for="spek_thread"># Thread</label>
-															<input type="number" name="spek_thread" class="form-control" placeholder="Jumlah Thread">
+															<input type="number" name="spek_thread" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Thread" value="<?= $th ?>">
 														</div>
 													</div>
 												</div>
@@ -136,16 +151,30 @@
 													<select class="form-control" name="kate" required>
 														<option value="">Pilih</option>
 														<?php foreach ($this->db->get('komponen_kategori')->result_array() as $kt) {
-															echo '<option value="' . $kt['id'] . '">' . ucfirst(strtolower($kt['name'])) . '</option>';
+															if ($kt['id'] == $kompo['kategori']) {
+																echo '<option selected value="' . $kt['id'] . '">' . ucfirst(strtolower($kt['name'])) . '</option>';
+															} else {
+																echo '<option value="' . $kt['id'] . '">' . ucfirst(strtolower($kt['name'])) . '</option>';
+															}
 														} ?>
 													</select>
 												</div>
 												<div class="row">
+													<?php
+													$x = explode('/', $kompo['spek_babo']);
+													if ($kompo['spek_babo'] != '' || null) {
+														$ba = $x[0];
+														$bo = $x[1];
+													} else {
+														$ba = 0;
+														$bo = 0;
+													}
+													?>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label for="spek_basec">Base Clock</label>
 															<div class="input-group">
-																<input type="number" name="spek_basec" class="form-control" placeholder="Base Clock">
+																<input type="text" name="spek_basec" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Base Clock" value="<?= $ba; ?>">
 																<div class="input-group-append">
 																	<span class="input-group-text">GHz</span>
 																</div>
@@ -156,7 +185,7 @@
 														<div class="form-group">
 															<label for="spek_boostc">Boost Clock</label>
 															<div class="input-group">
-																<input type="number" name="spek_boostc" class="form-control" placeholder="Boost Clock">
+																<input type="text" name="spek_boostc" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Boost Clock" value="<?= $bo; ?>">
 																<div class="input-group-append">
 																	<span class="input-group-text">GHz</span>
 																</div>
@@ -204,7 +233,7 @@
 
 	<!-- JS Files   -->
 	<?php $this->load->view('_parts/js'); ?>
-	<?php $this->load->view('js/js-komponen-tambah'); ?>
+	<?php $this->load->view('js/js-komponen-ubah'); ?>
 	<!-- ./JS Files -->
 </body>
 

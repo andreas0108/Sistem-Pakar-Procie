@@ -14483,3 +14483,9 @@ body {
     font-size: 1.25rem;
   }
 }
+
+.wizard-cover {
+	background-image: url("../img/bg-signup.jpg");
+  background-size: cover;
+  background-position: center;
+}

@@ -62,7 +62,8 @@
 							<div class="tab-content mb-3" id="pills-tabContent">
 								<div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
 									<div class="float-right">
-										<a href="<?= base_url('dashboard/article/tambah') ?>" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-success" href="">Tambah Artikel</button></a>
+										<a type="button" href="<?= base_url('dashboard/article/hapus_semua') ?>" class="btn btn-sm btn-danger btn-remove" data-text="Semua artikel">Hapus Semua</a>
+										<a href="<?= base_url('dashboard/article/tambah') ?>" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-info" href="">Tambah Artikel</button></a>
 									</div>
 									<div class="page-header">
 										<h4 class="page-title">Article List</h4>
@@ -88,7 +89,7 @@
 																	<?= $i++ ?>
 																</td>
 																<td>
-																	<p class="card-text mb-0"><?= $a['judul'] ?></p>
+																	<p class="card-text mb-0"><a href="<?= base_url('blog/read/') . $a['slug'] ?>" target="_blank" rel="noopener noreferrer"><?= $a['judul'] ?></a></p>
 																	<small class="card-subtitle text-muted mb-1">Penulis : <?= $a['penulis'] ?></h6>
 																</td>
 																<td style="text-align: right">
@@ -96,7 +97,7 @@
 																</td>
 																<td>
 																	<div class="btn-group float-right" role="group" aria-label="Basic example">
-																		<a href="<?= base_url('dashboard/article/ubah/') . $a['id']; ?>" title="ubah artikel" type="button" class="btn btn-sm btn-info" target="_blank"><i style="color: white" class="fa fa-pen"></i></a>
+																		<a href="<?= base_url('dashboard/article/ubah/') . $a['id']; ?>" title="ubah artikel" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
 																		<a href="<?= base_url('dashboard/article/hapus/') . $a['id']; ?>" title="hapus artikel" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Artikel"><i style="color: white" class="fa fa-trash"></i></a>
 																	</div>
 																</td>

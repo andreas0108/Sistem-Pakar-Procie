@@ -52,31 +52,32 @@
 							<div class="row">
 								<div class="col-md-3 col-sm-12">
 									<div class="card">
-										<?php $h = $hasil;
-										if ($h['manufacture'] == 1) : ?>
-											<img src="https://via.placeholder.com/400?text=AMD" alt="title" class="card-img img-thumbnail">
+										<?php $k = $kompo;
+										if ($k['manufacture'] == 1) : ?>
+											<img src="<?= $kompo['img'] != '' ? base_url('assets/img/komponen/') . $kompo['img'] : 'https://placehold.it/300?text=AMD' ?>" id="preview" class="img-thumbnail animated fadeIn" style="object-position: center; object-fit: cover">
 										<?php else : ?>
-											<img src="https://via.placeholder.com/400?text=Intel" alt="title" class="card-img img-thumbnail">
-										<?php endif ?>
+											<img src="<?= $kompo['img'] != '' ? base_url('assets/img/komponen/') . $kompo['img'] : 'https://placehold.it/300?text=Intel' ?>" id="preview" class="img-thumbnail animated fadeIn" style="object-position: center; object-fit: cover">
+										<?php endif
+										?>
 									</div>
 								</div>
 								<div class="col-md-9 col-sm-12">
 									<div class="card">
 										<div class="card-header">
-											<h5 class="card-title"><?= $h['name'] ?></h5>
+											<h5 class="card-title"><?= $k['name'] ?></h5>
 										</div>
 										<div class="card-body">
 											<h5 class="card-text"><b>Deskripsi</b></h5>
 											<hr>
-											<?= $h['desc'] ?>
+											<?= $k['desc'] ?>
 											<hr>
 											<div class="row">
 												<div class="col">
 													<div class="row">
 														<div class="col-md-3">
-															<h5 class="card-text"><b>Kelas : </b></h5>
+															<h5 class="card-text"><b>Kategori : </b></h5>
 														</div>
-														<div class="col-md-9"><?= $h['kategori'] ?></div>
+														<div class="col-md-9"><?= $k['kategori'] ?></div>
 													</div>
 												</div>
 												<div class="col">
@@ -84,24 +85,15 @@
 														<div class="col-md-3">
 															<h5 class="card-text"><b>Harga : </b></h5>
 														</div>
-														<div class="col-md-9"><?= "Rp " . number_format($h['price'], null, null, '.'); ?></div>
+														<div class="col-md-9"><?= "Rp " . number_format($k['price'], null, null, '.'); ?></div>
 													</div>
 												</div>
 											</div>
 											<hr>
 											<h5 class="card-text"><b>Spesifikasi Teknis</b></h5>
 											<hr>
-											<div class="row">
-												<div class="col-12">
-													(coming soon...)
-												</div>
-											</div>
-											<!-- <?= var_dump($hasil) ?> -->
-											<div class="row float-right">
-												<div class="col-12">
-													<a href="<?= base_url('konsultasi') ?>" class="btn btn-sm btn-primary">Kembali</a>
-												</div>
-											</div>
+											(coming soon...)
+											<!-- <?= var_dump($kasil) ?> -->
 										</div>
 									</div>
 								</div>

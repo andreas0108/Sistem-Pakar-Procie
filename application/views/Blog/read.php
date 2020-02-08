@@ -52,52 +52,47 @@
 					<!-- <div class="page-inner"> -->
 					<div class="row">
 						<div class="col-md-12">
-							<div class="page-header mb-1">
-								<h4 class="page-title"><?= ucfirst($title) ?></h4>
-								<ul class="breadcrumbs">
+							<div class="page-header ">
+								<ul class="breadcrumbs ml-0 pl-3 mb-1">
 									<?php $this->load->view('Blog/bc'); ?>
 								</ul>
 							</div>
-							<div class="mb-3">
-								<span class="badge badge-count">
-									Writted by <b><?= $arti['name'] ?></b>
-								</span>
-								<span class="badge badge-info" title="<?= unix_indo2($arti['tgl_buat'], "htjs") . ' WIB' ?>">
-									<b><?= unix_indo2($arti['tgl_buat'], "tgl") ?></b>
-								</span>
-								<span class="badge badge-success" title=>
-									Tags :<b><?= $arti['tags'] ?></b>
-								</span>
-							</div>
-
-							<div class="card full-height">
-								<div class="card-body image-gallery">
-									<center>
-										<?php if ($arti['gambar'] == '' || null) : ?>
-											<a href="https://via.placeholder.com/400x200?text=No+Image">
-												<img src="https://via.placeholder.com/400x200?text=No+Image" alt="<?= $arti['slug'] . '-img' ?>" class="img-fluid img-thumbnail mb-3">
-											</a>
-										<?php else : ?>
-											<a href="<?= base_url('assets/img/article/poster/') . $arti['gambar'] ?>">
-												<img src="<?= base_url('assets/img/article/poster/') . $arti['gambar'] ?>" alt="" class="img-fluid img-thumbnail mb-3" style="width:25%;">
-											</a>
-										<?php endif ?>
-									</center>
+							<div class="card">
+								<div class="card-header p-0 m-0">
+									<img src="<?= base_url('assets/img/article/poster/') . $arti['gambar'] ?>" alt="" srcset="" style="width:100%; height: 15rem; object-fit: cover">
+								</div>
+								<div class="card-body pb-0">
+									<h4 class="page-title mb-1"><?= ucfirst($title) ?></h4>
+									<span class="badge badge-primary">
+										Writted by <b><?= $arti['name'] . ' ' ?></b>
+									</span>
+									<span class="badge badge-primary" title="<?= unix_indo2($arti['tgl_buat'], "htjs") . ' WIB' ?>">
+										<b> <?= unix_indo2($arti['tgl_buat'], "tgl") ?></b>
+									</span>
 									<?= $arti['isi'] ?>
 								</div>
+								<div class="mt--4 pt-0 mr-4 mb-4 ml-4">
+									<?php $tags = explode(',', $arti['tags']) ?>
+									Tags :
+									<?php foreach ($tags as $t) : ?>
+										<span class="badge badge-info">
+											<b><?= $t ?></b>
+										</span>
+									<?php endforeach ?>
+								</div>
 								<div class="card-footer">
-									<button type="button" class="btn btn-sm btn-outline-secondary btn-block mb-3" data-toggle="collapse" data-target="#disqus_thread" aria-expanded="false" aria-controls="disqus_thread">Tampilkan Komentar</button>
+									<button type="button" class="btn btn-sm btn-outline-primary btn-block mb-3" data-toggle="collapse" data-target="#disqus_thread" aria-expanded="false" aria-controls="disqus_thread">Tampilkan Komentar</button>
 									<div class="collapse mb-1" id="disqus_thread"></div>
 									<script>
 										/**
 										 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 										 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-										/*
-										var disqus_config = function () {
-										this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-										this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+
+										var disqus_config = function() {
+											this.page.url = '<?= base_url('blog/read/') . $arti['slug'] ?>'; // Replace PAGE_URL with your page's canonical URL variable
+											this.page.identifier = '<?= $arti['slug'] ?>'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 										};
-										*/
+
 										(function() { // DON'T EDIT BELOW THIS LINE
 											var d = document,
 												s = d.createElement('script');
@@ -131,6 +126,10 @@
 
 	<!-- JS Files   -->
 	<?php $this->load->view('_parts/js'); ?>
+
+	<!-- disqus Count JS -->
+	<script id="dsq-count-scr" src="//procie.disqus.com/count.js" async></script>
+
 	<?php $this->load->view('js/js-blog-read'); ?>
 	<!-- ./JS Files -->
 </body>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Komponen extends CI_Controller
+class Jawaban extends CI_Controller
 {
 	public function __construct()
 	{
@@ -11,30 +11,30 @@ class Komponen extends CI_Controller
 	public function index()
 	{
 		is_logged_in();
-		$data['title'] = 'Komponen';
+		$data['title'] = 'Jawaban';
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$this->db->select('k.id, k.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.status, k.date_added as ditambahkan, k.spek_ct, k.spek_babo');
-		$this->db->join('komponen_kategori kk', 'k.kategori = kk.id');
-		$this->db->order_by('ditambahkan DESC');
-		$data['kompo'] = $this->db->get('komponen k')->result_array();
+		$this->db->select('p.pertanyaan_content as pertanyaan, j.id, j.jawaban_content as jawaban, j.status');
+		$this->db->join('pertanyaan p', 'j.pertanyaan_id = p.id');
+		$data['jawab'] = $this->db->order_by('j.pertanyaan_id')->get_where('jawaban j', ['j.status' => 1])->result_array();
 
-		// var_dump($x);
+		$data[''] = $this->db->select('distinct(pertanyaan_id)')->order_by('pertanyaan_id')->get('jawaban')->result_array();
+		// var_dump($data['x']);
 		// die;
 
 
-		$this->load->view('dashboard/komponen/index', $data);
+		$this->load->view('dashboard/jawaban/index', $data);
 	}
 
 	public function tambah()
 	{
 		is_logged_in();
-		$data['title'] = 'Tambah Komponen';
+		$data['title'] = 'Tambah Jawaban';
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$this->form_validation->set_rules('nama', 'Nama Komponen', 'required', ['required' => '{field} wajib diisi']);
+		$this->form_validation->set_rules('nama', 'Nama Jawaban', 'required', ['required' => '{field} wajib diisi']);
 		$this->form_validation->set_rules('isi', 'Deskripsi', 'required', ['required' => '{field} wajib diisi']);
 		$this->form_validation->set_rules('manuf', 'Manufaktur', 'required', ['required' => 'Silhakan pilih {field}']);
 		$this->form_validation->set_rules('kate', 'Deskripsi', 'required', ['required' => 'Silhakan pilih {field}']);
@@ -46,9 +46,9 @@ class Komponen extends CI_Controller
 
 			if ($image) {
 				$config['allowed_types'] = 'jpeg|jpg|png';
-				$config['max_size'] 	 = '2048';
-				$config['encrypt_name']	 = TRUE;
-				$config['upload_path'] 	 = './assets/img/komponen/';
+				$config['max_size']      = '2048';
+				$config['encrypt_name']     = TRUE;
+				$config['upload_path']      = './assets/img/komponen/';
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('image')) {
@@ -74,12 +74,12 @@ class Komponen extends CI_Controller
 				'date_added' => time()
 			]);
 
-			logs('Tambah Komponen', htmlspecialchars($this->input->post('title', true)));
+			logs('Tambah Jawaban', htmlspecialchars($this->input->post('title', true)));
 
 
 			$this->session->set_flashdata(
 				'flashmsg',
-				'Komponen telah ditambahkan.'
+				'Jawaban telah ditambahkan.'
 			);
 			redirect('dashboard/komponen');
 		}
@@ -88,12 +88,12 @@ class Komponen extends CI_Controller
 	public function ubah($id)
 	{
 		is_logged_in();
-		$data['title'] = 'Ubah Komponen';
+		$data['title'] = 'Ubah Jawaban';
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['kompo'] = $this->db->get_where('komponen', ['id' => $id])->row_array();
 
-		$this->form_validation->set_rules('nama', 'Nama Komponen', 'required', ['required' => '{field} wajib diisi']);
+		$this->form_validation->set_rules('nama', 'Nama Jawaban', 'required', ['required' => '{field} wajib diisi']);
 		$this->form_validation->set_rules('isi', 'Deskripsi', 'required', ['required' => '{field} wajib diisi']);
 		$this->form_validation->set_rules('manuf', 'Manufaktur', 'required', ['required' => 'Silhakan pilih {field}']);
 		$this->form_validation->set_rules('kate', 'Deskripsi', 'required', ['required' => 'Silhakan pilih {field}']);
@@ -105,9 +105,9 @@ class Komponen extends CI_Controller
 
 			if ($image) {
 				$config['allowed_types'] = 'jpeg|jpg|png';
-				$config['max_size'] 	 = '2048';
-				$config['encrypt_name']	 = TRUE;
-				$config['upload_path'] 	 = './assets/img/komponen/';
+				$config['max_size']      = '2048';
+				$config['encrypt_name']     = TRUE;
+				$config['upload_path']      = './assets/img/komponen/';
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('image')) {
@@ -136,11 +136,11 @@ class Komponen extends CI_Controller
 			$this->db->where('id', $id);
 			$this->db->update('komponen');
 
-			logs('Update Komponen', htmlspecialchars($this->input->post('nama', true)));
+			logs('Update Jawaban', htmlspecialchars($this->input->post('nama', true)));
 
 			$this->session->set_flashdata(
 				'flashmsg',
-				'Komponen telah diupdate.'
+				'Jawaban telah diupdate.'
 			);
 			redirect('dashboard/komponen');
 		}
@@ -156,13 +156,16 @@ class Komponen extends CI_Controller
 		$data['title'] = $data['kompo']['name'];
 
 		$this->load->view('dashboard/komponen/tampil', $data);
+		// var_dump($data['kompo']);
+		// die;
+
 	}
 
 	public function hapus($id)
 	{
 		is_logged_in();
 		$prevImg = $this->db->get_where('komponen', ['id' => $id])->row_array();
-		logs('Hapus Komponen', $prevImg['name']);
+		logs('Hapus Jawaban', $prevImg['name']);
 
 		if ($prevImg['img'] != '' || null) {
 			// menghapus file poster sesuai id
@@ -171,7 +174,7 @@ class Komponen extends CI_Controller
 		$this->db->delete('komponen', ['id' => $id]);
 		$this->session->set_flashdata(
 			'flashmsg',
-			'Komponen berhasil dihapus'
+			'Jawaban berhasil dihapus'
 		);
 		redirect('dashboard/komponen');
 	}

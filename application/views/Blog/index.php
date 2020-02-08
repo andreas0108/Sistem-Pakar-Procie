@@ -45,36 +45,55 @@
 									<?php $this->load->view('_parts/breadcrumb'); ?>
 								</ul>
 							</div>
-							<?php foreach ($blogpost as $bp) : ?>
-								<div class="card">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-1 col-sm-12">
-												<?php if ($bp['gambar'] == '' || null) : ?>
-													<img src="https://via.placeholder.com/400?text=No+Image" alt="<?= $bp['judul'] . ' img' ?>" srcset="" class="img-thumbnail card-product m-auto" style="width: 7rem; height:7rem">
-												<?php else : ?>
-													<img src="<?= base_url('assets/img/article/poster/') . $bp['gambar'] ?>" alt="<?= $bp['judul'] . ' img' ?>" srcset="" class="img-thumbnail card-product m-auto" style="width: 7rem; height:7rem">
-												<?php endif ?>
-											</div>
-											<div class="col-md-11 col-sm-12">
-												<a href="<?= base_url('blog/read/') . $bp['slug'] ?>" target="_blank" rel="noopener noreferrer">
-													<h2 class="mb-0"><?= $bp['judul'] . ' '; ?> <span class="badge badge-count"><?= ' ' . unix_indo($bp['tgl_buat']); ?></span></h2>
-												</a>
-												<hr class="mb-2">
-												<p class="mt-0">
-													<?php if ($bp['isi'] == '' || null) : ?>
-														<p class="text-sm text-info italic">Kosong</p>
-													<?php else : ?>
-														<?= limit_word_regex($bp['isi'], 15) ?><br>
-														<a href="<?= base_url('blog/read/') . $bp['slug'] ?>" target="_blank" rel="noopener noreferrer" class="badge badge-primary">Read More.</a>
-													<?php endif ?>
-												</p>
+							<?php
+							if (count($blogpost) == 0) : ?>
+								<div class="alert alert-primary" role="alert">
+									Belum ada artikel yang diterbitkan untuk saat ini. <br>
+									<a href="<?= base_url('blog') ?>">(Segarkan.)</a>
+								</div>
+							<?php else : ?>
+								<?php foreach ($blogpost as $bp) : ?>
+									<div class="card">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-lg-2 col-md-4 col-sm-12">
+													<center>
+														<?php if ($bp['gambar'] == '' || null) : ?>
+															<img src="https://via.placeholder.com/400?text=No+Image" alt="<?= $bp['judul'] . ' img' ?>" srcset="" class="img-thumbnail card-product" style="margin: auto; height: 10rem; object-fit: cover;">
+														<?php else : ?>
+															<img src="<?= base_url('assets/img/article/poster/') . $bp['gambar'] ?>" alt="<?= $bp['judul'] . ' img' ?>" srcset="" class="img-thumbnail card-product" style="margin: auto; height: 10rem; object-fit: cover;">
+														<?php endif ?>
+													</center>
+												</div>
+												<div class="col-lg-10 col-md-8 col-sm-12">
+													<a href="<?= base_url('blog/read/') . $bp['slug'] ?>" target="_blank" rel="noopener noreferrer">
+														<h2><?= $bp['judul'] . ' '; ?></h2>
+													</a>
+													<?php $tags = explode(',', $bp['tags']) ?>
+													<span class="badge badge-count"><?= ' ' . unix_indo($bp['tgl_buat']); ?></span>
+													<?php foreach ($tags as $t) : ?>
+														<span class="badge badge-info mb-0">
+															<b><?= $t ?></b>
+														</span>
+													<?php endforeach ?>
+													<!-- <a href="<?= base_url('blog/read/') . $bp['slug'] ?>#disqus_thread">#</a>
+													<span class="badge badge-info mb-0 disqus-comment-count" data-disqus-identifier="<?= $bp['slug'] ?>"></span> -->
+													<hr class=" mb-2">
+													<p class="mt-0">
+														<?php if ($bp['isi'] == '' || null) : ?>
+															<p class="text-sm text-info italic">Kosong</p>
+														<?php else : ?>
+															<?= limit_word_regex($bp['isi'], 20) ?><br>
+															<a href="<?= base_url('blog/read/') . $bp['slug'] ?>" target="_blank" rel="noopener noreferrer" class="badge badge-primary">Read More.</a>
+														<?php endif ?>
+													</p>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							<?php endforeach ?>
-							<?= $this->pagination->create_links(); ?>
+								<?php endforeach ?>
+								<?= $this->pagination->create_links(); ?>
+							<?php endif ?>
 						</div>
 					</div>
 				</div>
@@ -97,6 +116,10 @@
 
 	<!-- JS Files   -->
 	<?php $this->load->view('_parts/js'); ?>
+
+	<!-- disqus Count JS -->
+	<!-- <script id="dsq-count-scr" src="//procie.disqus.com/count.js" async></script> -->
+
 	<!-- ./JS Files -->
 </body>
 
