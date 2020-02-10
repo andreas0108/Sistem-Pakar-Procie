@@ -137,7 +137,8 @@ class User extends CI_Controller
 		]);
 
 		if ($this->form_validation->run() === false) {
-			$this->load->view('dashboard/user/index', $data);
+			// $this->load->view('dashboard/user/index', $data);
+			redirect('dashboard/user');
 		} else {
 			$id = $data['user']['id'];
 			$cur = $this->input->post('cpassword');

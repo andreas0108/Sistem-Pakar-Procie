@@ -21,16 +21,11 @@ class Test extends CI_Controller
 	 */
 	public function index()
 	{
-		$du = array('Dummy User', 'Testing', 'Testing User', 'Dummy');
-		$de = array('user@@email.com', 'Testing@email.com', 'Testing.User@email.com', 'Dummy@email.com');
+		echo generateID('id', 'jawaban', 1);
+		echo generateID('id', 'pertanyaan', 1);
+		echo generateID('id', 'rules', 1);
 
-		$data['x'] = $du[rand(0, 3)];
-		$data['y'] = $de[rand(0, 3)];
-
-		echo $du[rand(0, 3)] . '<br>';
-		echo $de[rand(0, 3)] . '<br>';
-		var_dump($data);
-		die;
+		logs('Test logs dengan item tambahan', 'P1');
 	}
 
 	public function array()

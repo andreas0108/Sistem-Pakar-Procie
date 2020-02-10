@@ -140,7 +140,7 @@
 															$x = $this->db->get('log')->row_array();
 															?>
 
-															<?= $x == '' || null ? 'Loading Failed...' : unix_indoshort($x['tgl_data']) ?>
+															<?= $x == '' || null ? 'Loading Failed...' : unix_indoshort($x['tgl_data'] + (7 * 3600)) ?>
 														</h4>
 													</div>
 												</div>
@@ -198,7 +198,7 @@
 													<div class="numbers">
 														<p class="card-category">Rules</p>
 														<h4 class="card-title">
-															<?php $this->db->group_by('komponen_id');
+															<?php $this->db->select('komponen_id')->group_by('komponen_id');
 															$x = $this->db->get('rules')->result_array() ?>
 
 															<?= count($x); ?>
@@ -247,7 +247,7 @@
 								<div class="col-sm-6 col-md-3">
 									<div class="card card-stats card-round">
 										<div class="card-body">
-											<div class="row" title="Jumlah Jawaban yang diatur untuk Sistem Pakar">
+											<div class="row" title="Jumlah Jawaban yang terdapat di dalam Sistem Pakar">
 												<div class="col-5">
 													<div class="icon-big text-center">
 														<i class="flaticon-chat-2"></i>
@@ -257,7 +257,7 @@
 													<div class="numbers">
 														<p class="card-category">Jawaban</p>
 														<h4 class="card-title">
-															<?php $this->db->group_by('pertanyaan_id');
+															<?php $this->db->select('pertanyaan_id')->group_by('pertanyaan_id');
 															$x = $this->db->get('jawaban')->result_array() ?>
 
 															<?= count($x); ?>
@@ -293,7 +293,7 @@
 										</div>
 										<div class="card-body pt-1 pb-0">
 											<div class="pull-in">
-												<canvas id="dailySalesChart" class="chartjs-render-monitor" style="display: block; height: 28vh; width: 100%;padding-top: 5px;" data-label="<?= '[' . arrtostr($this->Simo->jsonlabelHasil()) . ']' ?>" data-jumlah="<?= '[' . arrtostr($this->Simo->jsonCountHasil()) . ']' ?>"></canvas>
+												<canvas id="dailySalesChart" class="chartjs-render-monitor" style="display: block; height: 28vh; width: 100%;padding-top: 5px;" data-label="<?= '[' . arrtostr(array_reverse($this->Simo->jsonlabelHasil())) . ']' ?>" data-jumlah="<?= '[' . arrtostr(array_reverse($this->Simo->jsonCountHasil())) . ']' ?>"></canvas>
 											</div>
 										</div>
 									</div>
@@ -307,20 +307,15 @@
 											<?php foreach ($history as $h) : ?>
 												<div class="d-flex">
 													<div class="flex-1">
-														<h6 class="fw-bold mb-1">
-															<?= substr(ucfirst($h['user_name']), 0, 15) ?>
-															<span class="text-info pl-1">
-																(<?= substr($h['email'], 0, 15) ?>...)
-															</span>
-														</h6>
-														<span class="text-muted">
-															<b>Hasil : </b><?= substr($h['hasil'], 0, 25) ?>...
-														</span>
-													</div>
-													<div class="ml-1 float-right">
-														<small class="text-info pl-1">
+														<small class="text-info pl-1 float-right">
 															ID : <?= $h['id'] ?>
 														</small>
+														<h6 class="fw-bold mb-1" title="<?= $h['email'] ?>">
+															<?= ucfirst($h['user_name']) ?>
+														</h6>
+														<span class="text-muted" title="<?= $h['hasil'] ?>">
+															<b>Hasil : </b><?= substr($h['hasil'], 0, 15) ?>...
+														</span>
 													</div>
 												</div>
 												<div class="separator-dashed"></div>
@@ -340,10 +335,17 @@
 											<?php foreach ($log as $l) : ?>
 												<div class="d-flex">
 													<div class="flex-1">
-														<span title="<?= $l['keterangan'] ?>"><?= substr($l['keterangan'], 0, 36) ?>...</span>
-													</div>
-													<div class="ml-1 float-right">
-														<small title="<?= gmdate('d-M-Y H:i:s', ($l['tgl_data'] + (7 * 3600))) . ' WIB' ?>"><?= unix_indo2($l['tgl_data'], 'tgl') ?></small>
+														<small class="ml-1 float-right" title="<?= gmdate('d-M-Y H:i:s', ($l['tgl_data'] + (7 * 3600))) . ' WIB' ?>">
+															<?= unix_indo2($l['tgl_data'], 'tgl') ?>
+														</small>
+														<h6 class="fw-bold mb-1">
+															<?= ucfirst($l['user']) ?>
+														</h6>
+														<div class="text-muted" title="<?= $l['keterangan'] ?>">
+															<span>
+																<?= substr($l['keterangan'], 0, 36) ?>...
+															</span>
+														</div>
 													</div>
 												</div>
 												<div class="separator-dashed"></div>

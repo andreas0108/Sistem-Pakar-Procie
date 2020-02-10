@@ -103,13 +103,10 @@
 								</div>
 								<div class="card">
 									<div class="card-body p-1">
-										<div class="row">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label for="">Tags : <?= $arti['tags'] ?></label><br>
-													<input name="tags" type="text" id="tagsinput" class="form-control input-solid badge-info" value="<?= $arti['tags'] ?>" data-role="tagsinput" placeholder="Pisahkan dengan enter">
-												</div>
-											</div>
+										<div class="form-group">
+											<label for="">Tags : </label><br>
+											<input name="tags" type="text" id="tags" class="form-control" value="<?= $arti['tags'] ?>" data-role="tags" placeholder="Pisahkan dengan enter">
+
 										</div>
 									</div>
 								</div>

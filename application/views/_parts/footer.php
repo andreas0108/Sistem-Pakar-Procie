@@ -4,36 +4,36 @@
 	<nav class="pull-left">
 		<ul class="nav">
 			<li class="nav-item">
-				<a class="nav-link" href="<?= base_url() ?>">
-					<?= strtolower($this->config->item('site_name')); ?>
+				<a class="nav-link" href="#">
+					Konsultasi
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#">
-					help
+					Blog
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#">
-					licenses
+					About
 				</a>
 			</li>
 			<?php if ($this->session->userdata('email')) : ?>
 				<li class="nav-item">
 					<a class="nav-link logout" href="<?= base_url('logout') ?>">
-						logout
+						Logout
 					</a>
 				</li>
 			<?php else : ?>
 				<li class="nav-item">
 					<a class="nav-link" href="<?= base_url('login') ?>">
-						login
+						Login
 					</a>
 				</li>
 			<?php endif ?>
 		</ul>
 	</nav>
 	<div class="copyright ml-auto">
-		2018 - <?= date('Y'); ?>, made with <i class="fa fa-heart heart text-danger"></i> by <a href="http://www.themekita.com">ThemeKita</a>
+		<i class="fa fa-copyright"></i> 2019 - <?= date('Y'); ?>, made with <i class="fa fa-heart heart text-danger"></i> by <a href="<?= base_url() ?>">Andreas Ardi</a>
 	</div>
 </div>

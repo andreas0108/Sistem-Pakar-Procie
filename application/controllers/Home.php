@@ -27,16 +27,12 @@ class Home extends CI_Controller
 			$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 			$data['desc'] = 'Selamat datang ' . $data['user']['name'] . ' di Dashboard Aplikasi Sistem Pakar ' . $this->config->item('site_name');
 
-			$a = $this->db->query("SELECT COUNT(LEFT(id,8)) AS jumlah 
-									FROM history GROUP BY LEFT(id,8) 
-									ORDER BY id DESC 
-									LIMIT 2;
-									")->result_array();
+			$a = $this->db->query("SELECT LEFT(id,8) AS tanggal, COUNT(LEFT(id,8)) AS jumlah FROM history GROUP BY tanggal ORDER BY tanggal DESC LIMIT 2;")->result_array();
 			$b = (($a[0]['jumlah'] / $a[1]['jumlah']) - 1) * 100;
 			$data['statsper'] = intval($b) . '%';
 			$data['statscnt'] = count($this->db->get_where('history', ['left(id,8)' => gmdate('Ymd', time() + 7 * 3600)])->result_array());
 			$data['history'] = $this->db->select('h.id, h.user_name, h.email, k.name as hasil')->join('komponen k', 'h.hasil = k.id')->order_by('h.id', 'DESC')->limit('4')->get('history h')->result_array();
-			$data['log'] = $this->db->select('keterangan, tgl_data')->order_by('tgl_data', 'DESC')->limit('4')->get('log')->result_array();
+			$data['log'] = $this->db->select('user, keterangan, tgl_data')->order_by('tgl_data', 'DESC')->limit('4')->get('log')->result_array();
 
 			// var_dump($data['history']);
 			// var_dump($data['log']);
@@ -52,10 +48,6 @@ class Home extends CI_Controller
 			$this->load->view('index', $data);
 		}
 	}
-
-	// public function dashboard()
-	// {
-	// }
 
 	public function konsultasi()
 	{
@@ -81,7 +73,7 @@ class Home extends CI_Controller
 	public function Proses()
 	{
 		$x = think($_POST);
-		$data = $this->db->get_where('komponen', ['id' => $x['komponen_id']])->row_array();
+		$hasil = $this->db->get_where('komponen', ['id' => $x['komponen_id']])->row_array();
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		if ($this->session->userdata('email')) {
 			$username = $data['user']['name'];
@@ -91,7 +83,9 @@ class Home extends CI_Controller
 			$email = $this->session->userdata('umail');
 		}
 
-		if ($data != '' || 0 || null) {
+		var_dump($hasil);
+
+		if ($hasil != '' || 0 || null) {
 			logs('Konsultasi baru dengan ID : ' . getUniqueID(), null);
 			$this->db->insert('history', [
 				'id' => getUniqueID(),
@@ -99,7 +93,7 @@ class Home extends CI_Controller
 				'email' => $email,
 				'hasil' => $x['komponen_id']
 			]);
-			redirect('konsultasi/hasil/' . $data['slug']);
+			redirect('konsultasi/hasil/' . $hasil['slug']);
 		} else {
 			$this->session->set_flashdata(
 				'flashinf',
@@ -107,6 +101,11 @@ class Home extends CI_Controller
 			);
 			redirect('konsultasi');
 		}
+	}
+
+	public function hasil()
+	{
+		redirect('konsultasi');
 	}
 
 	public function about()

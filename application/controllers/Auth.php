@@ -113,8 +113,8 @@ class Auth extends CI_Controller
 		$this->db->where('id', $this->session->userdata('id'));
 		$this->db->update('user');
 
+		$this->session->unset_userdata('umail');
 		$this->session->unset_userdata('email');
-		$this->session->unset_userdata('role_id');
 
 		$this->session->set_flashdata(
 			'flashmsg',

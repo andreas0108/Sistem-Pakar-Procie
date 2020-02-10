@@ -8,12 +8,13 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['dashboard'] = 'home/redirect';
-$route['konsultasi'] = 'home/konsultasi';
 $route['about'] = 'home/about';
 $route['blog/(:num)'] = 'blog/index/$1';
 
 $route['login'] = 'auth';
 $route['logout'] = 'auth/logout';
+
+$route['konsultasi'] = 'home/konsultasi';
 $route['konsultasi/proses'] = 'home/proses';
 $route['konsultasi/hasil/(:any)'] = 'dashboard/komponen/tampil/$1';
 

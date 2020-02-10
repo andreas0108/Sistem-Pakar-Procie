@@ -94,13 +94,11 @@
 									<p class="text-muted">
 										<a href="mailto:<?= $user['email'] ?>"><?= substr($user['email'], 0, 15) . '...' ?></a>
 									</p>
-									<a href="javascript:void(0)" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+									<a href="<?= base_url('dashboard/user') ?>" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
 								</div>
 							</div>
 						</li>
 						<li>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">My Profile</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item logout" href="<?= base_url('logout') ?>">Logout</a>
 						</li>

@@ -51,7 +51,7 @@
 				<div class="page-inner">
 					<!-- <div class="page-inner"> -->
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-lg-10 col-sm-12 mx-auto">
 							<div class="page-header ">
 								<ul class="breadcrumbs ml-0 pl-3 mb-1">
 									<?php $this->load->view('Blog/bc'); ?>
@@ -63,11 +63,16 @@
 								</div>
 								<div class="card-body pb-0">
 									<h4 class="page-title mb-1"><?= ucfirst($title) ?></h4>
-									<span class="badge badge-primary">
-										Writted by <b><?= $arti['name'] . ' ' ?></b>
+									<span>
+										<a class="btn btn-sm" href="javascript:void(0)">
+											<i class="fa fa-fw fa-user"></i> <b><?= $arti['name'] . ' ' ?></b>
+										</a>
 									</span>
-									<span class="badge badge-primary" title="<?= unix_indo2($arti['tgl_buat'], "htjs") . ' WIB' ?>">
-										<b> <?= unix_indo2($arti['tgl_buat'], "tgl") ?></b>
+									|
+									<span title="<?= unix_indo2($arti['tgl_buat'], "htjs") . ' WIB' ?>">
+										<a class="btn btn-sm" href="javascript:void(0)">
+											<i class="fa fa-fw fa-calendar"></i> <b> <?= unix_indo2($arti['tgl_buat'], "tgl") ?></b>
+										</a>
 									</span>
 									<?= $arti['isi'] ?>
 								</div>
