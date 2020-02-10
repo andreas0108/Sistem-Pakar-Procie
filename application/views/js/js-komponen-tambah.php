@@ -33,8 +33,16 @@
 				['tools', ['undo', 'redo', 'codeview']],
 				['tools2', ['fullscreen']]
 			],
+			callbacks: {
+				onPaste: function(e) {
+					var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+					e.preventDefault();
+					bufferText = bufferText.replace(/\r?\n/g, '<br>');
+					document.execCommand('insertHtml', true, bufferText);
+				}
+			}
 		});
 	});
 
-	$('#harga').inputmask();
+	$('.inmask').inputmask();
 </script>

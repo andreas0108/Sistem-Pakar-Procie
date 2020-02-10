@@ -85,7 +85,7 @@
 														<div class="input-group-prepend">
 															<span class="input-group-text" id="basic-addon1">Rp</span>
 														</div>
-														<input type="text" class="form-control text-left" id="harga" name="harga" data-mask="000.000.000.000" data-mask-reverse="true">
+														<input type="text" class="form-control text-left inmask" name="harga" data-mask="000.000.000.000" data-mask-reverse="true">
 													</div>
 												</div>
 											</div>
@@ -119,13 +119,13 @@
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label for="spek_core"># Core</label>
-															<input type="number" name="spek_core" class="form-control" placeholder="Jumlah Core">
+															<input type="number" name="spek_core" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Core">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label for="spek_thread"># Thread</label>
-															<input type="number" name="spek_thread" class="form-control" placeholder="Jumlah Thread">
+															<input type="number" name="spek_thread" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Thread">
 														</div>
 													</div>
 												</div>
@@ -145,7 +145,7 @@
 														<div class="form-group">
 															<label for="spek_basec">Base Clock</label>
 															<div class="input-group">
-																<input type="number" name="spek_basec" class="form-control" placeholder="Base Clock">
+																<input type="text" name="spek_basec" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Base Clock">
 																<div class="input-group-append">
 																	<span class="input-group-text">GHz</span>
 																</div>
@@ -156,7 +156,7 @@
 														<div class="form-group">
 															<label for="spek_boostc">Boost Clock</label>
 															<div class="input-group">
-																<input type="number" name="spek_boostc" class="form-control" placeholder="Boost Clock">
+																<input type="text" name="spek_boostc" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Boost Clock">
 																<div class="input-group-append">
 																	<span class="input-group-text">GHz</span>
 																</div>

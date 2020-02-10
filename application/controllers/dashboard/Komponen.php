@@ -74,8 +74,7 @@ class Komponen extends CI_Controller
 				'date_added' => time()
 			]);
 
-			logs('Tambah Komponen', htmlspecialchars($this->input->post('title', true)));
-
+			logs('Tambah Komponen', htmlspecialchars($this->input->post('nama', true)));
 
 			$this->session->set_flashdata(
 				'flashmsg',
@@ -121,6 +120,7 @@ class Komponen extends CI_Controller
 						'flasherr',
 						$this->upload->display_errors()
 					);
+					redirect('dashboard/komponen');
 				}
 			}
 			$this->db->set('name', htmlspecialchars($this->input->post('nama', true)));
