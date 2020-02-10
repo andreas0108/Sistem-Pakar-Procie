@@ -20,10 +20,16 @@ function _check($s1, $s2)
 }
 
 // Fungsi menambahkan data logs
-function logs($msg, $item)
+function logs($msg, $item = null)
 {
+	/**
+	 *  Penggunaan : logs("pesan", "data pesan");
+	 *  Penggunaan : logs("pesan", $id);
+	 *  Penggunaan : logs("pesan", null);
+	 */
+
 	$CI = get_instance();
-	if ($item != '' || null) {
+	if ($item != null) {
 		$item = "'" . $item . "'";
 	} else {
 		$item = '';
@@ -31,7 +37,6 @@ function logs($msg, $item)
 
 	$log_item = count($CI->db->get('log')->result_array());
 
-	$CI->db->order_by('tgl_data', 'DESC');
 	$CI->db->limit(1);
 	$temp = $CI->db->get('log')->row_array();
 
@@ -95,38 +100,40 @@ function getUniqueID()
 	return $now . $id;
 }
 
-function getUniqueID2()
+function generateID($col, $tab, $selector = 1)
 {
+	/**
+	 *  $col = coloumn where you search max id
+	 *  $tab = table that $col using for
+	 *  $selector = the start position to trim that $col using for
+	 */
 	$CI = get_instance();
-	$now = gmdate('Ymd', time() + (7 * 60 * 60));
 
-	$CI->db->select_max('id', 'id');
-	$x = $CI->db->get_where('history', ['LEFT(id,8)' => $now])->row();
-	var_dump($x);
-	$x = $x->id;
-
-	// $id = sprintf(
-	// 	"%04s",
-	// 	intval(
-	// 		substr($x['id'], 8)
-	// 	) + 1
-	// );
-	echo generateID($now, $x);
-}
-
-function generateID($prefix = 0000, $data_source = 0)
-{
-	var_dump($data_source);
-	// die;
-	$data_source = substr($data_source, 0, 4);
-	var_dump($data_source);
+	$data = $CI->db->select_max($col)->get($tab)->row_array();
+	$old = substr($data[$col], $selector);
 	$id = sprintf(
-		"%04s", // mask 4 digit number
-		intval($data_source) + 1
+		"%02s",
+		intval($old) + 1
 	);
-	var_dump($id);
-	return $prefix . $id;
+
+	$hasil = $id;
+
+	return $hasil;
 }
+
+// function generateID($prefix = 0000, $data_source = 0)
+// {
+// 	// var_dump($data_source);
+// 	// die;
+// 	$data_source = substr($data_source, 0, 4);
+// 	// var_dump($data_source);
+// 	$id = sprintf(
+// 		"%04s", // mask 4 digit number
+// 		intval($data_source) + 1
+// 	);
+// 	// var_dump($id);
+// 	return $prefix . $id;
+// }
 
 function arrtostr($arr, $sep = ', ')
 {
