@@ -39,7 +39,7 @@
 			<div class="container">
 				<div class="page-inner">
 					<!-- <div class="page-inner"> -->
-					<button type="button" href="javascript:void(0)" class="btn btn-sm btn-default float-right">Tambah Pertanyaan</button>
+					<button href="javascript:void(0)" class="btn btn-sm btn-info float-right" id="tambahPertanyaan" data-toggle="modal" data-target="#modalPertanyaan">Tambah Pertanyaan</button>
 					<div class="page-header">
 						<h4 class="page-title"><?= strtoupper($title) ?></h4>
 						<ul class="breadcrumbs">
@@ -52,20 +52,17 @@
 								<table id="table-komponen" class="display table table-striped table-hover table-head-bg-primary" cellspacing="0" width="100%">
 									<thead>
 										<tr class="text-center">
-											<th scope="col" style="width:5%">#</th>
+											<th scope="col" style="width:5%">ID</th>
 											<th scope="col" style="width:75%">Pertanyaan</th>
 											<th scope="col" style="width:15%">Status</th>
 											<th scope="col" style="width:5%"></th>
 										</tr>
 									</thead>
 									<tbody>
-										<?php
-										// var_dump($pert);
-										// die;
-										foreach ($pert as $p) : ?>
+										<?php foreach ($pert as $p) : ?>
 											<tr>
 												<td>
-													<p class="card-text mb-0"><?= $p['id'] ?></p>
+													<p class="card-text mb-0 text-center"><?= $p['id'] ?></p>
 												</td>
 												<td>
 													<p class="card-text mb-0"><?= $p['pertanyaan_content'] ?></p>
@@ -75,8 +72,7 @@
 												</td>
 												<td>
 													<div class="btn-group float-right" role="group" aria-label="Basic example">
-														<a href="<?= base_url('dashboard/pertanyaan/ubah/') . $p['id']; ?>" title="update pertanyaan" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
-														<a href="<?= base_url('dashboard/pertanyaan/tampil/') . $p['id']; ?>" title="lihat pertanyaan" type="button" class="btn btn-sm btn-success" target="_blank"><i style="color: white" class="fa fa-eye"></i></a>
+														<a href="#" title="ubah pertanyaan" data-pertid="<?= $p['id'] ?>" type="button" class="btn btn-sm btn-info ubahPertanyaan" data-toggle="modal" data-target="#modalPertanyaan"><i style="color: white" class="fa fa-pen"></i></a>
 														<a href="<?= base_url('dashboard/pertanyaan/hapus/') . $p['id']; ?>" title="hapus pertanyaan" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Pertanyaan"><i style="color: white" class="fa fa-trash"></i></a>
 													</div>
 												</td>
@@ -105,13 +101,48 @@
 		<!-- ./Content -->
 	</div>
 
-	<!-- Modal -->
-	<!-- assd -->
-	<!-- ./Modal -->
-
 	<!-- JS Files   -->
 	<?php $this->load->view('_parts/js'); ?>
+	<?php $this->load->view('js/js-pertanyaan'); ?>
 	<!-- ./JS Files -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="modalPertanyaan" tabindex="-1" role="dialog" aria-labelledby="modalPertanyaanCenter" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="modalPertanyaanTitle">Tambah Pertanyaan</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="<?= base_url('dashboard/pertanyaan') ?>" method="POST">
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="squareInput">Pertanyaan</label>
+							<input type="text" name="pertanyaan" id="pertanyaan" class="form-control input-square" required>
+						</div>
+
+						<div class="form-group">
+							<label for="squareSelect">Status</label>
+							<select class="form-control input-square" name="status" id="status" required>
+								<option value="">Pilih</option>
+								<option value="0">Disable</option>
+								<option value="1">Enable</option>
+							</select>
+						</div>
+						<div class="form-group float-right">
+							<input type="hidden" name="id" id="idPertanyaan" value="">
+							<button type="reset" class="btn btn-sm btn-secondary">Reset</button>
+							<button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- ./Modal -->
+
 </body>
 
 </html>

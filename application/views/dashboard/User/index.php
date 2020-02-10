@@ -109,10 +109,10 @@
 								<div class="card-header mb-0">
 									<ul class="nav nav-primary nav-pills nav-pills-no-bd nav-pills-icons" id="user-tab" role="tablist">
 										<li class="nav-item">
-											<a class="nav-link active" id="user-settings-tab" data-toggle="pill" href="#user-settings" role="tab" aria-controls="user-settings" aria-selected="true"><i class="fa fa-user"></i> Profile</a>
+											<a class="nav-link active" id="user-settings-tab" data-toggle="pill" href="#user-settings" role="tab" aria-controls="user-settings" aria-selected="true"><i class="fa fa-user-cog"></i> Profile</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" id="profile-pic-tab" data-toggle="pill" href="#profile-pic" role="tab" aria-controls="profile-pic" aria-selected="false"><i class="fa fa-image"></i> Avatar</a>
+											<a class="nav-link" id="profile-pic-tab" data-toggle="pill" href="#profile-pic" role="tab" aria-controls="profile-pic" aria-selected="false"><i class="fa fa-user-circle"></i> Avatar</a>
 										</li>
 										<li class="nav-item">
 											<a class="nav-link" id="password-settings-tab" data-toggle="pill" href="#password-settings" role="tab" aria-controls="password-settings" aria-selected="false"><i class="fa fa-lock"></i> Security</a>
@@ -189,7 +189,7 @@
 											<div class="col-md-4 col-sm-12">
 												<div class="mb-2">
 													<center>
-														<img src="https://placehold.it/300?text=Preview" id="preview" class="img-thumbnail rounded-circle" style="object-fit: cover; object-position: center; width:300px; height:300px">
+														<img src="<?= base_url('assets/img/profile/') . $user['img'] ?>" id="preview" class="img-thumbnail rounded-circle" style="object-fit: cover; object-position: center; width:300px; height:300px">
 													</center>
 												</div>
 											</div>
@@ -266,9 +266,9 @@
 													<input type="hidden" name="id" value="<?= $user['id'] ?>">
 													<button type="submit" id="submitp" class="btn btn-primary float-right ml-2" disabled><i class="fa fa-save"> Simpan</i></button>
 												</form>
+												<!-- <button type="submit" id="submita" class="btn btn-primary float-right " hidden><i class="fa fa-save"> Simpan Semua</i></button> -->
 											</div>
 										</div>
-										<button type="submit" id="submita" class="btn btn-primary float-right " hidden><i class="fa fa-save"> Simpan Semua</i></button>
 									</div>
 								</div>
 							</div>

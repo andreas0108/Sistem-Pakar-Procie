@@ -6,185 +6,92 @@ class Jawaban extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		is_logged_in();
 	}
 
 	public function index()
 	{
-		is_logged_in();
 		$data['title'] = 'Jawaban';
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$this->db->select('p.pertanyaan_content as pertanyaan, j.id, j.jawaban_content as jawaban, j.status');
-		$this->db->join('pertanyaan p', 'j.pertanyaan_id = p.id');
-		$data['jawab'] = $this->db->order_by('j.pertanyaan_id')->get_where('jawaban j', ['j.status' => 1])->result_array();
-
-		$data[''] = $this->db->select('distinct(pertanyaan_id)')->order_by('pertanyaan_id')->get('jawaban')->result_array();
-		// var_dump($data['x']);
-		// die;
-
-
-		$this->load->view('dashboard/jawaban/index', $data);
-	}
-
-	public function tambah()
-	{
-		is_logged_in();
-		$data['title'] = 'Tambah Jawaban';
-
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-		$this->form_validation->set_rules('nama', 'Nama Jawaban', 'required', ['required' => '{field} wajib diisi']);
-		$this->form_validation->set_rules('isi', 'Deskripsi', 'required', ['required' => '{field} wajib diisi']);
-		$this->form_validation->set_rules('manuf', 'Manufaktur', 'required', ['required' => 'Silhakan pilih {field}']);
-		$this->form_validation->set_rules('kate', 'Deskripsi', 'required', ['required' => 'Silhakan pilih {field}']);
-
-		if ($this->form_validation->run() == false) {
-			$this->load->view('dashboard/komponen/tambah', $data);
-		} else {
-			$image = $_FILES['image']['name'];
-
-			if ($image) {
-				$config['allowed_types'] = 'jpeg|jpg|png';
-				$config['max_size']      = '2048';
-				$config['encrypt_name']     = TRUE;
-				$config['upload_path']      = './assets/img/komponen/';
-				$this->load->library('upload', $config);
-
-				if ($this->upload->do_upload('image')) {
-					$gambar = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata(
-						'flasherr',
-						$this->upload->display_errors()
-					);
-				}
-			} else {
-				$gambar = '';
-			}
-			$this->db->insert('komponen', [
-				'img' => $gambar,
-				'name' => htmlspecialchars($this->input->post('nama', true)),
-				'slug' => slug(htmlspecialchars($this->input->post('nama', true))),
-				'price' => htmlspecialchars(str_replace('.', '', $this->input->post('harga', true))),
-				'desc' => $this->input->post('isi'),
-				'status' => htmlspecialchars($this->input->post('status', true)),
-				'manufacture' => htmlspecialchars($this->input->post('manuf', true)),
-				'kategori' => htmlspecialchars($this->input->post('kate', true)),
-				'date_added' => time()
-			]);
-
-			logs('Tambah Jawaban', htmlspecialchars($this->input->post('title', true)));
-
-
-			$this->session->set_flashdata(
-				'flashmsg',
-				'Jawaban telah ditambahkan.'
-			);
-			redirect('dashboard/komponen');
-		}
-	}
-
-	public function ubah($id)
-	{
-		is_logged_in();
-		$data['title'] = 'Ubah Jawaban';
-
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		$data['kompo'] = $this->db->get_where('komponen', ['id' => $id])->row_array();
-
-		$this->form_validation->set_rules('nama', 'Nama Jawaban', 'required', ['required' => '{field} wajib diisi']);
-		$this->form_validation->set_rules('isi', 'Deskripsi', 'required', ['required' => '{field} wajib diisi']);
-		$this->form_validation->set_rules('manuf', 'Manufaktur', 'required', ['required' => 'Silhakan pilih {field}']);
-		$this->form_validation->set_rules('kate', 'Deskripsi', 'required', ['required' => 'Silhakan pilih {field}']);
+		$this->form_validation->set_rules('pertanyaan', 'Pertanyaan', 'required', ['required' => 'Silahkan pilih pertanyaan.']);
+		$this->form_validation->set_rules('status', 'Status', 'required', ['required' => 'Silahkan pilih status jawaban.']);
 
 		if ($this->form_validation->run() === false) {
-			$this->load->view('dashboard/komponen/ubah', $data);
+			$this->load->view('dashboard/jawaban/index', $data);
 		} else {
-			$image = $_FILES['image']['name'];
+			$id = generateID('id', 'jawaban', 1);
+			$ids = generateID('id', 'jawaban', 1);
+			$pid = $_POST['pertanyaan'];
+			$a = htmlspecialchars($this->input->post('jawabanInput', true));
+			$jct = explode(',', $a);
+			$sts = htmlspecialchars($this->input->post('status', true));
 
-			if ($image) {
-				$config['allowed_types'] = 'jpeg|jpg|png';
-				$config['max_size']      = '2048';
-				$config['encrypt_name']     = TRUE;
-				$config['upload_path']      = './assets/img/komponen/';
-				$this->load->library('upload', $config);
-
-				if ($this->upload->do_upload('image')) {
-					$prevImg = $data['kompo']['gambar'];
-					if ($prevImg != '' || null) {
-						unlink(FCPATH . 'assets/img/komponen/' . $prevImg);
-					}
-					$this->db->set('img', $this->upload->data('file_name'));
-				} else {
-					$this->session->set_flashdata(
-						'flasherr',
-						$this->upload->display_errors()
-					);
-				}
+			$d = '';
+			foreach ($jct as $j) {
+				$d .= '("' . 'J' . $id++ . '","' . $pid . '","' . $j . '","' . $sts . '")' . ',';
 			}
-			$this->db->set('name', htmlspecialchars($this->input->post('nama', true)));
-			$this->db->set('slug', slug(htmlspecialchars($this->input->post('nama', true))));
-			$this->db->set('price', htmlspecialchars(str_replace('.', '', $this->input->post('harga', true))));
-			$this->db->set('desc', $this->input->post('isi'));
-			$this->db->set('status', htmlspecialchars($this->input->post('status', true)));
-			$this->db->set('manufacture', htmlspecialchars($this->input->post('manuf', true)));
-			$this->db->set('kategori', htmlspecialchars($this->input->post('kate', true)));
-			$this->db->set('spek_ct', htmlspecialchars($this->input->post('spek_core', true)) . '/' . htmlspecialchars($this->input->post('spek_thread', true)));
-			$this->db->set('spek_babo', htmlspecialchars($this->input->post('spek_basec', true)) . '/' . htmlspecialchars($this->input->post('spek_boostc', true)));
-			$this->db->set('date_added', time());
-			$this->db->where('id', $id);
-			$this->db->update('komponen');
+			$e = rtrim($d, ',');
 
-			logs('Update Jawaban', htmlspecialchars($this->input->post('nama', true)));
+			$this->db->query('INSERT INTO jawaban (id,pertanyaan_id,jawaban_content,status) values' . $e);
 
+			if (count($jct) == 1) {
+				$x = 'J' . $ids;
+			} else {
+				$x = 'J' . $ids . '-' . 'J' . ($ids + count($jct) - 1);
+			}
+			logs('Tambah Jawaban', $x);
 			$this->session->set_flashdata(
 				'flashmsg',
-				'Jawaban telah diupdate.'
+				'Jawaban berhasil disimpan.'
 			);
-			redirect('dashboard/komponen');
+			redirect('dashboard/jawaban');
 		}
 	}
 
-	public function tampil($slug)
+	public function get()
 	{
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		$this->db->select('k.img, k.id, k.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.status, k.date_added as ditambahkan, k.spek_ct, k.spek_babo');
-		$this->db->join('komponen_kategori kk', 'k.kategori = kk.id');
-		$this->db->order_by('ditambahkan DESC');
-		$data['kompo'] = $this->db->get_where('komponen k', ['slug' => $slug])->row_array();
-		$data['title'] = $data['kompo']['name'];
+		echo json_encode($this->db->get_where('jawaban', ['id' => $_POST['id']])->row_array());
+	}
 
-		$this->load->view('dashboard/komponen/tampil', $data);
-		// var_dump($data['kompo']);
-		// die;
+	public function ubah()
+	{
+		$this->form_validation->set_rules('jawaban', 'Jawaban', 'required', ['required' => 'Silahkan masukan jawaban.']);
+		$this->form_validation->set_rules('status', 'Status', 'required', ['required' => 'Silahkan pilih status jawaban.']);
+		if ($this->form_validation->run() === false) {
+			$this->session->set_flashdata(
+				'flasherr',
+				$this->form_validation->error_array()
+			);
+			redirect('dashboard/jawaban');
+		} else {
+			// var_dump($_POST);
+			// die;
 
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('jawaban', [
+				'jawaban_content' => htmlspecialchars($this->input->post('jawaban', true)),
+				'status' => htmlspecialchars($this->input->post('status', true)),
+				'pertanyaan_id' => htmlspecialchars($this->input->post('pertanyaan', true))
+			]);
+			logs('Ubah Jawaban', $this->input->post('id'));
+			$this->session->set_flashdata(
+				'flashmsg',
+				'Berhasil merubah jawaban.'
+			);
+			redirect('dashboard/jawaban');
+		}
 	}
 
 	public function hapus($id)
 	{
-		is_logged_in();
-		$prevImg = $this->db->get_where('komponen', ['id' => $id])->row_array();
-		logs('Hapus Jawaban', $prevImg['name']);
-
-		if ($prevImg['img'] != '' || null) {
-			// menghapus file poster sesuai id
-			unlink(FCPATH . 'assets/img/komponen/' . $prevImg['img']);
-		}
-		$this->db->delete('komponen', ['id' => $id]);
+		logs('Hapus Jawaban', $id);
+		$this->db->delete('jawaban', ['id' => $id]);
 		$this->session->set_flashdata(
 			'flashmsg',
 			'Jawaban berhasil dihapus'
 		);
-		redirect('dashboard/komponen');
-	}
-
-	public function redir()
-	{
-		if ($this->session->userdata('email')) {
-			redirect('dashboard/komponen');
-		} else {
-			is_logged_in();
-		}
+		redirect('dashboard/jawaban');
 	}
 }

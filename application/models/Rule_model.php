@@ -15,7 +15,7 @@ class Rule_model extends CI_Model
 	public function rulesd()
 	{
 		$this->db->select('DISTINCT(komponen_id), komponen.name');
-		$this->db->join('komponen', 'rules.komponen_id = komponen.id');
+		$this->db->join('komponen', 'rules.komponen_id = komponen.id')->order_by('rules.komponen_id');
 		return $this->db->get('rules')->result_array();
 	}
 }
