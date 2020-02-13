@@ -40,14 +40,11 @@ class Auth extends CI_Controller
 					$data = [
 						'email' => $user['email'],
 						'umail' => $user['email'],
+						'konsul_id' => generateID(gmdate('Ymd', time() + (7 * 3600)), 'konsul_id', 'tmp_data', 8),
 						'id' => $user['id'],
 						'name' => $user['name']
 					];
 					$this->session->set_userdata($data);
-
-					$this->db->set('status', '1');
-					$this->db->where('id', $user['id']);
-					$this->db->update('user');
 
 					redirect(base_url());
 				} else {
@@ -109,10 +106,7 @@ class Auth extends CI_Controller
 
 	public function logout()
 	{
-		$this->db->set('status', '0');
-		$this->db->where('id', $this->session->userdata('id'));
-		$this->db->update('user');
-
+		$this->session->unset_userdata('konsul_id');
 		$this->session->unset_userdata('umail');
 		$this->session->unset_userdata('email');
 

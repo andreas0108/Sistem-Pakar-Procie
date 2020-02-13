@@ -287,7 +287,7 @@
 												<h1><?= $statsper ?></h1>
 											</div>
 											<div class="card-category">
-												<p>Konsultasi hari ini (<?= gmdate('d-m-Y', time()) ?>) : </p>
+												<p>Konsultasi hari ini (<?= gmdate('d-m-Y', time() + 7 * 3600) ?>) : </p>
 												<h4 class="mb-4"><?= $statscnt ?> konsultasi</h4>
 											</div>
 										</div>

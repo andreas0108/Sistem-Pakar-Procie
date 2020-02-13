@@ -21,11 +21,11 @@ class Test extends CI_Controller
 	 */
 	public function index()
 	{
-		echo generateID('id', 'jawaban', 1);
-		echo generateID('id', 'pertanyaan', 1);
-		echo generateID('id', 'rules', 1);
+		$ID = generateID(gmdate('Ymd', time() + (7 * 3600)), 'konsul_id', 'tmp_data', 8);
 
-		logs('Test logs dengan item tambahan', 'P1');
+		$prefix = gmdate('Ymd', (time() + (7 * 3600)));
+		var_dump(generateID($prefix, 'konsul_id', 'tmp_data', 8));
+		var_dump($this->session->userdata('konsul_id'));
 	}
 
 	public function array()

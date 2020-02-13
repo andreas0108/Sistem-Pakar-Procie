@@ -52,8 +52,8 @@
 								<table id="table-komponen" class="display table table-striped table-hover table-head-bg-primary" cellspacing="0" width="100%">
 									<thead>
 										<tr class="text-center">
-											<th scope="col" style="width:5%">ID</th>
-											<th scope="col" style="width:75%">Pertanyaan</th>
+											<th scope="col" style="width:10%">ID</th>
+											<th scope="col" style="width:70%">Pertanyaan</th>
 											<th scope="col" style="width:15%">Status</th>
 											<th scope="col" style="width:5%"></th>
 										</tr>

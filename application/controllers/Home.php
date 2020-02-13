@@ -59,21 +59,63 @@ class Home extends CI_Controller
 		$this->form_validation->set_rules('username', 'Nama', 'required', ['required' => 'Silahkan isi {field} terlebih dahulu.']);
 
 		if ($this->form_validation->run() === false) {
-			$this->load->view('Home/konsultasi', $data);
+			$this->load->view('Home/konsultasi/index', $data);
 		} else {
 			$uname = $this->input->post('username');
 			$umail = $this->input->post('usermail');
+			$id = generateID(gmdate('Ymd', time() + (7 * 3600)), 'konsul_id', 'tmp_data', 8);
 
-			$this->session->set_userdata(['uname' => $uname, 'umail' => $umail]);
-			$this->session->set_userdata(['uname' => $uname, 'umail' => $umail]);
+			$this->session->set_userdata(['konsul_id' => $id, 'uname' => $uname, 'umail' => $umail]);
 			redirect('konsultasi');
 		}
 	}
 
+	public function Step()
+	{
+		$current_id = $this->db->select('MAX(id) as id')->get('tmp_data')->row_array();
+		$this->db->insert('tmp_data', [
+			'id' => $current_id['id'] + 1,
+			'konsul_id' => $this->session->userdata('konsul_id'),
+			'pertanyaan_id' => $this->input->post('pertanyaan_id'),
+			'jawaban_id' => $this->input->post('jawaban')
+		]);
+		redirect('konsultasi');
+	}
+
 	public function Proses()
 	{
-		$x = think($_POST);
-		$hasil = $this->db->get_where('komponen', ['id' => $x['komponen_id']])->row_array();
+		// buffer_last
+		$current_id = $this->db->select('MAX(id) as id')->get('tmp_data')->row_array();
+		$this->db->insert('tmp_data', [
+			'id' => $current_id['id'] + 1,
+			'konsul_id' => $this->session->userdata('konsul_id'),
+			'pertanyaan_id' => $this->input->post('pertanyaan_id'),
+			'jawaban_id' => $this->input->post('jawaban')
+		]);
+
+		// sikar_process
+		$usid = $this->session->userdata('konsul_id');
+		$data = $this->db->query("SELECT jawaban_id FROM tmp_data WHERE konsul_id = $usid AND jawaban_id != 'J03' AND jawaban_id != 'J04';")->result_array();
+		$konsul = "'" . arrtostr($data, "','") . "'";
+
+		// var_dump($konsul);
+
+		$jumlah_data = count($data);
+		// var_dump($jumlah_data);
+		// die;
+
+		$x = "SELECT rules.komponen_id, komponen.name
+				FROM rules JOIN komponen ON rules.komponen_id = komponen.id
+				WHERE jawaban_id IN ($konsul)
+			GROUP BY komponen_id
+			  HAVING COUNT(DISTINCT jawaban_id) = $jumlah_data;
+		";
+		$out = $this->db->query($x)->row_array();
+
+		// var_dump($hasil);
+		// die;
+
+		$hasil = $this->db->get_where('komponen', ['id' => $out['komponen_id']])->row_array();
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		if ($this->session->userdata('email')) {
 			$username = $data['user']['name'];
@@ -83,18 +125,18 @@ class Home extends CI_Controller
 			$email = $this->session->userdata('umail');
 		}
 
-		var_dump($hasil);
-
-		if ($hasil != '' || 0 || null) {
+		if ($hasil) {
 			logs('Konsultasi baru dengan ID : ' . getUniqueID(), null);
 			$this->db->insert('history', [
 				'id' => getUniqueID(),
 				'user_name' => $username,
 				'email' => $email,
-				'hasil' => $x['komponen_id']
+				'hasil' => $out['komponen_id']
 			]);
+			$this->db->delete('tmp_data', ['konsul_id' => $this->session->userdata('konsul_id')]);
 			redirect('konsultasi/hasil/' . $hasil['slug']);
 		} else {
+			$this->db->delete('tmp_data', ['konsul_id' => $this->session->userdata('konsul_id')]);
 			$this->session->set_flashdata(
 				'flashinf',
 				'Maaf untuk saat ini, data belum ada.'

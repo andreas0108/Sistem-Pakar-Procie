@@ -60,7 +60,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="tab-content mb-3" id="pills-tabContent">
-								<div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
+								<div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-article-tab-nobd">
 									<div class="float-right">
 										<a type="button" href="<?= base_url('dashboard/article/hapus_semua') ?>" class="btn btn-sm btn-danger btn-remove" data-text="Semua artikel">Hapus Semua</a>
 										<a href="<?= base_url('dashboard/article/tambah') ?>" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-info" href="">Tambah Artikel</button></a>
@@ -109,7 +109,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="tab-pane fade" id="draft" role="tabpanel" aria-labelledby="pills-profile-tab-nobd">
+								<div class="tab-pane fade" id="draft" role="tabpanel" aria-labelledby="pills-draft-tab-nobd">
 									<div class="page-header">
 										<h4 class="page-title">Draft List</h4>
 									</div>

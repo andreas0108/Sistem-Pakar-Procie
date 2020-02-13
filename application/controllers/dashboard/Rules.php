@@ -16,15 +16,30 @@ class Rules extends CI_Controller
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+		$this->db->select('r.id as rid, j.jawaban_content as jawab, p.id as pid, p.pertanyaan_content as next_pert');
+		$this->db->join('jawaban j', 'r.jawaban_id = j.id');
+		$this->db->join('pertanyaan p', 'r.next_pertanyaan = p.id');
+		$data['rulesp'] = $this->db->get('rulesp r')->result_array();
 		$data['rulesd'] = $this->Rumo->rulesd();
 
-		$this->form_validation->set_rules('jawaban', 'Jawaban', 'required', ['required' => 'Silahkan pilih jawaban.']);
 		$this->form_validation->set_rules('komponen', 'Komponen', 'required', ['required' => 'Silahkan pilih komponen.']);
 		$this->form_validation->set_rules('status', 'Status', 'required', ['required' => 'Silahkan pilih status pertanyaan.']);
 		if ($this->form_validation->run() === false) {
 			$this->load->view('dashboard/rules/index', $data);
 		} else {
-			$id = 'R' . generateID('id', 'rules', 1);
+			$id = generateID('id', 'rules', 1);
+			$kid = htmlspecialchars($this->input->post('komponen', true));
+			$jw = $this->input->post('jawabans', true);
+			$sts = htmlspecialchars($this->input->post('status', true));
+			$a = '';
+
+			foreach ($jw as $j) {
+				$a .= '("' . 'R' . $id++ . '","' . $kid . '","' . $j . '","' . $sts . '")' . ',';
+			}
+
+			$q = 'INSERT INTO rules (id,komponen_id,jawaban_id,status) VALUES' . rtrim($a, ',');
+			$this->db->query($q);
+
 			$this->db->insert('rules', [
 				'id' => $id,
 				'komponen_id' => htmlspecialchars($this->input->post('komponen', true)),
@@ -52,6 +67,9 @@ class Rules extends CI_Controller
 			);
 			redirect('dashboard/rules');
 		} else {
+			// var_dump($_POST);
+			// die;
+
 			$this->db->where('id', $this->input->post('id'));
 			$this->db->update('rules', [
 				'komponen_id' => htmlspecialchars($this->input->post('komponen', true)),

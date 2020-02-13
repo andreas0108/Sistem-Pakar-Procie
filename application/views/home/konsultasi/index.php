@@ -47,64 +47,12 @@
 							<?php $this->load->view('_parts/breadcrumb'); ?>
 						</ul>
 					</div>
+					<!-- Content -->
+					<!-- <?php $x = true ?> -->
 					<div class="row">
-						<!-- Content -->
-						<div class="wizard-container wizard-round col-md-9">
-							<div class="text-white wizard-cover wizard-header bg-black2 text-center">
-								<h2 class="text-white wizard-title"><b><?= $this->config->item('site_name'); ?></b></h2>
-								<small><?= $desc ?></small>
-							</div>
-							<form action="<?= base_url('konsultasi/proses') ?>" method="POST">
-								<div class="wizard-body">
-									<div class="row">
-										<ul class="nav nav-pills nav-primary ">
-											<?php $this->db->where('status', 1);
-											$pertanyaan = $this->db->get('pertanyaan')->result_array(); ?>
-											<?php $i = 1;
-											foreach ($pertanyaan as $p) : ?>
-												<li class="step">
-													<a class="nav-link" href="#<?= $p['id'] ?>" data-toggle="tab" aria-expanded="true">Pertanyaan <?= $i++ ?></a>
-												</li>
-											<?php endforeach ?>
-										</ul>
-									</div>
-									<div class="tab-content">
-										<?php foreach ($pertanyaan as $pi) : ?>
-											<div class="tab-pane" id="<?= $pi['id'] ?>">
-												<h3 class="info-text"><?= $pi['pertanyaan_content'] ?></h3>
-												<div class="row justify-content-center">
-													<div class="form-group">
-														<?php $this->db->where('status', 1);
-														$jawaban = $this->db->get_where('jawaban', ['pertanyaan_id' => $pi['id']])->result_array() ?>
-														<?php
-														foreach ($jawaban as $j) : ?>
-															<label class="imagecheck mb-4">
-																<input name="data<?= $pi['id'] ?>" type="radio" value="<?= $j['id'] ?>" class="imagecheck-input">
-																<figure class="imagecheck-figure m-1">
-																	<img src="https://via.placeholder.com/200.png?text=<?= str_replace(' ', ' ', $j['jawaban_content']) ?>" alt="title" class="imagecheck-image">
-																</figure>
-															</label>
-														<?php endforeach ?>
-													</div>
-												</div>
-											</div>
-										<?php endforeach ?>
-									</div>
-								</div>
-
-								<div class="wizard-action">
-									<div class="pull-left">
-										<input type="button" class="btn btn-previous btn-fill btn-black disabled" name="previous" value="Previous">
-									</div>
-									<div class="pull-right">
-										<input type="button" class="btn btn-next btn-danger" value="Next">
-										<input type="submit" class="btn btn-finish btn-danger" value="Finish" style="display: none;">
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</form>
-						</div>
+						<?php $this->load->view('Home/konsultasi/form_konsultasi'); ?>
 					</div>
+					<!-- ./Content -->
 				</div>
 			</div>
 			<!-- ./Main Container -->
@@ -162,6 +110,22 @@
 					keyboard: false,
 				})
 			};
+
+			$('.pilihan').click(function() {
+				var checked_status = this.checked;
+				if (checked_status == true) {
+					$('#selanjutnya').removeAttr("disabled");
+					$('#finish').removeAttr("disabled");
+				} else {
+					$('#selanjutnya').attr("disabled", "disabled");
+					$('#finish').attr("disabled", "disabled");
+				}
+			});
+
+			$('#reset').click(function() {
+				$('#selanjutnya').attr("disabled", "disabled");
+				$('#finish').attr("disabled", "disabled");
+			});
 		});
 	</script>
 	<!-- ./JS Files -->

@@ -23,7 +23,7 @@ class Jawaban extends CI_Controller
 		} else {
 			$id = generateID('id', 'jawaban', 1);
 			$ids = generateID('id', 'jawaban', 1);
-			$pid = $_POST['pertanyaan'];
+			$pid = htmlspecialchars($this->input->post('pertanyaan', true));
 			$a = htmlspecialchars($this->input->post('jawabanInput', true));
 			$jct = explode(',', $a);
 			$sts = htmlspecialchars($this->input->post('status', true));
@@ -32,9 +32,8 @@ class Jawaban extends CI_Controller
 			foreach ($jct as $j) {
 				$d .= '("' . 'J' . $id++ . '","' . $pid . '","' . $j . '","' . $sts . '")' . ',';
 			}
-			$e = rtrim($d, ',');
 
-			$this->db->query('INSERT INTO jawaban (id,pertanyaan_id,jawaban_content,status) values' . $e);
+			$this->db->query('INSERT INTO jawaban (id,pertanyaan_id,jawaban_content,status) VALUES' . rtrim($d, ','));
 
 			if (count($jct) == 1) {
 				$x = 'J' . $ids;

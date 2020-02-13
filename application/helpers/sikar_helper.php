@@ -67,7 +67,7 @@ function logs($msg, $item = null)
 // By ANDREAS ARDI
 function think($me)
 {
-	$datamasuk = "'" . implode("','", $me) . "'";
+	$datamasuk = "'" . arrtostr($me) . "'";
 	$jumlah_data = count($me);
 
 	$CI = get_instance();
@@ -100,23 +100,27 @@ function getUniqueID()
 	return $now . $id;
 }
 
-function generateID($col, $tab, $selector = 1)
+function generateID($prefix, $col, $tab, $selector = 1)
 {
 	/**
 	 *  $col = coloumn where you search max id
 	 *  $tab = table that $col using for
-	 *  $selector = the start position to trim that $col using for
+	 *  $selector = the start position char to trim that $col using for
 	 */
 	$CI = get_instance();
 
-	$data = $CI->db->select_max($col)->get($tab)->row_array();
-	$old = substr($data[$col], $selector);
+	$prefix = substr($prefix, 0, $selector);
+	$CI->db->select_max($col, $col);
+	$data = $CI->db->get_where($tab, ['left(' . $col . ',' . $selector . ')' => $prefix])->row_array();
+
 	$id = sprintf(
 		"%02s",
-		intval($old) + 1
+		intval(
+			substr($data[$col], $selector)
+		) + 1
 	);
 
-	$hasil = $id;
+	$hasil = $prefix . $id;
 
 	return $hasil;
 }
