@@ -155,6 +155,63 @@ class Article extends CI_Controller
 		}
 	}
 
+	// TinyMCE Image Upload
+	function tinymce_upload()
+	{
+		$config['upload_path'] = './assets/img/article/';
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		// $config['encrypt_name']	 = TRUE;
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload('file')) {
+			$this->output->set_header('HTTP/1.0 500 Server Error');
+			exit;
+		} else {
+			$file = $this->upload->data();
+			$this->output
+				->set_content_type('application/json', 'utf-8')
+				->set_output(json_encode(['location' => base_url() . 'assets/img/article/' . $file['file_name']]))
+				->_display();
+			exit;
+		}
+	}
+
+	//Upload image summernote
+	function upload_imga()
+	{
+		if (isset($_FILES["image"]["name"])) {
+			$config['upload_path'] = './assets/img/article/';
+			$config['allowed_types'] = 'jpg|jpeg|png|gif';
+			$config['encrypt_name']	 = TRUE;
+
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('image')) {
+				$data = $this->upload->data();
+				//Compress Image
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = './assets/img/article/' . $data['file_name'];
+				$config['create_thumb'] = FALSE;
+				$config['maintain_ratio'] = TRUE;
+				$config['quality'] = '100%';
+				$config['new_image'] = './assets/img/article/' . $data['file_name'];
+				$this->load->library('image_lib', $config);
+				$this->image_lib->resize();
+				echo base_url() . 'assets/img/article/' . $data['file_name'];
+			} else {
+				$this->upload->display_errors();
+				return FALSE;
+			}
+		}
+	}
+	//Delete image summernote
+	function delete_imga()
+	{
+		$src = $this->input->post('src');
+		$file_name = str_replace(base_url(), '', $src);
+		if (unlink($file_name)) {
+			echo 'File Delete Successfully';
+		}
+	}
 
 	public function hapus($id)
 	{

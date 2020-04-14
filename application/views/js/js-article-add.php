@@ -23,6 +23,55 @@
 			reader.readAsDataURL(this.files[0]);
 		});
 
+		// TinyMCE
+		tinymce.init({
+			selector: 'textarea#isi',
+			height: 500,
+			plugins: [
+				"advlist autolink lists link image charmap print preview anchor",
+				"searchreplace visualblocks code fullscreen",
+				"insertdatetime media table paste imagetools wordcount"
+			],
+			toolbar: "undo redo | styleselect | bold italic underline| alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image insertfile",
+			// plugins: [
+			// 	"advlist autolink lists link image charmap print preview hr anchor pagebreak",
+			// 	"searchreplace wordcount visualblocks visualchars code fullscreen",
+			// 	"insertdatetime nonbreaking save table contextmenu directionality",
+			// 	"emoticons template paste textcolor colorpicker textpattern"
+			// ],
+			// toolbar: "insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image responsivefilemanager",
+			toolbar_mode: 'floating',
+			tinycomments_mode: 'embedded',
+			tinycomments_author: 'Author name',
+			image_advtab: true,
+			images_upload_url: "<?= base_url("dashboard/article/tinymce_upload") ?>",
+			file_picker_types: 'image',
+			paste_data_images: true,
+			relative_urls: false,
+			remove_script_host: false,
+			file_picker_callback: function(cb, value, meta) {
+				var input = document.createElement('input');
+				input.setAttribute('type', 'file');
+				input.setAttribute('accept', 'image/*');
+				input.onchange = function() {
+					var file = this.files[0];
+					var reader = new FileReader();
+					reader.readAsDataURL(file);
+					reader.onload = function() {
+						var id = 'post-image-' + (new Date()).getTime();
+						var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+						var blobInfo = blobCache.create(id, file, reader.result);
+						blobCache.add(blobInfo);
+						cb(blobInfo.blobUri(), {
+							title: file.name
+						});
+					};
+				};
+				input.click();
+			}
+		});
+
+
 		// Summernote
 		$('#article-sum').summernote({
 			placeholder: 'Mulai tulis artikel.',
@@ -62,7 +111,7 @@
 			$.ajax({
 				data: out,
 				type: "POST",
-				url: "<?= base_url('dashboard/content/upload_imga') ?>",
+				url: "<?= base_url('dashboard/article/upload_imga') ?>",
 				cache: false,
 				contentType: false,
 				processData: false,
@@ -81,7 +130,7 @@
 					src: src
 				},
 				type: "POST",
-				url: "<?php echo site_url('dashboard/content/delete_imga') ?>",
+				url: "<?php echo site_url('dashboard/article/delete_imga') ?>",
 				cache: false,
 				success: function(response) {
 					console.log(response);

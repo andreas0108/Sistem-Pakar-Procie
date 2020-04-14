@@ -142,7 +142,7 @@
 																</td>
 																<td>
 																	<div class="btn-group float-right" role="group" aria-label="Basic example">
-																		<a href="javascript:void(0)" title="ubah artikel" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
+																		<a href="<?= base_url('dashboard/article/ubah/') . $a['id']; ?>" title="ubah artikel" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
 																		<a href="<?= base_url('dashboard/article/hapus/') . $a['id']; ?>" title="hapus artikel" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Artikel"><i style="color: white" class="fa fa-trash"></i></a>
 																	</div>
 																</td>

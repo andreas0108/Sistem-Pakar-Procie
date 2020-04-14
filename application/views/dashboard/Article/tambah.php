@@ -50,7 +50,7 @@
 						<div class="row">
 							<div class="col-9">
 								<!-- Default box -->
-								<div class="card">
+								<!-- <div class="card">
 									<div class="card-body pad">
 										<div class="form-group">
 											<input type="text" name="title" class="form-control focus" placeholder="Title" required>
@@ -59,8 +59,21 @@
 											<textarea name="isi" id="article-sum" class="form-control"></textarea>
 										</div>
 									</div>
+								</div> -->
+
+								<!-- Default box -->
+								<div class="card">
+									<div class="card-body pad">
+										<div class="form-group">
+											<input type="text" name="title" class="form-control focus" placeholder="Title" required>
+										</div>
+										<div class="form-group">
+											<textarea id="isi" name="isi" class="form-control" placeholder="Start Writing"><?= $this->input->post('isi') ?></textarea>
+										</div>
+									</div>
 								</div>
 								<!-- /.card -->
+
 							</div>
 							<div class="col-3">
 								<div class="card">
