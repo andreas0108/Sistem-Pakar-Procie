@@ -10,6 +10,7 @@ function is_logged_in()
 			'flashinf',
 			'Silahkan login sebagai Administrator'
 		);
+		$ci->session->userdata(['redir_url' => current_url()]);
 		redirect('login');
 	}
 }
@@ -100,7 +101,7 @@ function getUniqueID()
 	return $now . $id;
 }
 
-function generateID($prefix, $col, $tab, $selector = 1)
+function generateID($tab, $col = 'id', $prefix = null, $selector = 1)
 {
 	/**
 	 *  $col = coloumn where you search max id
@@ -108,6 +109,7 @@ function generateID($prefix, $col, $tab, $selector = 1)
 	 *  $selector = the start position char to trim that $col using for
 	 */
 	$CI = get_instance();
+
 
 	$prefix = substr($prefix, 0, $selector);
 	$CI->db->select_max($col, $col);
@@ -120,24 +122,31 @@ function generateID($prefix, $col, $tab, $selector = 1)
 		) + 1
 	);
 
+	// var_dump($id);
+	// die;
 	$hasil = $prefix . $id;
 
 	return $hasil;
 }
 
-// function generateID($prefix = 0000, $data_source = 0)
-// {
-// 	// var_dump($data_source);
-// 	// die;
-// 	$data_source = substr($data_source, 0, 4);
-// 	// var_dump($data_source);
-// 	$id = sprintf(
-// 		"%04s", // mask 4 digit number
-// 		intval($data_source) + 1
-// 	);
-// 	// var_dump($id);
-// 	return $prefix . $id;
-// }
+function generateDateID($tab, $col = 'id')
+{
+	$CI = get_instance();
+
+	$prefix = date('Ymd', time());
+	$CI->db->select_max($col, $col);
+	$data = $CI->db->get_where($tab, ['left(' . $col . ',8)' => $prefix])->row_array();
+
+	$id = sprintf(
+		"%02s",
+		intval(
+			substr($data[$col], 8)
+		) + 1
+	);
+
+	$hasil = $prefix . $id;
+	return $hasil;
+}
 
 function arrtostr($arr, $sep = ', ')
 {

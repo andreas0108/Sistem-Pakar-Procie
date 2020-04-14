@@ -21,4 +21,22 @@ class log extends CI_Controller
 
 		$this->load->view('dashboard/log', $data);
 	}
+
+	public function reset()
+	{
+		$this->db->truncate('komponen');
+		$this->db->truncate('pertanyaan');
+		$this->db->truncate('jawaban');
+		$this->db->truncate('rules');
+		$this->db->truncate('rulesp');
+		$this->db->truncate('history');
+		$this->db->truncate('log');
+
+		logs('Reset System');
+		$this->session->set_flashdata(
+			'flashmsg',
+			'Berhasil.'
+		);
+		redirect('dashboard');
+	}
 }

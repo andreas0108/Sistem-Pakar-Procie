@@ -53,7 +53,7 @@
 								<div class="col-md-3 col-sm-12">
 									<div class="card">
 										<?php $k = $kompo;
-										if ($k['manufacture'] == 1) : ?>
+										if ($k['kmanufid'] == 1) : ?>
 											<img src="<?= $kompo['img'] != '' ? base_url('assets/img/komponen/') . $kompo['img'] : 'https://placehold.it/300?text=AMD' ?>" id="preview" class="img-thumbnail animated fadeIn" style="object-position: center; object-fit: cover">
 										<?php else : ?>
 											<img src="<?= $kompo['img'] != '' ? base_url('assets/img/komponen/') . $kompo['img'] : 'https://placehold.it/300?text=Intel' ?>" id="preview" class="img-thumbnail animated fadeIn" style="object-position: center; object-fit: cover">
@@ -64,6 +64,9 @@
 								<div class="col-md-9 col-sm-12">
 									<div class="card">
 										<div class="card-header">
+											<?php if ($this->uri->segment(1) == 'konsultasi') { ?>
+												<button class="btn btn-info float-right" data-toggle="modal" data-target="#feedbackModal"><i class="fas fa-fw fa-plus-circle"></i> Feedback</button>
+											<?php } ?>
 											<h5 class="card-title"><?= $k['name'] ?></h5>
 										</div>
 										<div class="card-body">
@@ -74,26 +77,80 @@
 											<div class="row">
 												<div class="col">
 													<div class="row">
-														<div class="col-md-3">
+														<div class="col-md-4">
 															<h5 class="card-text"><b>Kategori : </b></h5>
 														</div>
-														<div class="col-md-9"><?= $k['kategori'] ?></div>
+														<div class="col-md-8"><?= $k['kategori'] ?></div>
 													</div>
 												</div>
 												<div class="col">
 													<div class="row">
-														<div class="col-md-3">
+														<div class="col-md-4">
 															<h5 class="card-text"><b>Harga : </b></h5>
 														</div>
-														<div class="col-md-9"><?= "Rp " . number_format($k['price'], null, null, '.'); ?></div>
+														<div class="col-md-8"><?= "Rp " . number_format($k['price'], null, null, '.'); ?></div>
 													</div>
 												</div>
 											</div>
 											<hr>
 											<h5 class="card-text"><b>Spesifikasi Teknis</b></h5>
 											<hr>
-											(coming soon...)
-											<!-- <?= var_dump($kasil) ?> -->
+											<div class="row">
+												<div class="col">
+													<div class="row">
+														<div class="col-md-5">
+															<h5 class="card-text"><b>Manufacture : </b></h5>
+														</div>
+														<div class="col-md-7"><?= $k['manufacture'] ?></div>
+													</div>
+													<div class="row mt-2">
+														<?php $ct = explode('/', $k['spek_ct']) ?>
+														<div class="col">
+															<div class="row">
+																<div class="col-md-6">
+																	<h5 class="card-text"><b>Jumlah <br> Core </b></h5>
+																</div>
+																<div class="col-md-6"><?= $ct[0] ?></div>
+															</div>
+														</div>
+														<div class="col">
+															<div class="row">
+																<div class="col-md-6">
+																	<h5 class="card-text"><b>Jumlah <br> Thread </b></h5>
+																</div>
+																<div class="col-md-6"><?= $ct[1] ?></div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col">
+													<div class="row">
+														<div class="col-md-4">
+															<h5 class="card-text"><b>Socket : </b></h5>
+														</div>
+														<div class="col-md-8"><?= $k['socket'] != '' || null ? $k['socket'] : 'Unknown'; ?></div>
+													</div>
+													<div class="row mt-2">
+														<?php $bb = explode('/', $k['spek_babo']) ?>
+														<div class="col">
+															<div class="row">
+																<div class="col-md-6">
+																	<h5 class="card-text"><b>Base <br> Clock : </b></h5>
+																</div>
+																<div class="col-md-6"><?= $bb[0] . ' GHz' ?></div>
+															</div>
+														</div>
+														<div class="col">
+															<div class="row">
+																<div class="col-md-6">
+																	<h5 class="card-text"><b>Boost <br> Clock : </b></h5>
+																</div>
+																<div class="col-md-6"><?= $bb[1] . ' GHz' ?></div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -112,7 +169,39 @@
 			<!-- ./Footer -->
 
 			<!-- Optional -->
-
+			<?php if ($this->uri->segment(1) == 'konsultasi') { ?>
+				<div class="modal animated fadeIn" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="feedbackModalLabel">Berikan Feedback</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form action="<?= base_url('dashboard/feedback/kirim') ?>" method="post">
+								<div class="modal-body">
+									<div class="form-group">
+										<input type="text" class="form-control" name="name" placeholder="nama_anda" value="<?= $this->session->userdata('name') == '' || null ? $this->session->userdata('uname') : $this->session->userdata('name'); ?>" required>
+									</div>
+									<div class="form-group">
+										<input type="email" class="form-control" placeholder="email@anda.com" value="<?= $this->session->userdata('umail'); ?>" disabled>
+										<input type="hidden" name="email" value="<?= $this->session->userdata('umail'); ?>">
+									</div>
+									<div class=" form-group">
+										<textarea class="form-control" name="isi" rows="8" placeholder="Tulis feedback anda disini" required></textarea>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<input type="hidden" name="url" value="<?= current_url() ?>">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+									<button type="submit" class="btn btn-primary">Kirim</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
 			<!-- ./Optional -->
 
 		</div>

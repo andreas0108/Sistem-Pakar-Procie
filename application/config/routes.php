@@ -20,6 +20,8 @@ $route['konsultasi/hasil/(:any)'] = 'dashboard/komponen/tampil/$1';
 
 $route['komponen'] = 'dashboard/komponen/redir';
 
+$route['dashboard/system/reset'] = 'dashboard/log/reset';
+
 // redirect blank breadcrumbs
 $route['dashboard/komponen/ubah'] = 'dashboard/komponen/redir';
 $route['dashboard/article/ubah'] = 'dashboard/article/redir';

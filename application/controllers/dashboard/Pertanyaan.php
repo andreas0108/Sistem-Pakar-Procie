@@ -21,7 +21,7 @@ class Pertanyaan extends CI_Controller
 		if ($this->form_validation->run() === false) {
 			$this->load->view('dashboard/pertanyaan/index', $data);
 		} else {
-			$id = 'P' . generateID('id', 'pertanyaan', 1);
+			$id = generateID('pertanyaan', 'id', 'P', 1);
 			$this->db->insert('pertanyaan', [
 				'id' => $id,
 				'pertanyaan_content' => htmlspecialchars($this->input->post('pertanyaan', true)),

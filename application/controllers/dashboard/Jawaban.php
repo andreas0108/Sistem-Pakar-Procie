@@ -21,8 +21,8 @@ class Jawaban extends CI_Controller
 		if ($this->form_validation->run() === false) {
 			$this->load->view('dashboard/jawaban/index', $data);
 		} else {
-			$id = generateID('id', 'jawaban', 1);
-			$ids = generateID('id', 'jawaban', 1);
+			$id = generateID('jawaban', 'id', 'J', 1);
+			$ids = generateID('jawaban', 'id', 'J', 1);
 			$pid = htmlspecialchars($this->input->post('pertanyaan', true));
 			$a = htmlspecialchars($this->input->post('jawabanInput', true));
 			$jct = explode(',', $a);
@@ -30,15 +30,15 @@ class Jawaban extends CI_Controller
 
 			$d = '';
 			foreach ($jct as $j) {
-				$d .= '("' . 'J' . $id++ . '","' . $pid . '","' . $j . '","' . $sts . '")' . ',';
+				$d .= '("' . $id++ . '","' . $pid . '","' . $j . '","' . $sts . '")' . ',';
 			}
 
 			$this->db->query('INSERT INTO jawaban (id,pertanyaan_id,jawaban_content,status) VALUES' . rtrim($d, ','));
 
 			if (count($jct) == 1) {
-				$x = 'J' . $ids;
+				$x = $ids;
 			} else {
-				$x = 'J' . $ids . '-' . 'J' . ($ids + count($jct) - 1);
+				$x = $ids . '-' . ($ids + count($jct) - 1);
 			}
 			logs('Tambah Jawaban', $x);
 			$this->session->set_flashdata(

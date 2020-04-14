@@ -15,8 +15,9 @@ class Komponen extends CI_Controller
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$this->db->select('k.id, k.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.status, k.date_added as ditambahkan, k.spek_ct, k.spek_babo');
+		$this->db->select('k.id, km.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.status, k.date_added as ditambahkan, k.spek_ct, k.spek_babo');
 		$this->db->join('komponen_kategori kk', 'k.kategori = kk.id');
+		$this->db->join('komponen_manufacture km', 'k.manufacture = km.id');
 		$this->db->order_by('ditambahkan DESC');
 		$data['kompo'] = $this->db->get('komponen k')->result_array();
 
@@ -149,8 +150,9 @@ class Komponen extends CI_Controller
 	public function tampil($slug)
 	{
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		$this->db->select('k.img, k.id, k.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.status, k.date_added as ditambahkan, k.spek_ct, k.spek_babo');
+		$this->db->select('k.img, k.id, k.manufacture as kmanufid, km.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.status, k.date_added as ditambahkan, k.spek_ct, k.spek_babo, k.socket');
 		$this->db->join('komponen_kategori kk', 'k.kategori = kk.id');
+		$this->db->join('komponen_manufacture km', 'k.manufacture = km.id');
 		$this->db->order_by('ditambahkan DESC');
 		$data['kompo'] = $this->db->get_where('komponen k', ['slug' => $slug])->row_array();
 		$data['title'] = $data['kompo']['name'];

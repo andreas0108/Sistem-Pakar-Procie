@@ -27,6 +27,13 @@
 	});
 </script>
 
+<script src='https://cdn.tiny.cloud/1/2qeef6zmuvht5ljdruacbt0dctjepm75zzmqodo20jhzhpob/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+<script>
+	tinymce.init({
+		selector: '#mytextarea'
+	});
+</script>
+
 <!-- CSS Files -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= base_url('assets/') ?>css/bootstrap.min.css">

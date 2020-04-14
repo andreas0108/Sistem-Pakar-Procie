@@ -64,7 +64,7 @@
 								<div class="card-body pb-0">
 									<h4 class="page-title mb-1"><?= ucfirst($title) ?></h4>
 									<span>
-										<a class="btn btn-sm" href="javascript:void(0)">
+										<a class="btn btn-sm" href="javascript:void(0)" style="margin-left: -15px;">
 											<i class="fa fa-fw fa-user"></i> <b><?= $arti['name'] . ' ' ?></b>
 										</a>
 									</span>
@@ -74,9 +74,11 @@
 											<i class="fa fa-fw fa-calendar"></i> <b> <?= unix_indo2($arti['tgl_buat'], "tgl") ?></b>
 										</a>
 									</span>
-									<?= $arti['isi'] ?>
+									<div style="text-align: justify">
+										<?= $arti['isi'] ?>
+									</div>
 								</div>
-								<div class="mt--4 pt-0 mr-4 mb-4 ml-4">
+								<div class="mt--2 pt-0 mr-4 mb-4 ml-4" style="text-align: right">
 									<?php $tags = explode(',', $arti['tags']) ?>
 									Tags :
 									<?php foreach ($tags as $t) : ?>

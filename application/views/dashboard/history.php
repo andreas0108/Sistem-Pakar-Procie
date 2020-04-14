@@ -71,7 +71,7 @@
 															<th scope="col" style="width:15%">ID</th>
 															<th scope="col" style="width:15%">Pengguna</th>
 															<th scope="col" style="width:15%">Email</th>
-															<th scope="col" style="width:40%">User</th>
+															<th scope="col" style="width:40%">Hasil</th>
 															<th scope="col" style="width:15%">Tanggal Data</th>
 														</tr>
 													</thead>

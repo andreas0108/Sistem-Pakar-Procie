@@ -62,11 +62,7 @@
 											<?= $user['name'] ?>
 										</div>
 										<div class="job">
-											<?php if ($user['role_id'] == 1) {
-												echo 'Administrator';
-											} else {
-												echo 'User';
-											} ?>
+											Administrator
 										</div>
 										<div class="desc">
 											<?= $user['address'] ?>
@@ -124,9 +120,6 @@
 									foreach ($err as $e) : ?>
 										<div class="alert alert-danger alert-dismissible fade show" role="alert">
 											<?= $e ?>
-											<!-- <button type="button" class="btn btn-sm btn-link btn-rounded mt--1 float-right" data-dismiss="alert">
-													<span style="color: blue2">hide</span>
-												</button> -->
 											<a href="javascript:void(0)" class="nav-link float-right mt--2 pr-0" data-dismiss="alert">
 												<span class="icon-close" style="color: red"></span>
 											</a>
@@ -153,22 +146,22 @@
 											<div class="row mt-3">
 												<div class="col">
 													<div class="form-group">
-														<label for="registered">Terdaftar</label>
-														<input type="text" class="form-control" id="registered" name="registered" value="<?= unix_indo($user['date_created']) ?>" disabled>
+														<label>Address</label>
+														<input type="text" class="form-control" id="address" name="address" value="<?= $user['address'] ?>" placeholder="Address" required>
 													</div>
 												</div>
-												<div class="col">
+												<!-- <div class="col">
 													<div class="form-group">
 														<label for="role">Role</label>
 														<input type="text" class="form-control" id="role" name="role" value="<?= $user['role_id'] == 1 ? 'Administrator' : 'User' ?>" disabled>
 													</div>
-												</div>
+												</div> -->
 											</div>
 											<div class="row mt-3">
 												<div class="col">
 													<div class="form-group">
-														<label>Address</label>
-														<input type="text" class="form-control" id="address" name="address" value="<?= $user['address'] ?>" placeholder="Address" required>
+														<label for="registered">Terdaftar</label>
+														<input type="text" class="form-control" id="registered" name="registered" value="<?= unix_indo($user['date_created']) ?>" disabled>
 													</div>
 												</div>
 												<div class="col">
@@ -180,7 +173,7 @@
 											</div>
 											<div class="float-right mt-3 mb-0">
 												<input type="hidden" name="id" value="<?= $user['id'] ?>">
-												<button type="submit" class="btn btn-primary">Save</button>
+												<button type="submit" class="btn btn-primary"><i class="fa fa-save"> Save</i></button>
 											</div>
 										</form>
 									</div>
@@ -189,7 +182,7 @@
 											<div class="col-md-4 col-sm-12">
 												<div class="mb-2">
 													<center>
-														<img src="<?= base_url('assets/img/profile/') . $user['img'] ?>" id="preview" class="img-thumbnail rounded-circle" style="object-fit: cover; object-position: center; width:300px; height:300px">
+														<img src="<?= base_url('assets/img/profile/') . $user['img'] ?>" id="preview" class="img-thumbnail rounded-circle" style="object-fit: cover; object-position: center; width:100%">
 													</center>
 												</div>
 											</div>
@@ -198,13 +191,13 @@
 													<!-- <input type="file" name="img[]" class="file" accept="image/*" style="visibility: hidden;position: absolute;"> -->
 													<input type="file" name="image" class="file" accept="image/*" style="visibility: hidden;position: absolute;">
 													<div class="input-group my-2">
-														<input type="text" name='img-prev' class="form-control" disabled placeholder="Upload File" id="file">
+														<input type="text" name='img-prev' class="form-control" disabled placeholder="Pilih Foto Anda" id="file">
 														<div class="input-group-append">
 															<button type="button" class="browse btn btn-primary">Browse...</button>
 														</div>
 													</div>
 													<input type="hidden" name="id" value="<?= $user['id'] ?>">
-													<button type="submit" class="btn btn-primary btn-round btn-block"><i class="fa fa-save"> Save</i></button>
+													<button type="submit" class="btn btn-primary float-right"><i class="fa fa-save"> Save</i></button>
 												</form>
 											</div>
 										</div>

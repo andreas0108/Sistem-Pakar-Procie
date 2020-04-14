@@ -72,7 +72,7 @@
 													<?= $i++ ?>
 												</td>
 												<td>
-													<p class="card-text mb-0"><?= $k['manufacture'] == 1 ? 'AMD' : 'Intel' ?></p>
+													<p class="card-text mb-0"><?= $k['manufacture'] ?></p>
 												</td>
 												<td>
 													<p class="card-text mb-0"><?= $k['kategori'] ?></p>
@@ -81,7 +81,7 @@
 													<p class="card-text mb-0"><?= $k['name'] ?></p>
 												</td>
 												<td>
-													<p class="card-text mb-0"><?= limit_word_regex($k['desc'], 5) ?>...</p>
+													<p class="card-text mb-0"><?= limit_word_regex($k['desc'], 6) ?>...</p>
 												</td>
 												<td>
 													<p class="card-text mb-0"><?= "Rp " . number_format($k['price'], null, null, '.'); ?></p>

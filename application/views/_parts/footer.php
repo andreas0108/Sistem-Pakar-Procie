@@ -4,17 +4,17 @@
 	<nav class="pull-left">
 		<ul class="nav">
 			<li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link" href="<?= base_url('konsultasi') ?>">
 					Konsultasi
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link" href="<?= base_url('blog') ?>">
 					Blog
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link" href="<?= base_url('about') ?>">
 					About
 				</a>
 			</li>
@@ -34,6 +34,6 @@
 		</ul>
 	</nav>
 	<div class="copyright ml-auto">
-		<i class="fa fa-copyright"></i> 2019 - <?= date('Y'); ?>, made with <i class="fa fa-heart heart text-danger"></i> by <a href="<?= base_url() ?>">Andreas Ardi</a>
+		&copy; 2019 - <?= date('Y'); ?>, made with <i class="fa fa-heart heart text-danger"></i> by <a href="<?= base_url() ?>">Andreas Ardi</a>
 	</div>
 </div>

@@ -37,25 +37,13 @@
 			<!-- Main Container -->
 
 			<div class="container">
-				<div class="page-navs bg-white">
-					<div class="nav-scroller">
-						<div class="nav nav-tabs nav-line nav-color-primary d-flex align-items-center justify-contents-center w-100">
-							<!-- <a class="nav-link active show" data-toggle="tab" href="#article">Article
-								<span class="count ml-1">(<?= count($this->db->get_where('komponen', ['status' => 1])->result_array()) ?>)</span>
-							</a>
-							<a class="nav-link mr-5" data-toggle="tab" href="#draft">Draft
-								<span class="count ml-1">(<?= count($this->db->get_where('komponen', ['status' => 0])->result_array()) ?>)</span>
-							</a> -->
-						</div>
-					</div>
-				</div>
-				<!-- <div class="page-inner"> -->
 				<div class="page-inner">
 					<!-- Content -->
 					<div class="row">
 						<div class="col-md-12">
 							<div class="tab-content mb-3" id="pills-tabContent">
 								<div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
+								<button type="button" href="<?= base_url('dashboard/system/reset') ?>" class="btn btn-sm btn-danger float-right btn-reset">Reset System</button>
 									<div class="page-header">
 										<h4 class="page-title"><?= strtoupper($title) ?></h4>
 										<ul class="breadcrumbs">

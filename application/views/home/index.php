@@ -42,7 +42,7 @@
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-sm-6 col-md-3">
-									<div class="card card-stats card-primary card-round">
+									<div class="card card-stats card-info card-round">
 										<div class="card-body">
 											<div class="row" title="Jumlah Pengguna yang pernah berkonsultasi">
 												<div class="col-5">
@@ -85,7 +85,7 @@
 												</div>
 											</div>
 											<hr style="border-color:white">
-											<a href="javascript:void(0)" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
+											<a href="<?= base_url('dashboard/feedback') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
 														<p class="card-category">More Info.</p>
@@ -96,7 +96,7 @@
 									</div>
 								</div>
 								<div class="col-sm-6 col-md-3">
-									<div class="card card-stats card-success card-round">
+									<div class="card card-stats card-info card-round">
 										<div class="card-body">
 											<div class="row" title="Artikel diterbitkan : <?= count($this->db->get_where('article', ['status' => 1])->result_array()) ?>, Draft : <?= count($this->db->get_where('article', ['status' => 0])->result_array()) ?>">
 												<div class="col-5">
@@ -112,7 +112,7 @@
 												</div>
 											</div>
 											<hr style="border-color:white">
-											<a href="<?= base_url('article') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
+											<a href="<?= base_url('dashboard/article') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
 														<p class="card-category">More Info.</p>
@@ -123,7 +123,7 @@
 									</div>
 								</div>
 								<div class="col-sm-6 col-md-3">
-									<div class="card card-stats card-warning card-round">
+									<div class="card card-stats card-info card-round">
 										<div class="card-body">
 											<div class="row" title="Tanggal terakhir update dari system. Baik komponen, rules, pertanyaan, dan jawaban">
 												<div class="col-5">
@@ -159,7 +159,7 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-6 col-md-3">
-									<div class="card card-stats card-black card-round">
+									<div class="card card-stats card-primary card-round">
 										<div class="card-body">
 											<div class="row" title="Jumlah Komponen yang ditambahkan ke system">
 												<div class="col-5">
@@ -186,7 +186,7 @@
 									</div>
 								</div>
 								<div class="col-sm-6 col-md-3">
-									<div class="card card-stats card-danger card-round">
+									<div class="card card-stats card-primary card-round">
 										<div class="card-body">
 											<div class="row" title="Jumlah Rules Sistem Pakar yang diatur">
 												<div class="col-5">
@@ -218,7 +218,7 @@
 									</div>
 								</div>
 								<div class="col-sm-6 col-md-3">
-									<div class="card card-stats card-secondary card-round">
+									<div class="card card-stats card-primary card-round">
 										<div class="card-body">
 											<div class="row" title="Jumlah Pertanyaan yang diatur untuk Sistem Pakar">
 												<div class="col-5">
@@ -245,7 +245,7 @@
 									</div>
 								</div>
 								<div class="col-sm-6 col-md-3">
-									<div class="card card-stats card-round">
+									<div class="card card-stats card-primary">
 										<div class="card-body">
 											<div class="row" title="Jumlah Jawaban yang terdapat di dalam Sistem Pakar">
 												<div class="col-5">
@@ -322,7 +322,7 @@
 											<?php endforeach ?>
 										</div>
 										<div class="card-footer">
-											<a href="#" class="btn btn-sm btn-primary btn-fill" style="width: 100%; bottom:0px;">Lihat Log</a>
+											<a href="<?= base_url('dashboard/history') ?>" class="btn btn-sm btn-primary btn-fill" style="width: 100%; bottom:0px;">Lihat History</a>
 										</div>
 									</div>
 								</div>
@@ -343,7 +343,7 @@
 														</h6>
 														<div class="text-muted" title="<?= $l['keterangan'] ?>">
 															<span>
-																<?= substr($l['keterangan'], 0, 36) ?>...
+																<?= substr($l['keterangan'], 0, 20) ?>...
 															</span>
 														</div>
 													</div>
@@ -352,7 +352,7 @@
 											<?php endforeach ?>
 										</div>
 										<div class="card-footer">
-											<a href="#" class="btn btn-sm btn-primary btn-fill" style="width: 100%">Lihat Log</a>
+											<a href="<?= base_url('dashboard/log') ?>" class="btn btn-sm btn-primary btn-fill" style="width: 100%">Lihat Log</a>
 										</div>
 									</div>
 								</div>

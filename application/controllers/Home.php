@@ -28,7 +28,11 @@ class Home extends CI_Controller
 			$data['desc'] = 'Selamat datang ' . $data['user']['name'] . ' di Dashboard Aplikasi Sistem Pakar ' . $this->config->item('site_name');
 
 			$a = $this->db->query("SELECT LEFT(id,8) AS tanggal, COUNT(LEFT(id,8)) AS jumlah FROM history GROUP BY tanggal ORDER BY tanggal DESC LIMIT 2;")->result_array();
-			$b = (($a[0]['jumlah'] / $a[1]['jumlah']) - 1) * 100;
+			if($a != null || 0){
+				$b = (($a[0]['jumlah'] / $a[1]['jumlah']) - 1) * 100;
+			} else {
+				$b = 0;
+			}
 			$data['statsper'] = intval($b) . '%';
 			$data['statscnt'] = count($this->db->get_where('history', ['left(id,8)' => gmdate('Ymd', time() + 7 * 3600)])->result_array());
 			$data['history'] = $this->db->select('h.id, h.user_name, h.email, k.name as hasil')->join('komponen k', 'h.hasil = k.id')->order_by('h.id', 'DESC')->limit('4')->get('history h')->result_array();
@@ -63,7 +67,8 @@ class Home extends CI_Controller
 		} else {
 			$uname = $this->input->post('username');
 			$umail = $this->input->post('usermail');
-			$id = generateID(gmdate('Ymd', time() + (7 * 3600)), 'konsul_id', 'tmp_data', 8);
+			// $id = generateID(gmdate('Ymd', time() + (7 * 3600)), 'konsul_id', 'tmp_data', 8);
+			$id = generateDateID('tmp_data');
 
 			$this->session->set_userdata(['konsul_id' => $id, 'uname' => $uname, 'umail' => $umail]);
 			redirect('konsultasi');

@@ -136,7 +136,7 @@
 													<select class="form-control" name="kate" required>
 														<option value="">Pilih</option>
 														<?php foreach ($this->db->get('komponen_kategori')->result_array() as $kt) {
-															echo '<option value="' . $kt['id'] . '">' . ucfirst(strtolower($kt['name'])) . '</option>';
+															echo '<option value="' . $kt['id'] . '">' . $kt['name'] . '</option>';
 														} ?>
 													</select>
 												</div>

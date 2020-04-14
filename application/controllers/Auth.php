@@ -40,13 +40,18 @@ class Auth extends CI_Controller
 					$data = [
 						'email' => $user['email'],
 						'umail' => $user['email'],
-						'konsul_id' => generateID(gmdate('Ymd', time() + (7 * 3600)), 'konsul_id', 'tmp_data', 8),
+						// 'konsul_id' => generateID(gmdate('Ymd', time() + (7 * 3600)), 'konsul_id', 'tmp_data', 8),
+						'konsul_id' => generateID('tmp_data', 'konsul_id', gmdate('Ymd', time() + (7 * 3600)), 8),
 						'id' => $user['id'],
 						'name' => $user['name']
 					];
 					$this->session->set_userdata($data);
 
-					redirect(base_url());
+					if ($this->session->userdata('redir_url')) {
+						redirect($this->session->userdata('redir_url'));
+					} else {
+						redirect(base_url());
+					}
 				} else {
 					// false
 					$this->session->set_flashdata(
@@ -66,49 +71,13 @@ class Auth extends CI_Controller
 		}
 	}
 
-	public function changePassword()
-	{
-		if (!$this->session->userdata('reset_email')) {
-			redirect('login');
-		}
-
-		$this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[8]|matches[password2]');
-		$this->form_validation->set_rules('password2', 'Confirm Password', 'trim|required|min_length[8]|matches[password1]');
-
-		if ($this->form_validation->run() === false) {
-			$data['title'] = 'CI-App | Change Password';
-			$this->load->view('templates/auth_header', $data);
-			$this->load->view('auth/change-password');
-			$this->load->view('templates/auth_footer');
-		} else {
-			$key = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
-			$mail = $this->session->userdata('reset_email');
-
-			$this->db->set('password', $key);
-			$this->db->where('email', $mail);
-			$this->db->update('user');
-
-			$this->session->unset_userdata('reset_email');
-			$this->db->delete('user_token', ['email' => $mail]);
-
-			$this->session->set_flashdata(
-				'flashmsg',
-				'<div class="alert alert-success alert-dismissible fade show" role="alert">
-				<strong>Password changed! </strong>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				  <span aria-hidden="true">&times;</span>
-				</button>
-			  </div>'
-			);
-			redirect('login');
-		}
-	}
-
 	public function logout()
 	{
 		$this->session->unset_userdata('konsul_id');
 		$this->session->unset_userdata('umail');
 		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('id');
+		$this->session->unset_userdata('name');
 
 		$this->session->set_flashdata(
 			'flashmsg',

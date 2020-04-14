@@ -27,25 +27,29 @@ class Rules extends CI_Controller
 		if ($this->form_validation->run() === false) {
 			$this->load->view('dashboard/rules/index', $data);
 		} else {
-			$id = generateID('id', 'rules', 1);
+			$id = generateID('rules', 'id', 'R');
 			$kid = htmlspecialchars($this->input->post('komponen', true));
 			$jw = $this->input->post('jawabans', true);
 			$sts = htmlspecialchars($this->input->post('status', true));
 			$a = '';
 
 			foreach ($jw as $j) {
-				$a .= '("' . 'R' . $id++ . '","' . $kid . '","' . $j . '","' . $sts . '")' . ',';
+				$a .= '("' . $id++ . '","' . $kid . '","' . $j . '","' . $sts . '")' . ',';
 			}
+
+			// var_dump($a);
+			// die;
 
 			$q = 'INSERT INTO rules (id,komponen_id,jawaban_id,status) VALUES' . rtrim($a, ',');
 			$this->db->query($q);
 
-			$this->db->insert('rules', [
-				'id' => $id,
-				'komponen_id' => htmlspecialchars($this->input->post('komponen', true)),
-				'jawaban_id' => htmlspecialchars($this->input->post('jawaban', true)),
-				'status' => htmlspecialchars($this->input->post('status', true))
-			]);
+			// $this->db->insert('rules', [
+			// 	'id' => $id,
+			// 	'komponen_id' => htmlspecialchars($this->input->post('komponen', true)),
+			// 	'jawaban_id' => htmlspecialchars($this->input->post('jawaban', true)),
+			// 	'status' => htmlspecialchars($this->input->post('status', true))
+			// ]);
+
 			logs('Tambah Rule', $id);
 			$this->session->set_flashdata(
 				'flashmsg',
@@ -98,6 +102,78 @@ class Rules extends CI_Controller
 			'flashmsg',
 			'Rule berhasil dihapus'
 		);
-		redirect('dashboard/pertanyaan');
+		redirect('dashboard/rules');
+	}
+
+	// Rules Pertanyaan
+
+	public function tambahP()
+	{
+		// var_dump($_POST);
+		// die;
+
+		$this->form_validation->set_rules('rulesjid', 'Jawaban', 'required', ['required' => 'Silahkan pilih jawaban.']);
+		$this->form_validation->set_rules('rulespid', 'Pertanyaan', 'required', ['required' => 'Silahkan pilih status pertanyaan.']);
+		if ($this->form_validation->run() === false) {
+			$this->load->view('dashboard/rules/index');
+		} else {
+
+			$this->db->insert('rulesp', [
+				'jawaban_id' => htmlspecialchars($this->input->post('rulesjid', true)),
+				'next_pertanyaan' => htmlspecialchars($this->input->post('rulespid', true))
+			]);
+
+
+			logs('Tambah Rule Pertanyaan Baru');
+			$this->session->set_flashdata(
+				'flashmsg',
+				'Rules berhasil disimpan.'
+			);
+			redirect('dashboard/rules');
+		}
+	}
+
+	public function getP()
+	{
+		echo json_encode($this->db->get_where('rulesp', ['id' => $_POST['id']])->row_array());
+	}
+
+	public function ubahP()
+	{
+		$this->form_validation->set_rules('rulesjid', 'Jawaban', 'required', ['required' => 'Silahkan pilih jawaban.']);
+		$this->form_validation->set_rules('rulespid', 'Pertanyaan', 'required', ['required' => 'Silahkan pilih status pertanyaan.']);
+		if ($this->form_validation->run() === false) {
+			$this->session->set_flashdata(
+				'flasherr',
+				$this->form_validation->error_array()
+			);
+			redirect('dashboard/rules');
+		} else {
+			// var_dump($_POST);
+			// die;
+
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('rulesp', [
+				'jawaban_id' => htmlspecialchars($this->input->post('rulesjid', true)),
+				'next_pertanyaan' => htmlspecialchars($this->input->post('rulespid', true))
+			]);
+			logs('Ubah Rule', $this->input->post('id'));
+			$this->session->set_flashdata(
+				'flashmsg',
+				'Berhasil merubah rules.'
+			);
+			redirect('dashboard/rules');
+		}
+	}
+
+	public function hapusP($id)
+	{
+		logs('Hapus Rule Pertanyaan', $id);
+		$this->db->delete('rulesp', ['id' => $id]);
+		$this->session->set_flashdata(
+			'flashmsg',
+			'Rule berhasil dihapus'
+		);
+		redirect('dashboard/rules');
 	}
 }
