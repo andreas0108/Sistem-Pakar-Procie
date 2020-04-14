@@ -47,15 +47,19 @@ EOD;
         // $jwt = JWT::encode($payload, $privateKey, 'RS256');
         // echo "Encoded : \n" . print_r($jwt, true);
 
-        try {
-            $token = JWT::encode($payload, $privateKey, 'RS256');
-            http_response_code(200);
-            header('Content-Type: application/json');
-            echo json_encode(array("token" => $token));
-        } catch (Exception $e) {
-            http_response_code(500);
-            header('Content-Type: application/json');
-            echo $e->getMessage();
+        if ($this->session->userdata('email')) {
+            try {
+                $token = JWT::encode($payload, $privateKey, 'RS256');
+                http_response_code(200);
+                header('Content-Type: application/json');
+                echo json_encode(array("token" => $token));
+            } catch (Exception $e) {
+                http_response_code(500);
+                header('Content-Type: application/json');
+                echo $e->getMessage();
+            }
+        } else {
+            echo "ERROR 403 : ACCESS FORBIDDEN";
         }
     }
 }
