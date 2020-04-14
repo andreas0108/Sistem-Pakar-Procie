@@ -49,18 +49,6 @@
 					<form action="" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-9">
-								<!-- Default box -->
-								<!-- <div class="card">
-									<div class="card-body pad">
-										<div class="form-group">
-											<input type="text" name="title" class="form-control focus" placeholder="Title" value="<?= $arti['judul'] ?>" required>
-										</div>
-										<div class="form-group">
-											<textarea name="isi" id="article-sum" class="form-control"><?= $arti['isi'] ?></textarea>
-										</div>
-									</div>
-								</div> -->
-
 								<div class="card">
 									<div class="card-body pad">
 										<div class="form-group">

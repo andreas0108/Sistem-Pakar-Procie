@@ -57,7 +57,7 @@ class Blog extends CI_Controller
 
 	public function read($slug)
 	{
-		$this->db->select('article.judul, article.isi , user.name, article.tgl_buat, article.slug, article.gambar, article.tags ');
+		$this->db->select('article.judul, article.status, article.isi , user.name, article.tgl_buat, article.slug, article.gambar, article.tags ');
 		$this->db->join('user', 'user.id = article.penulis_id');
 		$x = $this->db->get_where('article', ['slug' => $slug])->row_array();
 
@@ -68,6 +68,14 @@ class Blog extends CI_Controller
 		])->row_array();
 
 		$data['title'] = $x['judul'];
-		$this->load->view('Blog/read', $data);
+		if ($x['status'] == 1) {
+			$this->load->view('Blog/read', $data);
+		} else {
+			if ($this->session->userdata('email')) {
+				$this->load->view('Blog/read', $data);
+			} else {
+				echo "ERROR 404 NOT FOUND";
+			}
+		}
 	}
 }

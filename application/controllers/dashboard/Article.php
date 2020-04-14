@@ -69,7 +69,7 @@ class Article extends CI_Controller
 					);
 				}
 			} else {
-				$gambar = '';
+				$gambar = 'default.svg';
 			}
 			$this->db->insert('article', [
 				'judul' => htmlspecialchars($this->input->post('title', true)),

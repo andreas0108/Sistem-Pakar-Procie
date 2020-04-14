@@ -30,37 +30,41 @@
 			plugins: [
 				'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars',
 				'fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime',
-				'advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons'
+				'advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons tinydrive'
 			],
 			menubar: 'file edit view insert format tools table help',
-			toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+			toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media link anchor codesample | ltr rtl',
 			toolbar_mode: 'floating',
 			image_advtab: true,
-			images_upload_url: "<?= base_url("dashboard/article/tinymce_upload") ?>",
-			file_picker_types: 'image',
-			paste_data_images: true,
-			relative_urls: false,
-			remove_script_host: false,
-			file_picker_callback: function(cb, value, meta) {
-				var input = document.createElement('input');
-				input.setAttribute('type', 'file');
-				input.setAttribute('accept', 'image/*');
-				input.onchange = function() {
-					var file = this.files[0];
-					var reader = new FileReader();
-					reader.readAsDataURL(file);
-					reader.onload = function() {
-						var id = 'IMG' + (new Date()).getTime();
-						var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-						var blobInfo = blobCache.create(id, file, reader.result);
-						blobCache.add(blobInfo);
-						cb(blobInfo.blobUri(), {
-							title: file.name
-						});
-					};
-				};
-				input.click();
-			},
+
+			tinydrive_token_provider: '<?= base_url("dashboard/jwten") ?>',
+			tinydrive_upload_path: '/sikar/article'
+
+			// images_upload_url: "<?= base_url("dashboard/article/tinymce_upload") ?>",
+			// file_picker_types: 'image',
+			// paste_data_images: true,
+			// relative_urls: false,
+			// remove_script_host: false,
+			// file_picker_callback: function(cb, value, meta) {
+			// 	var input = document.createElement('input');
+			// 	input.setAttribute('type', 'file');
+			// 	input.setAttribute('accept', 'image/*');
+			// 	input.onchange = function() {
+			// 		var file = this.files[0];
+			// 		var reader = new FileReader();
+			// 		reader.readAsDataURL(file);
+			// 		reader.onload = function() {
+			// 			var id = 'IMG' + (new Date()).getTime();
+			// 			var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+			// 			var blobInfo = blobCache.create(id, file, reader.result);
+			// 			blobCache.add(blobInfo);
+			// 			cb(blobInfo.blobUri(), {
+			// 				title: file.name
+			// 			});
+			// 		};
+			// 	};
+			// 	input.click();
+			// },
 		});
 
 		// Summernote
