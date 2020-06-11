@@ -132,8 +132,7 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="squareSelect">Pertanyaan</label>
-							<select class="form-control input-square" name="pertanyaan" id="pertanyaan" required>
-								<option value="">Pilih</option>
+							<select class="form-control single" name="pertanyaan" id="pertanyaan" style="width: 100%" required>
 								<?php $x = $this->db->get('pertanyaan')->result_array();
 								foreach ($x as $x) { ?>
 									<option value="<?= $x['id'] ?>"><?= $x['pertanyaan_content'] ?></option>
@@ -153,10 +152,9 @@
 
 						<div class="form-group">
 							<label for="squareSelect">Status</label>
-							<select class="form-control input-square" name="status" id="status" required>
-								<option value="">Pilih</option>
-								<option value="0">Disable</option>
+							<select class="form-control single" name="status" id="status" style="width: 100%" required>
 								<option value="1">Enable</option>
+								<option value="0">Disable</option>
 							</select>
 						</div>
 

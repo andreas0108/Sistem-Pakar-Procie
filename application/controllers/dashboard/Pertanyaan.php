@@ -19,7 +19,7 @@ class Pertanyaan extends CI_Controller
 		$this->form_validation->set_rules('pertanyaan', 'Pertanyaan', 'required', ['required' => 'Silahkan masukan pertanyaan.']);
 		$this->form_validation->set_rules('status', 'Status', 'required', ['required' => 'Silahkan pilih status pertanyaan.']);
 		if ($this->form_validation->run() === false) {
-			$this->load->view('dashboard/pertanyaan/index', $data);
+			$this->load->view('Dashboard/Pertanyaan/index', $data);
 		} else {
 			$id = generateID('pertanyaan', 'id', 'P', 1);
 			$this->db->insert('pertanyaan', [

@@ -20,8 +20,9 @@
 			<span class="btn-label mr-2">
 				<i class="fa fa-paper-plane"></i>
 			</span>
-			Mulai
+			Start
 		</a>
+		<a href="<?= base_url('login') ?>" style="margin-top: 0.5rem;" title="Login as Administrator">Login</a>
 	</div>
 	<script src="/assets/js/core/jquery.3.2.1.min.js"></script>
 	<script src="/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>

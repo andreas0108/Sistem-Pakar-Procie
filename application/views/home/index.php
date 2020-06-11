@@ -198,10 +198,13 @@
 													<div class="numbers">
 														<p class="card-category">Rules</p>
 														<h4 class="card-title">
-															<?php $this->db->select('komponen_id')->group_by('komponen_id');
-															$x = $this->db->get('rules')->result_array() ?>
+															<?php
+															$this->db->select('komponen_id')->group_by('komponen_id');
+															$x = $this->db->get('rules')->result_array();
+															$y = $this->db->get('rulesp')->result_array();
 
-															<?= count($x); ?>
+															echo count($x) + count($y);
+															?>
 														</h4>
 													</div>
 												</div>
@@ -257,15 +260,19 @@
 													<div class="numbers">
 														<p class="card-category">Jawaban</p>
 														<h4 class="card-title">
-															<?php $this->db->select('pertanyaan_id')->group_by('pertanyaan_id');
-															$x = $this->db->get('jawaban')->result_array() ?>
+															<?php
+															// $this->db->select('pertanyaan_id')->group_by('pertanyaan_id');
+															// $x = $this->db->get('jawaban')->result_array()
+
+															$x = $this->db->get('jawaban')->result_array();
+															?>
 
 															<?= count($x); ?>
 														</h4>
 													</div>
 												</div>
 											</div>
-											<hr>
+											<hr style="border-color:white">
 											<a href="<?= base_url('dashboard/jawaban') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">

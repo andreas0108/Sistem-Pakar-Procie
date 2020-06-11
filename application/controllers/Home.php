@@ -28,7 +28,7 @@ class Home extends CI_Controller
 			$data['desc'] = 'Selamat datang ' . $data['user']['name'] . ' di Dashboard Aplikasi Sistem Pakar ' . $this->config->item('site_name');
 
 			$a = $this->db->query("SELECT LEFT(id,8) AS tanggal, COUNT(LEFT(id,8)) AS jumlah FROM history GROUP BY tanggal ORDER BY tanggal DESC LIMIT 2;")->result_array();
-			if($a != null || 0){
+			if ($a != null || 0) {
 				$b = (($a[0]['jumlah'] / $a[1]['jumlah']) - 1) * 100;
 			} else {
 				$b = 0;
@@ -67,7 +67,6 @@ class Home extends CI_Controller
 		} else {
 			$uname = $this->input->post('username');
 			$umail = $this->input->post('usermail');
-			// $id = generateID(gmdate('Ymd', time() + (7 * 3600)), 'konsul_id', 'tmp_data', 8);
 			$id = generateDateID('tmp_data');
 
 			$this->session->set_userdata(['konsul_id' => $id, 'uname' => $uname, 'umail' => $umail]);
@@ -78,6 +77,12 @@ class Home extends CI_Controller
 	public function Step()
 	{
 		$current_id = $this->db->select('MAX(id) as id')->get('tmp_data')->row_array();
+
+		var_dump($this->session->userdata('konsul_id'));
+		// var_dump($current_id);
+		// var_dump($_POST);
+		// die;
+
 		$this->db->insert('tmp_data', [
 			'id' => $current_id['id'] + 1,
 			'konsul_id' => $this->session->userdata('konsul_id'),
@@ -100,7 +105,7 @@ class Home extends CI_Controller
 
 		// sikar_process
 		$usid = $this->session->userdata('konsul_id');
-		$data = $this->db->query("SELECT jawaban_id FROM tmp_data WHERE konsul_id = $usid AND jawaban_id != 'J03' AND jawaban_id != 'J04';")->result_array();
+		$data = $this->db->query("SELECT jawaban_id FROM tmp_data WHERE konsul_id = $usid")->result_array();
 		$konsul = "'" . arrtostr($data, "','") . "'";
 
 		// var_dump($konsul);
@@ -109,18 +114,18 @@ class Home extends CI_Controller
 		// var_dump($jumlah_data);
 		// die;
 
-		$x = "SELECT rules.komponen_id, komponen.name
-				FROM rules JOIN komponen ON rules.komponen_id = komponen.id
-				WHERE jawaban_id IN ($konsul)
-			GROUP BY komponen_id
-			  HAVING COUNT(DISTINCT jawaban_id) = $jumlah_data;
+		$data_proses = "SELECT rules.komponen_id, komponen.name
+						FROM rules JOIN komponen ON rules.komponen_id = komponen.id
+						WHERE jawaban_id IN ($konsul)
+						GROUP BY komponen_id
+						HAVING COUNT(DISTINCT jawaban_id) = $jumlah_data;
 		";
-		$out = $this->db->query($x)->row_array();
+		$tmp_hasil = $this->db->query($data_proses)->row_array();
 
 		// var_dump($hasil);
 		// die;
 
-		$hasil = $this->db->get_where('komponen', ['id' => $out['komponen_id']])->row_array();
+		$hasil = $this->db->get_where('komponen', ['id' => $tmp_hasil['komponen_id']])->row_array();
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		if ($this->session->userdata('email')) {
 			$username = $data['user']['name'];
@@ -136,7 +141,7 @@ class Home extends CI_Controller
 				'id' => getUniqueID(),
 				'user_name' => $username,
 				'email' => $email,
-				'hasil' => $out['komponen_id']
+				'hasil' => $tmp_hasil['komponen_id']
 			]);
 			$this->db->delete('tmp_data', ['konsul_id' => $this->session->userdata('konsul_id')]);
 			redirect('konsultasi/hasil/' . $hasil['slug']);
@@ -152,6 +157,12 @@ class Home extends CI_Controller
 
 	public function hasil()
 	{
+		redirect('konsultasi');
+	}
+
+	public function cancel()
+	{
+		$this->db->delete('tmp_data', ['konsul_id' => $this->session->userdata('konsul_id')]);
 		redirect('konsultasi');
 	}
 

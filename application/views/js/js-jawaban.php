@@ -1,5 +1,11 @@
 <script>
 	$(document).ready(function() {
+		$('.single').select2({
+			tagClass: 'badge-primary',
+			theme: "bootstrap",
+			minimumResultsForSearch: Infinity
+		});
+
 		$('#modalJawaban').modal({
 			show: false,
 			keyboard: false,

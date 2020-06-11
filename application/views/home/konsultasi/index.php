@@ -90,6 +90,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
+						<!-- <button class="btn btn-primary">Test</button> -->
 						<button type="reset" class="btn btn-secondary">Reset</button>
 						<button type="submit" class="btn btn-info" id="userSave">Simpan</button>
 					</div>

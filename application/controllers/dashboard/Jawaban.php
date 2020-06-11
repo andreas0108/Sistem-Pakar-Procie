@@ -19,28 +19,29 @@ class Jawaban extends CI_Controller
 		$this->form_validation->set_rules('status', 'Status', 'required', ['required' => 'Silahkan pilih status jawaban.']);
 
 		if ($this->form_validation->run() === false) {
-			$this->load->view('dashboard/jawaban/index', $data);
+			$this->load->view('Dashboard/Jawaban/index', $data);
 		} else {
-			$id = generateID('jawaban', 'id', 'J', 1);
-			$ids = generateID('jawaban', 'id', 'J', 1);
 			$pid = htmlspecialchars($this->input->post('pertanyaan', true));
+			$id = generateID('jawaban', 'id', $pid . 'J', 4);
 			$a = htmlspecialchars($this->input->post('jawabanInput', true));
-			$jct = explode(',', $a);
+			$j = explode(',', $a);
 			$sts = htmlspecialchars($this->input->post('status', true));
-
 			$d = '';
-			foreach ($jct as $j) {
+
+			foreach ($j as $j) {
 				$d .= '("' . $id++ . '","' . $pid . '","' . $j . '","' . $sts . '")' . ',';
 			}
 
-			$this->db->query('INSERT INTO jawaban (id,pertanyaan_id,jawaban_content,status) VALUES' . rtrim($d, ','));
-
-			if (count($jct) == 1) {
-				$x = $ids;
-			} else {
-				$x = $ids . '-' . ($ids + count($jct) - 1);
+			// System Logs Purpose
+			$id2 = generateID('jawaban', 'id', $pid . 'J', 4);
+			$j2 = explode(',', $a);
+			$e = '';
+			foreach ($j2 as $j2) {
+				$e .= $id2++ . ',';
 			}
-			logs('Tambah Jawaban', $x);
+
+			$this->db->query('INSERT INTO jawaban (id,pertanyaan_id,jawaban_content,status) VALUES' . rtrim($d, ','));
+			logs('Tambah Jawaban', rtrim($e, ','));
 			$this->session->set_flashdata(
 				'flashmsg',
 				'Jawaban berhasil disimpan.'
@@ -65,9 +66,6 @@ class Jawaban extends CI_Controller
 			);
 			redirect('dashboard/jawaban');
 		} else {
-			// var_dump($_POST);
-			// die;
-
 			$this->db->where('id', $this->input->post('id'));
 			$this->db->update('jawaban', [
 				'jawaban_content' => htmlspecialchars($this->input->post('jawaban', true)),

@@ -7,6 +7,7 @@ class JwtEn extends CI_Controller
 {
     public function index()
     {
+        // TinyMCE JWT Key
         $privateKey = <<<EOD
 -----BEGIN PRIVATE KEY-----
 MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDJkXFclY/qu2vb
@@ -59,7 +60,8 @@ EOD;
                 echo $e->getMessage();
             }
         } else {
-            echo "ERROR 403 : ACCESS FORBIDDEN";
+            echo "<title>404</title>";
+            echo "ERROR 404 : File Not Found";
         }
     }
 }

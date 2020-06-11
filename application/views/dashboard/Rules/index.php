@@ -77,8 +77,8 @@
 											</thead>
 											<tbody>
 												<?php
-											$i = 1;
-											foreach ($rulesp as $r) { ?>
+												$i = 1;
+												foreach ($rulesp as $r) { ?>
 													<tr>
 														<td class="text-center"><?= $i++; ?></td>
 														<td><?= $r['jawab'] ?></td>
@@ -91,8 +91,8 @@
 															</div>
 														</td>
 													</tr>
-												<?php 
-										} ?>
+												<?php
+												} ?>
 											</tbody>
 										</table>
 									</div>
@@ -121,13 +121,13 @@
 											</thead>
 											<tbody>
 												<?php
-											$i = 1;
-											foreach ($rulesd as $rd) { ?>
+												$i = 1;
+												foreach ($rulesd as $rd) { ?>
 													<tr>
 														<?php
-													$source2 = $this->Rumo->rules($rd['komponen_id'])->result_array();
-													$rowspan = count($source2);
-													?>
+														$source2 = $this->Rumo->rules($rd['komponen_id'])->result_array();
+														$rowspan = count($source2);
+														?>
 														<td rowspan="<?= $rowspan ?>"><?= $i ?></td>
 														<td rowspan="<?= $rowspan ?>"><?= $rd['name'] ?></td>
 														<?php foreach ($source2 as $s2) { ?>
@@ -141,10 +141,10 @@
 																</div>
 															</td>
 													</tr>
-												<?php 
-										} ?>
+												<?php
+														} ?>
 											<?php $i++;
-									} ?>
+												} ?>
 											</tbody>
 										</table>
 									</div>
@@ -183,28 +183,31 @@
 				</div>
 				<form action="<?= base_url('dashboard/rules') ?>" method="POST">
 					<div class="modal-body">
-
 						<div class="form-group">
 							<label for="squareSelect">Jawaban</label> <small class="text-muted float-right"><i>(Jika jawaban adalah :)</i></small>
-							<select class="form-control input-square select2 single" name="rulesjid" id="rulesjid" style="width: 100%" required>
-								<option value="">Pilih</option>
-								<?php $x = $this->db->get('jawaban')->result_array();
-							foreach ($x as $x) { ?>
-									<option value="<?= $x['id'] ?>"><?= $x['jawaban_content'] ?></option>
-								<?php 
-						} ?>
+							<select id="rulesjid" name="rulesjid" class="form-control single" style="width: 100%" required>
+								<?php $x = $this->db->get('pertanyaan')->result_array();
+								foreach ($x as $x) { ?>
+									<optgroup label="<?= $x['pertanyaan_content'] ?>">
+										<?php $y = $this->db->get_where('jawaban', ['pertanyaan_id' => $x['id']])->result_array();
+										foreach ($y as $y) { ?>
+											<option value="<?= $y['id'] ?>"><?= $y['jawaban_content'] ?></option>
+										<?php
+										} ?>
+									</optgroup>
+								<?php
+								} ?>
 							</select>
 						</div>
 
 						<div class="form-group">
 							<label for="squareSelect">Pertanyaan</label> <small class="text-muted float-right"><i>(Pertanyaan selanjutnya :)</i></small>
-							<select class="form-control input-square select2 single" name="rulespid" id="rulespid" style="width: 100%" required>
-								<option value="">Pilih</option>
+							<select class="form-control single" name="rulespid" id="rulespid" style="width: 100%" required>
 								<?php $x = $this->db->get('pertanyaan')->result_array();
-							foreach ($x as $x) { ?>
+								foreach ($x as $x) { ?>
 									<option value="<?= $x['id'] ?>"><?= $x['pertanyaan_content'] ?></option>
-								<?php 
-						} ?>
+								<?php
+								} ?>
 							</select>
 						</div>
 
@@ -218,6 +221,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="modal animated fadeIn" id="modalRules" tabindex="-1" role="dialog" aria-labelledby="modalRulesCenter" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
@@ -229,62 +233,40 @@
 				</div>
 				<form action="<?= base_url('dashboard/rules') ?>" method="POST">
 					<div class="modal-body">
-						<div class="form-group jawaban">
-							<div class="select2-input">
-								<label for="squareSelect">Jawaban</label> <small class="text-muted float-right"><i>(Jika terdapat jawaban ini)</i></small>
-								<select id="jawaban" name="jawaban" class="form-control input-square multi" style="width: 100%">
-									<?php $x = $this->db->get('pertanyaan')->result_array();
-								foreach ($x as $x) { ?>
-										<optgroup label="<?= $x['pertanyaan_content'] ?>">
-											<?php $y = $this->db->get_where('jawaban', ['pertanyaan_id' => $x['id']])->result_array();
-										foreach ($y as $y) { ?>
-												<option value="<?= $y['id'] ?>"><?= $y['jawaban_content'] ?></option>
-											<?php 
-									} ?>
-										</optgroup>
-									<?php 
-							} ?>
-								</select>
-							</div>
-						</div>
-
 						<div class="form-group jawabans">
 							<label for="squareSelect">Jawaban</label> <small class="text-muted float-right"><i>(Jika terdapat jawaban ini)</i></small>
-							<div class="select2-input">
-								<select id="jawabans" name="jawabans[]" class="form-control input-square select2 multi" multiple="jawabans" style="width: 100%">
-									<?php $x = $this->db->get('pertanyaan')->result_array();
+							<select id="jawabans" name="jawabans[]" class="form-control input-square select2 multi" multiple="jawabans" style="width: 100%" required>
+								<?php $x = $this->db->get('pertanyaan')->result_array();
 								foreach ($x as $x) { ?>
-										<optgroup label="<?= $x['pertanyaan_content'] ?>">
-											<?php $y = $this->db->get_where('jawaban', ['pertanyaan_id' => $x['id']])->result_array();
+									<optgroup label="<?= $x['pertanyaan_content'] ?>">
+										<?php $y = $this->db->get_where('jawaban', ['pertanyaan_id' => $x['id']])->result_array();
 										foreach ($y as $y) { ?>
-												<option value="<?= $y['id'] ?>"><?= $y['jawaban_content'] ?></option>
-											<?php 
-									} ?>
-										</optgroup>
-									<?php 
-							} ?>
-								</select>
-							</div>
+											<option value="<?= $y['id'] ?>"><?= $y['jawaban_content'] ?></option>
+										<?php
+										} ?>
+									</optgroup>
+								<?php
+								} ?>
+							</select>
 						</div>
 
 						<div class="form-group">
 							<label for="squareSelect">Hasil</label> <small class="text-muted float-right"><i>(Menghasilkan)</i></small>
-							<select class="form-control input-square" name="komponen" id="komponen" required>
+							<select class="form-control single" name="komponen" id="komponen" style="width: 100%" required>
 								<option value="">Pilih</option>
 								<?php $x = $this->db->get('komponen')->result_array();
-							foreach ($x as $x) { ?>
+								foreach ($x as $x) { ?>
 									<option value="<?= $x['id'] ?>"><?= $x['name'] ?></option>
-								<?php 
-						} ?>
+								<?php
+								} ?>
 							</select>
 						</div>
 
 						<div class="form-group">
 							<label for="squareSelect">Status</label>
-							<select class="form-control input-square" name="status" id="status" required>
-								<option value="">Pilih</option>
-								<option value="0">Disable</option>
+							<select class="form-control single" name="status" id="status" style="width: 100%" required>
 								<option value="1">Enable</option>
+								<option value="0">Disable</option>
 							</select>
 						</div>
 

@@ -25,7 +25,7 @@ class Rules extends CI_Controller
 		$this->form_validation->set_rules('komponen', 'Komponen', 'required', ['required' => 'Silahkan pilih komponen.']);
 		$this->form_validation->set_rules('status', 'Status', 'required', ['required' => 'Silahkan pilih status pertanyaan.']);
 		if ($this->form_validation->run() === false) {
-			$this->load->view('dashboard/rules/index', $data);
+			$this->load->view('Dashboard/Rules/index', $data);
 		} else {
 			$id = generateID('rules', 'id', 'R');
 			$kid = htmlspecialchars($this->input->post('komponen', true));
@@ -115,7 +115,7 @@ class Rules extends CI_Controller
 		$this->form_validation->set_rules('rulesjid', 'Jawaban', 'required', ['required' => 'Silahkan pilih jawaban.']);
 		$this->form_validation->set_rules('rulespid', 'Pertanyaan', 'required', ['required' => 'Silahkan pilih status pertanyaan.']);
 		if ($this->form_validation->run() === false) {
-			$this->load->view('dashboard/rules/index');
+			$this->load->view('Dashboard/Rules/index');
 		} else {
 
 			$this->db->insert('rulesp', [

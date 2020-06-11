@@ -122,8 +122,6 @@ function generateID($tab, $col = 'id', $prefix = null, $selector = 1)
 		) + 1
 	);
 
-	// var_dump($id);
-	// die;
 	$hasil = $prefix . $id;
 
 	return $hasil;

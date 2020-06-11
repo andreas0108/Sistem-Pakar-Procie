@@ -109,8 +109,7 @@
 											<div class="col-md-6 col-sm-12">
 												<div class="form-group">
 													<label for="">Manufacture :</label>
-													<select class="form-control" name="manuf" required>
-														<option value="">Pilih</option>
+													<select class="form-control single" name="manuf" style="width: 100%" required>
 														<option value="1">AMD</option>
 														<option value="2">Intel</option>
 													</select>
@@ -133,8 +132,7 @@
 											<div class="col-md-6 col-sm-12">
 												<div class="form-group">
 													<label for="">Kategori :</label>
-													<select class="form-control" name="kate" required>
-														<option value="">Pilih</option>
+													<select class="form-control single" name="kate" style="width: 100%" required>
 														<?php foreach ($this->db->get('komponen_kategori')->result_array() as $kt) {
 															echo '<option value="' . $kt['id'] . '">' . $kt['name'] . '</option>';
 														} ?>

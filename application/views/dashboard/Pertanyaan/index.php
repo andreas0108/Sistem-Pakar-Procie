@@ -125,10 +125,9 @@
 
 						<div class="form-group">
 							<label for="squareSelect">Status</label>
-							<select class="form-control input-square" name="status" id="status" required>
-								<option value="">Pilih</option>
-								<option value="0">Disable</option>
+							<select class="form-control single" name="status" id="status" style="width: 100%" required>>
 								<option value="1">Enable</option>
+								<option value="0">Disable</option>
 							</select>
 						</div>
 						<div class="form-group float-right">

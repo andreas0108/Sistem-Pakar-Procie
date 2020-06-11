@@ -14,7 +14,8 @@
 
 		$('.single').select2({
 			tagClass: 'badge-primary',
-			theme: "bootstrap"
+			theme: "bootstrap",
+			minimumResultsForSearch: Infinity
 		});
 
 		// Rules Pertanyaan

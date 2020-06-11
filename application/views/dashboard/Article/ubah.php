@@ -88,7 +88,7 @@
 									<div class="card-body p-1">
 										<div class="form-group">
 											<label for="">Status Publikasi :</label>
-											<select class="form-control" name="status" required>
+											<select class="form-control single" name="status" style="width: 100%" required>
 												<?php if ($arti['status'] == 0) : ?>
 													<option selected value="0">Draft</option>
 													<option value="1">Publish</option>

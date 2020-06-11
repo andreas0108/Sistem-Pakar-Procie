@@ -15,7 +15,7 @@ class Komponen extends CI_Controller
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$this->db->select('k.id, km.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.status, k.date_added as ditambahkan, k.spek_ct, k.spek_babo');
+		$this->db->select('k.id, km.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.date_added as ditambahkan, k.core, k.thread, k.base, k.boost, k.socket');
 		$this->db->join('komponen_kategori kk', 'k.kategori = kk.id');
 		$this->db->join('komponen_manufacture km', 'k.manufacture = km.id');
 		$this->db->order_by('ditambahkan DESC');
@@ -24,8 +24,7 @@ class Komponen extends CI_Controller
 		// var_dump($x);
 		// die;
 
-
-		$this->load->view('dashboard/komponen/index', $data);
+		$this->load->view('Dashboard/Komponen/index', $data);
 	}
 
 	public function tambah()
@@ -41,7 +40,7 @@ class Komponen extends CI_Controller
 		$this->form_validation->set_rules('kate', 'Deskripsi', 'required', ['required' => 'Silhakan pilih {field}']);
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('dashboard/komponen/tambah', $data);
+			$this->load->view('Dashboard/Komponen/tambah', $data);
 		} else {
 			$image = $_FILES['image']['name'];
 
@@ -99,7 +98,7 @@ class Komponen extends CI_Controller
 		$this->form_validation->set_rules('kate', 'Deskripsi', 'required', ['required' => 'Silhakan pilih {field}']);
 
 		if ($this->form_validation->run() === false) {
-			$this->load->view('dashboard/komponen/ubah', $data);
+			$this->load->view('Dashboard/Komponen/ubah', $data);
 		} else {
 			$image = $_FILES['image']['name'];
 
@@ -150,14 +149,18 @@ class Komponen extends CI_Controller
 	public function tampil($slug)
 	{
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		$this->db->select('k.img, k.id, k.manufacture as kmanufid, km.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.status, k.date_added as ditambahkan, k.spek_ct, k.spek_babo, k.socket');
-		$this->db->join('komponen_kategori kk', 'k.kategori = kk.id');
-		$this->db->join('komponen_manufacture km', 'k.manufacture = km.id');
-		$this->db->order_by('ditambahkan DESC');
-		$data['kompo'] = $this->db->get_where('komponen k', ['slug' => $slug])->row_array();
-		$data['title'] = $data['kompo']['name'];
+		if ($slug == '' || null) {
+			redirect('konsultasi');
+		} else {
+			$this->db->select('k.img, k.id, k.manufacture as kmanufid, km.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.date_added as ditambahkan, k.core, k.thread, k.base, k.boost, k.socket');
+			$this->db->join('komponen_kategori kk', 'k.kategori = kk.id');
+			$this->db->join('komponen_manufacture km', 'k.manufacture = km.id');
+			$this->db->order_by('ditambahkan DESC');
+			$data['kompo'] = $this->db->get_where('komponen k', ['slug' => $slug])->row_array();
+			$data['title'] = $data['kompo']['name'];
 
-		$this->load->view('dashboard/komponen/tampil', $data);
+			$this->load->view('Dashboard/Komponen/tampil', $data);
+		}
 	}
 
 	public function hapus($id)
@@ -183,7 +186,7 @@ class Komponen extends CI_Controller
 		if ($this->session->userdata('email')) {
 			redirect('dashboard/komponen');
 		} else {
-			is_logged_in();
+			redirect('konsultasi');
 		}
 	}
 }

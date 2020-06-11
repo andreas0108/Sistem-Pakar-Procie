@@ -106,49 +106,10 @@
 									</div>
 									<div class="card-body">
 										<div class="row">
-											<div class="col-md-6 col-sm-12">
-												<div class="form-group">
-													<label for="">Manufacture :</label>
-													<select class="form-control" name="manuf" required>
-														<option value="">Pilih</option>
-														<?php if ($kompo['manufacture'] == 1) : ?>
-															<option selected value="1">AMD</option>
-															<option value="2">Intel</option>
-														<?php else : ?>
-															<option value="1">AMD</option>
-															<option selected value="2">Intel</option>
-														<?php endif ?>
-													</select>
-												</div>
-												<div class="row">
-													<?php
-													$x = explode('/', $kompo['spek_ct']);
-													if ($kompo['spek_ct'] != '' || null) {
-														$cr = $x[0];
-														$th = $x[1];
-													} else {
-														$cr = 0;
-														$th = 0;
-													}
-													?>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label for="spek_core"># Core</label>
-															<input type="number" name="spek_core" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Core" value="<?= $cr ?>">
-														</div>
-													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label for="spek_thread"># Thread</label>
-															<input type="number" name="spek_thread" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Thread" value="<?= $th ?>">
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6 col-sm-12">
+											<div class="col">
 												<div class="form-group">
 													<label for="">Kategori :</label>
-													<select class="form-control" name="kate" required>
+													<select class="form-control single" name="kate" style="width: 100%" required>
 														<option value="">Pilih</option>
 														<?php foreach ($this->db->get('komponen_kategori')->result_array() as $kt) {
 															if ($kt['id'] == $kompo['kategori']) {
@@ -159,22 +120,53 @@
 														} ?>
 													</select>
 												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="">Manufacture :</label>
+													<select class="form-control single" name="manuf" style="width: 100%" required>
+														<option value="">Pilih</option>
+														<?php if ($kompo['manufacture'] == 1) : ?>
+															<option selected value="1">AMD</option>
+															<option value="2">Intel</option>
+														<?php else : ?>
+															<option value="1">AMD</option>
+															<option selected value="2">Intel</option>
+														<?php endif ?>
+													</select>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="spek_core">Socket</label>
+													<input type="text" name="socket" class="form-control" placeholder="Jumlah Core" value="<?= $kompo['socket'] ?>">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6 col-sm-12">
 												<div class="row">
-													<?php
-													$x = explode('/', $kompo['spek_babo']);
-													if ($kompo['spek_babo'] != '' || null) {
-														$ba = $x[0];
-														$bo = $x[1];
-													} else {
-														$ba = 0;
-														$bo = 0;
-													}
-													?>
+													<div class="col-md-6 col-sm-12">
+														<div class="form-group">
+															<label for="spek_core"># Core</label>
+															<input type="number" name="spek_core" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Core" value="<?= $kompo['core'] ?>">
+														</div>
+													</div>
+													<div class="col-md-6 col-sm-12">
+														<div class="form-group">
+															<label for="spek_thread"># Thread</label>
+															<input type="number" name="spek_thread" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Thread" value="<?= $kompo['thread'] ?>">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-12">
+												<div class="row">
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label for="spek_basec">Base Clock</label>
 															<div class="input-group">
-																<input type="text" name="spek_basec" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Base Clock" value="<?= $ba; ?>">
+																<input type="text" name="spek_basec" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Base Clock" value="<?= $kompo['base']; ?>">
 																<div class="input-group-append">
 																	<span class="input-group-text">GHz</span>
 																</div>
@@ -185,7 +177,7 @@
 														<div class="form-group">
 															<label for="spek_boostc">Boost Clock</label>
 															<div class="input-group">
-																<input type="text" name="spek_boostc" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Boost Clock" value="<?= $bo; ?>">
+																<input type="text" name="spek_boostc" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Boost Clock" value="<?= $kompo['boost']; ?>">
 																<div class="input-group-append">
 																	<span class="input-group-text">GHz</span>
 																</div>

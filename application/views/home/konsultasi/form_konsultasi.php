@@ -10,8 +10,6 @@ if ($row) {
 	$row = $this->db->select('r.next_pertanyaan as id, p.pertanyaan_content as pertanyaan')
 		->join('pertanyaan p', 'r.next_pertanyaan = p.id')
 		->get_where('rulesp r', ['r.jawaban_id' => $row['jawaban_id']])->row_array();
-	if ($row) {
-	}
 } else {
 	$mulai = true;
 	$row = $this->db->select('id, pertanyaan_content as pertanyaan')->limit(1)->get('pertanyaan')->row_array();
@@ -20,9 +18,6 @@ $x = 'P' . sprintf("%02s", intval(substr($row['id'], 1)) + 1);
 $next = $this->db->get_where('pertanyaan', ['id' => $x])->row_array();
 $konsultasi = arrtostr($this->db->select('jawaban_id')->get_where('tmp_data', ['konsul_id' => $this->session->userdata('konsul_id')])->result_array());
 
-// var_dump($x);
-// var_dump($row);
-// var_dump($next);
 ?>
 
 <div class="col-md-10 col-sm-12 mx-auto">
@@ -58,7 +53,7 @@ $konsultasi = arrtostr($this->db->select('jawaban_id')->get_where('tmp_data', ['
 							</div>
 						</div>
 						<?php if (!$mulai) { ?>
-							<a href="#" class="btn btn-black">Batal</a>
+							<a href="<?= base_url('konsultasi/cancel') ?>" id="cancel" class="btn btn-black">Batal</a>
 						<?php } ?>
 						<div class="float-right">
 							<button type="reset" id="reset" class="btn btn-info">Reset</button>

@@ -19,7 +19,7 @@ class Feedback extends CI_Controller
         $this->db->order_by('id', 'DESC');
         $data['feed'] = $this->db->get('feedback')->result_array();
 
-        $this->load->view('dashboard/feed', $data);
+        $this->load->view('Dashboard/feed', $data);
     }
 
     public function kirim()
@@ -35,9 +35,6 @@ class Feedback extends CI_Controller
                 redirect('konsultasi');
             }
         } else {
-            var_dump($_POST);
-            var_dump(generateDateID('feedback'));
-            // die;
             $this->db->insert('feedback', [
                 'id' => generateDateID('feedback'),
                 'nama' => htmlspecialchars($this->input->post('name', true)),

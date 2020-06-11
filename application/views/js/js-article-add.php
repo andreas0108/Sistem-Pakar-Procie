@@ -1,5 +1,11 @@
 <script>
 	$(document).ready(function() {
+		$('.single').select2({
+			tagClass: 'badge-primary',
+			theme: "bootstrap",
+			minimumResultsForSearch: Infinity
+		});
+
 		$('#tagsinput').tagsinput({
 			tagClass: 'badge-info'
 		});
@@ -25,19 +31,39 @@
 
 		// TinyMCE
 		tinymce.init({
-			selector: 'textarea#isi',
+			selector: '#isi',
 			height: 500,
+
+			// menu & toolbar
 			plugins: [
 				'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars',
 				'fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime',
 				'advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons tinydrive'
 			],
 			menubar: 'file edit view insert format tools table help',
-			toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media link anchor codesample | ltr rtl',
+			toolbar1: 'fontselect fontsizeselect formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | outdent indent | restoredraft toc',
+			toolbar2: 'undo redo | insertfile image media link | numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen preview save print | code | codesample | anchor',
+			statusbar: false,
 			toolbar_mode: 'floating',
-			image_advtab: true,
 
-			tinydrive_token_provider: '<?= base_url("dashboard/jwten") ?>',
+			// mobile
+			mobile: {
+				theme: 'mobile',
+				plugins: 'autosave lists autolink image tinydrive link',
+				toolbar: 'undo redo bold italic underline bullist numlist styleselect insertfile image link'
+			},
+
+			// images
+			image_advtab: true,
+			paste_data_images: true,
+
+			// autosave
+			autosave_interval: '10s',
+			autosave_prefix: 'sikar-autosave-{path}{query}-{id}-',
+
+			// tinydrive
+
+			tinydrive_token_provider: '<?= base_url("dashboard/article/jwten") ?>',
 			tinydrive_upload_path: '/sikar/article'
 
 			// images_upload_url: "<?= base_url("dashboard/article/tinymce_upload") ?>",
@@ -65,40 +91,6 @@
 			// 	};
 			// 	input.click();
 			// },
-		});
-
-
-		// Summernote
-		$('#article-sum').summernote({
-			placeholder: 'Mulai tulis artikel.',
-			fontNames: ['Arial', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Times New Roman', 'Merriweather'],
-			height: "450px",
-			toolbar: [
-				// [groupName, [list of button]]
-				['fstyle', ['style', 'fontname', 'fontsize', 'paragraph']],
-				['style', ['bold', 'italic', 'underline']],
-				['color', ['color']],
-				['para', ['ul', 'ol', 'table']],
-				['insert', ['link', 'picture', 'video']],
-				['tools', ['undo', 'redo', 'codeview']],
-				['tools2', ['fullscreen']]
-			],
-			callbacks: {
-				onImageUpload: function(image) {
-					for (let i = 0; i < image.length; i++) {
-						uploadImage(image[i]);
-					}
-				},
-				onMediaDelete: function(target) {
-					deleteImage(target[0].src);
-				},
-				onPaste: function(e) {
-					var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-					e.preventDefault();
-					bufferText = bufferText.replace(/\r?\n/g, '<br>');
-					document.execCommand('insertHtml', true, bufferText);
-				}
-			}
 		});
 
 		function uploadImage(image) {

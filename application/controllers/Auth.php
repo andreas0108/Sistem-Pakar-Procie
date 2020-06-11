@@ -7,7 +7,6 @@ class Auth extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
-		// $this->load->library('Nativesession', 'nativesession');
 	}
 
 	public function index()
@@ -23,7 +22,7 @@ class Auth extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$data['title'] = 'Login';
 
-			$this->load->view('auth/login', $data);
+			$this->load->view('Auth/login', $data);
 		} else {
 			// var_dump($_POST);
 			// die;
@@ -40,12 +39,13 @@ class Auth extends CI_Controller
 					$data = [
 						'email' => $user['email'],
 						'umail' => $user['email'],
-						// 'konsul_id' => generateID(gmdate('Ymd', time() + (7 * 3600)), 'konsul_id', 'tmp_data', 8),
 						'konsul_id' => generateID('tmp_data', 'konsul_id', gmdate('Ymd', time() + (7 * 3600)), 8),
 						'id' => $user['id'],
 						'name' => $user['name']
 					];
 					$this->session->set_userdata($data);
+
+					logs($user['name'] . ' Login');
 
 					if ($this->session->userdata('redir_url')) {
 						redirect($this->session->userdata('redir_url'));
@@ -73,6 +73,8 @@ class Auth extends CI_Controller
 
 	public function logout()
 	{
+		logs($this->session->userdata['name'] . ' Logout');
+
 		$this->session->unset_userdata('konsul_id');
 		$this->session->unset_userdata('umail');
 		$this->session->unset_userdata('email');
@@ -84,15 +86,5 @@ class Auth extends CI_Controller
 			'Anda telah logout dari aplikasi ini.'
 		);
 		redirect(base_url());
-	}
-
-	public function blocked()
-	{
-		$data['title'] = '403 : Access Forbidden';
-		$data['title2'] = '';
-
-		$this->load->view('dashboard/parts/auth_header', $data);
-		$this->load->view('dashboard/auth/blocked');
-		// $this->load->view('dashboard/parts/auth_footer');
 	}
 }

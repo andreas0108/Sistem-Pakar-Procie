@@ -68,84 +68,67 @@
 												<button class="btn btn-info float-right" data-toggle="modal" data-target="#feedbackModal"><i class="fas fa-fw fa-plus-circle"></i> Feedback</button>
 											<?php } ?>
 											<h5 class="card-title"><?= $k['name'] ?></h5>
+											<span><?= "Rp " . number_format($k['price'], null, null, '.'); ?></span>
 										</div>
+									</div>
+									<div class="card">
 										<div class="card-body">
 											<h5 class="card-text"><b>Deskripsi</b></h5>
 											<hr>
 											<?= $k['desc'] ?>
-											<hr>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-body">
 											<div class="row">
 												<div class="col">
-													<div class="row">
-														<div class="col-md-4">
-															<h5 class="card-text"><b>Kategori : </b></h5>
-														</div>
-														<div class="col-md-8"><?= $k['kategori'] ?></div>
+													<h5 class="card-text"><b>Kategori : </b></h5>
+													<div class="form-control">
+														<?= $k['kategori'] ?>
 													</div>
 												</div>
 												<div class="col">
-													<div class="row">
-														<div class="col-md-4">
-															<h5 class="card-text"><b>Harga : </b></h5>
-														</div>
-														<div class="col-md-8"><?= "Rp " . number_format($k['price'], null, null, '.'); ?></div>
+													<h5 class="card-text"><b>Manufacture : </b></h5>
+													<div class="form-control">
+														<?= $k['manufacture'] ?>
+													</div>
+												</div>
+												<div class="col">
+													<h5 class="card-text"><b>Socket : </b></h5>
+													<div class="form-control">
+														<?= $k['socket'] ?>
 													</div>
 												</div>
 											</div>
-											<hr>
-											<h5 class="card-text"><b>Spesifikasi Teknis</b></h5>
-											<hr>
-											<div class="row">
-												<div class="col">
+											<div class="row mt-4">
+												<div class="col-md-6 col-sm-12">
 													<div class="row">
-														<div class="col-md-5">
-															<h5 class="card-text"><b>Manufacture : </b></h5>
-														</div>
-														<div class="col-md-7"><?= $k['manufacture'] ?></div>
-													</div>
-													<div class="row mt-2">
-														<?php $ct = explode('/', $k['spek_ct']) ?>
 														<div class="col">
-															<div class="row">
-																<div class="col-md-6">
-																	<h5 class="card-text"><b>Jumlah <br> Core </b></h5>
-																</div>
-																<div class="col-md-6"><?= $ct[0] ?></div>
+															<h5 class="card-text"><b># Core </b></h5>
+															<div class="form-control">
+																<?= $k['core'] ?>
 															</div>
 														</div>
 														<div class="col">
-															<div class="row">
-																<div class="col-md-6">
-																	<h5 class="card-text"><b>Jumlah <br> Thread </b></h5>
-																</div>
-																<div class="col-md-6"><?= $ct[1] ?></div>
+															<h5 class="card-text"><b># Thread </b></h5>
+															<div class="form-control">
+																<?= $k['thread'] ?>
 															</div>
 														</div>
 													</div>
 												</div>
-												<div class="col">
+												<div class="col-md-6 col-sm-12">
 													<div class="row">
-														<div class="col-md-4">
-															<h5 class="card-text"><b>Socket : </b></h5>
-														</div>
-														<div class="col-md-8"><?= $k['socket'] != '' || null ? $k['socket'] : 'Unknown'; ?></div>
-													</div>
-													<div class="row mt-2">
-														<?php $bb = explode('/', $k['spek_babo']) ?>
 														<div class="col">
-															<div class="row">
-																<div class="col-md-6">
-																	<h5 class="card-text"><b>Base <br> Clock : </b></h5>
-																</div>
-																<div class="col-md-6"><?= $bb[0] . ' GHz' ?></div>
+															<h5 class="card-text"><b>Base Clock : </b></h5>
+															<div class="form-control">
+																<?= $k['base'] ?> GHz
 															</div>
 														</div>
 														<div class="col">
-															<div class="row">
-																<div class="col-md-6">
-																	<h5 class="card-text"><b>Boost <br> Clock : </b></h5>
-																</div>
-																<div class="col-md-6"><?= $bb[1] . ' GHz' ?></div>
+															<h5 class="card-text"><b>Boost Clock : </b></h5>
+															<div class="form-control">
+																<?= $k['boost'] ?> GHz
 															</div>
 														</div>
 													</div>
