@@ -87,6 +87,8 @@
 														<?= $k['kategori'] ?>
 													</div>
 												</div>
+											</div>
+											<div class="row mt-4">
 												<div class="col">
 													<h5 class="card-text"><b>Manufacture : </b></h5>
 													<div class="form-control">
@@ -132,6 +134,35 @@
 															</div>
 														</div>
 													</div>
+												</div>
+											</div>
+											<div class="row mt-4">
+												<div class="col">
+													<h5 class="card-text"><b>Link Pembelian :</b></h5>
+													<div class="row">
+														<?php if ($k['link1']) { ?>
+															<div class="col">
+																<a class="btn btn-success btn-block" href="<?= $k['link1'] ?>" target="_blank">TOKOPEDIA</a>
+															</div>
+														<?php } ?>
+														<?php if ($k['link2']) { ?>
+															<div class="col">
+																<a class="btn btn-danger btn-block" href="<?= $k['link2'] ?>" target="_blank">BUKALAPAK</a>
+															</div>
+														<?php } ?>
+														<?php if ($k['link3']) { ?>
+															<div class="col">
+																<a class="btn btn-warning btn-block" href="<?= $k['link3'] ?>" target="_blank">SHOPEE</a>
+															</div>
+														<?php } ?>
+													</div>
+												</div>
+											</div>
+											<div class="row mt-4">
+												<div class="col">
+													<?php if ($k['ref']) { ?>
+														<a class="btn btn-primary btn-block" href="<?= $k['ref'] ?>">Info Selengkapnya</a>
+													<?php } ?>
 												</div>
 											</div>
 										</div>

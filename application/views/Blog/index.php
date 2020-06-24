@@ -76,15 +76,13 @@
 															<b><?= $t ?></b>
 														</span>
 													<?php endforeach ?>
-													<!-- <a href="<?= base_url('blog/read/') . $bp['slug'] ?>#disqus_thread">#</a>
-													<span class="badge badge-info mb-0 disqus-comment-count" data-disqus-identifier="<?= $bp['slug'] ?>"></span> -->
 													<hr class=" mb-2">
 													<p class="mt-0">
 														<?php if ($bp['isi'] == '' || null) : ?>
 															<p class="text-sm text-info italic">Kosong</p>
 														<?php else : ?>
 															<?= limit_word_regex($bp['isi'], 20) ?><br>
-															<a href="<?= base_url('blog/read/') . $bp['slug'] ?>" target="_blank" rel="noopener noreferrer" class="badge badge-primary">Read More.</a>
+															<a href="<?= base_url('blog/read/') . $bp['slug'] ?>" target="_blank" rel="noopener noreferrer" class="badge badge-primary">Baca artikel</a>
 														<?php endif ?>
 													</p>
 												</div>

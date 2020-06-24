@@ -21,18 +21,8 @@
 					<div class="collapse in" id="collapseExample">
 						<ul class="nav">
 							<li>
-								<a href="#profile">
+								<a href="<?= base_url('dashboard/user') ?>">
 									<span class="link-collapse">My Profile</span>
-								</a>
-							</li>
-							<li>
-								<a href="#user-settings">
-									<span class="link-collapse">Edit Profile</span>
-								</a>
-							</li>
-							<li>
-								<a href="#settings">
-									<span class="link-collapse">Settings</span>
 								</a>
 							</li>
 						</ul>
@@ -74,7 +64,7 @@
 				<span class="sidebar-mini-icon">
 					<i class="fa fa-ellipsis-h"></i>
 				</span>
-				<h4 class="text-section">Site Menu</h4>
+				<h4 class="text-section">Sistem Pakar</h4>
 			</li>
 			<li class="nav-item <?= $this->uri->segment(1) == 'konsultasi' ? 'active' : '' ?>">
 				<a href="<?= base_url('konsultasi') ?>">
@@ -91,7 +81,7 @@
 			<li class="nav-item <?= $this->uri->segment(1) == 'about' ? 'active' : '' ?>">
 				<a href="<?= base_url('about') ?>">
 					<i class="fas fa-question"></i>
-					<p>About</p>
+					<p>Tentang</p>
 				</a>
 			</li>
 
@@ -103,7 +93,7 @@
 						<span class="sidebar-mini-icon">
 							<i class="fa fa-ellipsis-h"></i>
 						</span>
-						<h4 class="text-section"><?= $m['menu'] ?></h4>
+						<h4 class="text-section">Dashboard Menu</h4>
 					</li>
 					<?php $submenu = $this->db->get_where('user_sub_menu', ['menu_id' => $m['id']])->result_array();
 
@@ -117,25 +107,6 @@
 						</li>
 					<?php endforeach ?>
 				<?php endforeach ?>
-				<!-- <li class="nav-section">
-					<span class="sidebar-mini-icon">
-						<i class="fa fa-ellipsis-h"></i>
-					</span>
-					<h4 class="text-section">Settings</h4>
-				</li>
-				<li class="nav-item">
-					<a href="<?= base_url('assets/') ?>projects.html">
-						<i class="fas fa-file-signature"></i>
-						<p>Projects</p>
-						<span class="badge badge-count">5</span>
-					</a>
-				</li> -->
-				<li class="nav-section">
-					<span class="sidebar-mini-icon">
-						<i class="fa fa-ellipsis-h"></i>
-					</span>
-					<h4 class="text-section">Application Menu</h4>
-				</li>
 				<li class="nav-item <?= $this->uri->segment(2) == 'log' ? 'active' : '' ?>">
 					<a href="<?= base_url('dashboard/log') ?>">
 						<i class="fas fa-server"></i>

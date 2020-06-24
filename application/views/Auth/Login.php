@@ -15,7 +15,7 @@
 	<div class="wrapper wrapper-login">
 		<div class="container container-login animated fadeIn">
 			<h2 class="text-center mb-0">SISTEM <b>PAKAR</b></h2>
-			<p class="text-center text-black-50">You must login to access the <b><?= strtoupper($this->config->item('site_name')) ?> </b>system.</p>
+			<p class="text-center text-black-50">Silahkan login terlebih dahulu untuk mengakses sistem <b><?= strtoupper($this->config->item('site_name')) ?> </b>.</p>
 
 			<div class="login-form mb-0">
 				<form action="<?= base_url('auth') ?>" method="post">
@@ -26,7 +26,7 @@
 					</div>
 					<div class="form-group mt-0">
 						<label for="password" class="placeholder">Password</label>
-						<a href="javascript:void(0)" class="link float-right">Forget Password ?</a>
+						<a href="javascript:void(0)" class="link float-right">Lupa Password ?</a>
 						<div class="input-icon">
 							<input id="password" name="password" type="password" class="form-control mt-1" required>
 							<span class="show-password input-icon-addon">
@@ -35,7 +35,7 @@
 						</div>
 					</div>
 					<div class="form-action mt--2 mb-0 pb-0">
-						<button type="submit" class="btn btn-primary btn-rounded btn-login">Sign In</button>
+						<button type="submit" class="btn btn-primary btn-rounded btn-login">Masuk</button>
 					</div>
 				</form>
 			</div>

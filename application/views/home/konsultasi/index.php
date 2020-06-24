@@ -56,7 +56,7 @@
 				</div>
 			</div>
 			<!-- ./Main Container -->
-
+			
 			<!-- Footer -->
 			<footer class="footer">
 				<?php $this->load->view('_parts/footer'); ?>

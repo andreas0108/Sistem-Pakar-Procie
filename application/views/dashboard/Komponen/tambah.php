@@ -46,7 +46,7 @@
 						</ul>
 					</div>
 					<!-- Content -->
-					<form action="<?= base_url('dashboard/komponen/tambah'); ?>" method="post" enctype="multipart/form-data">
+					<form action="<?= base_url('dashboard/komponen/tambah'); ?>" method="post" enctype="multipart/form-data" novalidate>
 						<div class="row">
 							<div class="col-md-3 col-sm-12">
 								<div class="card">
@@ -75,7 +75,7 @@
 											<div class="col-md-8 col-sm-12">
 												<div class="form-group">
 													<label for="nama">Nama</label>
-													<input type="text" name="nama" class="form-control focus" placeholder="[merk] [seri] [versi]" required>
+													<input type="text" name="nama" class="form-control" placeholder="[merk] [seri] [versi]" autofocus required>
 												</div>
 											</div>
 											<div class="col-md-4 col-sm-12">
@@ -106,30 +106,7 @@
 									</div>
 									<div class="card-body">
 										<div class="row">
-											<div class="col-md-6 col-sm-12">
-												<div class="form-group">
-													<label for="">Manufacture :</label>
-													<select class="form-control single" name="manuf" style="width: 100%" required>
-														<option value="1">AMD</option>
-														<option value="2">Intel</option>
-													</select>
-												</div>
-												<div class="row">
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label for="spek_core"># Core</label>
-															<input type="number" name="spek_core" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Core">
-														</div>
-													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label for="spek_thread"># Thread</label>
-															<input type="number" name="spek_thread" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Thread">
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6 col-sm-12">
+											<div class="col">
 												<div class="form-group">
 													<label for="">Kategori :</label>
 													<select class="form-control single" name="kate" style="width: 100%" required>
@@ -138,27 +115,82 @@
 														} ?>
 													</select>
 												</div>
-												<div class="row">
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label for="spek_basec">Base Clock</label>
-															<div class="input-group">
-																<input type="text" name="spek_basec" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Base Clock">
-																<div class="input-group-append">
-																	<span class="input-group-text">GHz</span>
-																</div>
-															</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label for="">Manufacture :</label>
+													<select class="form-control single" name="manuf" style="width: 100%" required>
+														<option value="1">AMD</option>
+														<option value="2">Intel</option>
+													</select>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="socket">Socket</label>
+													<input type="text" name="socket" class="form-control" placeholder="">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label for="spek_core"># Core</label>
+													<input type="number" name="core" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Core">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="spek_thread"># Thread</label>
+													<input type="number" name="thread" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Thread">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="spek_basec">Base Clock</label>
+													<div class="input-group">
+														<input type="text" name="base" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Base Clock">
+														<div class="input-group-append">
+															<span class="input-group-text">GHz</span>
 														</div>
 													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label for="spek_boostc">Boost Clock</label>
-															<div class="input-group">
-																<input type="text" name="spek_boostc" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Boost Clock">
-																<div class="input-group-append">
-																	<span class="input-group-text">GHz</span>
-																</div>
-															</div>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="spek_boostc">Boost Clock</label>
+													<div class="input-group">
+														<input type="text" name="boost" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Boost Clock">
+														<div class="input-group-append">
+															<span class="input-group-text">GHz</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label for="ref">Referensi</label>
+													<input type="text" name="ref" class="form-control" placeholder="https://www.techpowerup.com/cpu-specs/core-i7-10700k.c2215">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label for="">Link Pembelian</label>
+													<div class="row">
+														<div class="col">
+															<input type="text" name="link1" id="link1" class="form-control" placeholder="https://www.tokopedia.com/search?q=intel+i7+10700k">
+														</div>
+														<div class="col">
+															<input type="text" name="link2" id="link1" class="form-control" placeholder="https://www.bukalapak.com/products?search%5Bkeywords%5D=intel%20i7%2010700k">
+														</div>
+														<div class="col">
+															<input type="text" name="link3" id="link1" class="form-control" placeholder="https://shopee.co.id/search?keyword=intel%20i7%2010700k">
 														</div>
 													</div>
 												</div>
@@ -172,11 +204,6 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="card">
-
-								</div>
-								<div class="card">
 								</div>
 							</div>
 						</div>

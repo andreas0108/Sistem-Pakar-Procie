@@ -61,7 +61,7 @@
 											<a href="<?= base_url('dashboard/history') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
-														<p class="card-category">More Info.</p>
+														<p class="card-category">Selengkapnya.</p>
 													</div>
 												</div>
 											</a>
@@ -88,7 +88,7 @@
 											<a href="<?= base_url('dashboard/feedback') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
-														<p class="card-category">More Info.</p>
+														<p class="card-category">Selengkapnya.</p>
 													</div>
 												</div>
 											</a>
@@ -115,7 +115,7 @@
 											<a href="<?= base_url('dashboard/article') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
-														<p class="card-category">More Info.</p>
+														<p class="card-category">Selengkapnya.</p>
 													</div>
 												</div>
 											</a>
@@ -149,7 +149,7 @@
 											<a href="<?= base_url('dashboard/log') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
-														<p class="card-category">More Info.</p>
+														<p class="card-category">Selengkapnya.</p>
 													</div>
 												</div>
 											</a>
@@ -178,7 +178,7 @@
 											<a href="<?= base_url('dashboard/komponen') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
-														<p class="card-category">More Info.</p>
+														<p class="card-category">Selengkapnya.</p>
 													</div>
 												</div>
 											</a>
@@ -213,7 +213,7 @@
 											<a href="<?= base_url('dashboard/rules') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
-														<p class="card-category">More Info.</p>
+														<p class="card-category">Selengkapnya.</p>
 													</div>
 												</div>
 											</a>
@@ -240,7 +240,7 @@
 											<a href="<?= base_url('dashboard/pertanyaan') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
-														<p class="card-category">More Info.</p>
+														<p class="card-category">Selengkapnya.</p>
 													</div>
 												</div>
 											</a>
@@ -276,7 +276,7 @@
 											<a href="<?= base_url('dashboard/jawaban') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none" class=" p-0">
 												<div class=" row text-center">
 													<div class="col" style="margin: -1rem 0 -1rem 0;">
-														<p class="card-category">More Info.</p>
+														<p class="card-category">Selengkapnya.</p>
 													</div>
 												</div>
 											</a>

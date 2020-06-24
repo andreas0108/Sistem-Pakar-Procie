@@ -97,7 +97,7 @@
 								<div class="col-md-12">
 									<div class="card">
 										<div class="card-header">
-											<b>ABOUT APPLICATION</b>
+											<b>Tentang</b>
 										</div>
 										<div class="card-body">
 											<div class="mb-2">
@@ -111,7 +111,7 @@
 												</p>
 											</div>
 											<div>
-												<b>Tentang Aplikasi</b>
+												<b>Aplikasi</b>
 												<hr>
 												<p>
 													PROCIE merupakan aplikasi Sistem Pakar berbasis web yang menggunakan metode <b>Forward Chaining</b> untuk proses rekomendasi komponen Processor. PROCIE sendiri merupakan plesetan dari kata Processor yang sering digunakan di tempat saya.
@@ -125,7 +125,7 @@
 								<div class="col-md-12">
 									<div class="card">
 										<div class="card-header">
-											<b>AT A GLANCE</b>
+											<b>Petunjuk Penggunaan</b>
 										</div>
 										<div class="card-body">
 											<ol>

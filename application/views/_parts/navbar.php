@@ -47,7 +47,7 @@
 							<a class="col-6 col-md-4 p-0" href="<?= base_url('blog') ?>">
 								<div class="quick-actions-item">
 									<div class="avatar-item bg-warning rounded-circle">
-										<i class="fas fa-comment-alt"></i>
+										<i class="fas fa-book"></i>
 									</div>
 									<span class="text">Blog</span>
 								</div>
@@ -64,7 +64,11 @@
 					</div>
 				</div>
 				<div class="quick-actions-header">
-					<a href="<?= base_url('login') ?>" class="subtitle op-8" style="color: white"><i class="icon-login"></i> Login</a>
+					<?php if ($this->session->userdata('email')) { ?>
+						<a href="<?= base_url('logout') ?>" class="subtitle op-8" style="color: white"><i class="icon-login"></i> Logout</a>
+					<?php } else { ?>
+						<a href="<?= base_url('login') ?>" class="subtitle op-8" style="color: white"><i class="icon-login"></i> Login</a>
+					<?php } ?>
 				</div>
 			</div>
 		</li>

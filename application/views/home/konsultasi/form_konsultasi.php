@@ -71,7 +71,7 @@ $konsultasi = arrtostr($this->db->select('jawaban_id')->get_where('tmp_data', ['
 			<div class="col-md-3 col-sm-12">
 				<div class="card" style="width: 100%;">
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item active">History Pertanyaan</li>
+						<li class="list-group-item active">History Jawaban</li>
 						<?php $this->db->select('t.id, p.pertanyaan_content as pert, j.jawaban_content as jaw');
 						$this->db->join('pertanyaan p', 't.pertanyaan_id = p.id');
 						$this->db->join('jawaban j', 't.jawaban_id = j.id');

@@ -121,6 +121,8 @@
 													</select>
 												</div>
 											</div>
+										</div>
+										<div class="row">
 											<div class="col">
 												<div class="form-group">
 													<label for="">Manufacture :</label>
@@ -138,7 +140,7 @@
 											</div>
 											<div class="col">
 												<div class="form-group">
-													<label for="spek_core">Socket</label>
+													<label for="socket">Socket</label>
 													<input type="text" name="socket" class="form-control" placeholder="Jumlah Core" value="<?= $kompo['socket'] ?>">
 												</div>
 											</div>
@@ -148,14 +150,14 @@
 												<div class="row">
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label for="spek_core"># Core</label>
-															<input type="number" name="spek_core" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Core" value="<?= $kompo['core'] ?>">
+															<label for="core"># Core</label>
+															<input type="number" name="core" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Core" value="<?= $kompo['core'] ?>">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label for="spek_thread"># Thread</label>
-															<input type="number" name="spek_thread" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Thread" value="<?= $kompo['thread'] ?>">
+															<label for="thread"># Thread</label>
+															<input type="number" name="thread" class="form-control inmask" data-mask="00" data-mask-reverse="true" placeholder="Jumlah Thread" value="<?= $kompo['thread'] ?>">
 														</div>
 													</div>
 												</div>
@@ -164,9 +166,9 @@
 												<div class="row">
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label for="spek_basec">Base Clock</label>
+															<label for="base">Base Clock</label>
 															<div class="input-group">
-																<input type="text" name="spek_basec" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Base Clock" value="<?= $kompo['base']; ?>">
+																<input type="text" name="base" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Base Clock" value="<?= $kompo['base']; ?>">
 																<div class="input-group-append">
 																	<span class="input-group-text">GHz</span>
 																</div>
@@ -175,13 +177,43 @@
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label for="spek_boostc">Boost Clock</label>
+															<label for="boost">Boost Clock</label>
 															<div class="input-group">
-																<input type="text" name="spek_boostc" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Boost Clock" value="<?= $kompo['boost']; ?>">
+																<input type="text" name="boost" class="form-control inmask" data-mask="00,0" data-mask-reverse="true" placeholder="Boost Clock" value="<?= $kompo['boost']; ?>">
 																<div class="input-group-append">
 																	<span class="input-group-text">GHz</span>
 																</div>
 															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label for="ref">Referensi</label>
+													<input type="text" name="ref" class="form-control" placeholder="https://www.techpowerup.com/cpu-specs/core-i7-10700k.c2215" value="<?= $kompo['referensi']; ?>">
+													<p class="ml-3 font-italic text-right text-muted">* Link untuk referensi / informasi lebih lengkap, bisa menggunakan Tech Powerup atau yang lain.</p>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label for="">Link Pembelian</label>
+													<div class="row">
+														<div class="col">
+															<small class="text-success">Link Pencarian via Tokopedia :</small>
+															<input type="text" name="link1" id="link1" class="form-control" placeholder="https://www.tokopedia.com/search?q=intel+i7+10700k" value="<?= $kompo['link1']; ?>">
+														</div>
+														<div class="col">
+															<small class="text-danger">Link Pencarian via Buka Lapak :</small>
+															<input type="text" name="link2" id="link1" class="form-control" placeholder="https://www.bukalapak.com/products?search%5Bkeywords%5D=intel%20i7%2010700k" value="<?= $kompo['link2']; ?>">
+														</div>
+														<div class="col">
+															<small class="text-warning">Link Pencarian via Shopee :</small>
+															<input type="text" name="link3" id="link1" class="form-control" placeholder="https://shopee.co.id/search?keyword=intel%20i7%2010700k" value="<?= $kompo['link3']; ?>">
 														</div>
 													</div>
 												</div>
@@ -195,11 +227,6 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="card">
-
-								</div>
-								<div class="card">
 								</div>
 							</div>
 						</div>

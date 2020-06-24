@@ -56,7 +56,7 @@ class Home extends CI_Controller
 	public function konsultasi()
 	{
 		$data['title'] = 'Konsultasi';
-		$data['desc'] = 'Procie is a tools to recommend you the best and suitable processor for you based on your answer from my simple question.';
+		$data['desc'] = 'Procie adalah sistem untuk merekomendasikan processor yang cocok untuk anda berdasarkan beberapa pertanyaan sederhana.';
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
@@ -114,7 +114,7 @@ class Home extends CI_Controller
 		// var_dump($jumlah_data);
 		// die;
 
-		$data_proses = "SELECT rules.komponen_id, komponen.name
+		$data_proses = "SELECT rules.komponen_id, komponen.name, komponen.manufacture
 						FROM rules JOIN komponen ON rules.komponen_id = komponen.id
 						WHERE jawaban_id IN ($konsul)
 						GROUP BY komponen_id
@@ -141,6 +141,7 @@ class Home extends CI_Controller
 				'id' => getUniqueID(),
 				'user_name' => $username,
 				'email' => $email,
+				'manufacture' => $tmp_hasil['manufacture'],
 				'hasil' => $tmp_hasil['komponen_id']
 			]);
 			$this->db->delete('tmp_data', ['konsul_id' => $this->session->userdata('konsul_id')]);
@@ -168,7 +169,7 @@ class Home extends CI_Controller
 
 	public function about()
 	{
-		$data['title'] = 'About';
+		$data['title'] = 'Tentang';
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 

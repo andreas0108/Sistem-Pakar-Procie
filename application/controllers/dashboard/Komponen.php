@@ -62,17 +62,31 @@ class Komponen extends CI_Controller
 			} else {
 				$gambar = '';
 			}
-			$this->db->insert('komponen', [
+			if ($this->input->post('isi') == null || '') {
+				$desc = htmlspecialchars($this->input->post('nama', true)) . '...';
+			} else {
+				$desc = $this->input->post('isi') == null || '';
+			};
+			$komponen = [
 				'img' => $gambar,
 				'name' => htmlspecialchars($this->input->post('nama', true)),
 				'slug' => slug(htmlspecialchars($this->input->post('nama', true))),
 				'price' => htmlspecialchars(str_replace('.', '', $this->input->post('harga', true))),
-				'desc' => $this->input->post('isi'),
-				'status' => htmlspecialchars($this->input->post('status', true)),
-				'manufacture' => htmlspecialchars($this->input->post('manuf', true)),
+				'desc' => $desc,
 				'kategori' => htmlspecialchars($this->input->post('kate', true)),
+				'manufacture' => htmlspecialchars($this->input->post('manuf', true)),
+				'socket' => htmlspecialchars($this->input->post('socket', true)),
+				'core' => htmlspecialchars($this->input->post('core', true)),
+				'thread' => htmlspecialchars($this->input->post('thread', true)),
+				'base' => htmlspecialchars($this->input->post('base', true)),
+				'boost' => htmlspecialchars($this->input->post('boost', true)),
+				'referensi' => htmlspecialchars($this->input->post('ref', true)),
+				'link1' => 'https://www.tokopedia.com/search?q=' . slug(htmlspecialchars($this->input->post('nama', true)), ' ', false),
+				'link2' => 'https://www.bukalapak.com/products?search%5Bkeywords%5D=' . slug(htmlspecialchars($this->input->post('nama', true)), ' ', false),
+				'link3' => 'https://shopee.co.id/search?keyword=' . slug(htmlspecialchars($this->input->post('nama', true)), ' ', false),
 				'date_added' => time()
-			]);
+			];
+			$this->db->insert('komponen', $komponen);
 
 			logs('Tambah Komponen', htmlspecialchars($this->input->post('nama', true)));
 
@@ -127,11 +141,12 @@ class Komponen extends CI_Controller
 			$this->db->set('slug', slug(htmlspecialchars($this->input->post('nama', true))));
 			$this->db->set('price', htmlspecialchars(str_replace('.', '', $this->input->post('harga', true))));
 			$this->db->set('desc', $this->input->post('isi'));
-			$this->db->set('status', htmlspecialchars($this->input->post('status', true)));
 			$this->db->set('manufacture', htmlspecialchars($this->input->post('manuf', true)));
 			$this->db->set('kategori', htmlspecialchars($this->input->post('kate', true)));
-			$this->db->set('spek_ct', htmlspecialchars($this->input->post('spek_core', true)) . '/' . htmlspecialchars($this->input->post('spek_thread', true)));
-			$this->db->set('spek_babo', htmlspecialchars($this->input->post('spek_basec', true)) . '/' . htmlspecialchars($this->input->post('spek_boostc', true)));
+			$this->db->set('core', htmlspecialchars($this->input->post('core', true)));
+			$this->db->set('thread', htmlspecialchars($this->input->post('thread', true)));
+			$this->db->set('base', htmlspecialchars($this->input->post('base', true)));
+			$this->db->set('boost', htmlspecialchars($this->input->post('boost', true)));
 			$this->db->set('date_added', time());
 			$this->db->where('id', $id);
 			$this->db->update('komponen');
@@ -152,7 +167,7 @@ class Komponen extends CI_Controller
 		if ($slug == '' || null) {
 			redirect('konsultasi');
 		} else {
-			$this->db->select('k.img, k.id, k.manufacture as kmanufid, km.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.date_added as ditambahkan, k.core, k.thread, k.base, k.boost, k.socket');
+			$this->db->select('k.img, k.id, k.manufacture as kmanufid, km.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.date_added as ditambahkan, k.core, k.thread, k.base, k.boost, k.socket, k.referensi as ref, k.link1, k.link2, k.link3');
 			$this->db->join('komponen_kategori kk', 'k.kategori = kk.id');
 			$this->db->join('komponen_manufacture km', 'k.manufacture = km.id');
 			$this->db->order_by('ditambahkan DESC');

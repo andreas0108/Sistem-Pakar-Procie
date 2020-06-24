@@ -14,7 +14,7 @@
 			<h1>PROCIE</h1>
 		</div>
 		<div class="text-center animated fadeIn">
-			<h2 class="text-white-50 mx-auto mt-2 mb-5">A tool who recomend you a suitable processor just for you.</h2>
+			<h2 class="text-white-50 mx-auto mt-2 mb-5">SISTEM PAKAR UNTUK PEMILIHAN PROCESSOR</h2>
 		</div>
 		<a href="<?= base_url('konsultasi') ?>" class="btn btn-primary">
 			<span class="btn-label mr-2">
