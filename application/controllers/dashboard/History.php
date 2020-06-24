@@ -23,4 +23,19 @@ class History extends CI_Controller
 
 		$this->load->view('Dashboard/history', $data);
 	}
+
+	public function statistik()
+	{
+		$data['title'] = 'Statistik Komponen';
+
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+		// History list
+		$this->db->select('h.id, h.user_name, h.email, k.name as hasil, h.manufacture, h.tanggal');
+		$this->db->join('komponen k', 'h.hasil = k.id');
+		$this->db->order_by('id', 'DESC');
+		$data['chart'] = $this->db->get('history h')->result_array();
+
+		$this->load->view('Dashboard/stats', $data);
+	}
 }
