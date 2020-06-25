@@ -79,16 +79,16 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td scope="row">1</td>
-                                                                    <td>AMD Ryzen 9 3950X</td>
-                                                                    <td>10</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td scope="row">2</td>
-                                                                    <td>Intel i9-10900K</td>
-                                                                    <td>8</td>
-                                                                </tr>
+                                                                <?php
+                                                                $i = 1;
+                                                                foreach ($intel as $intel) {
+                                                                ?>
+                                                                    <tr>
+                                                                        <td scope="row"><?= $i++ ?></td>
+                                                                        <td><?= $intel['name'] ?></td>
+                                                                        <td><?= $intel['jumlah'] ?></td>
+                                                                    </tr>
+                                                                <?php } ?>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -111,16 +111,16 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td scope="row">1</td>
-                                                                    <td>AMD Ryzen 9 3950X</td>
-                                                                    <td>10</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td scope="row">2</td>
-                                                                    <td>Intel i9-10900K</td>
-                                                                    <td>8</td>
-                                                                </tr>
+                                                                <?php
+                                                                $i = 1;
+                                                                foreach ($amd as $amd) {
+                                                                ?>
+                                                                    <tr>
+                                                                        <td scope="row"><?= $i++ ?></td>
+                                                                        <td><?= $amd['name'] ?></td>
+                                                                        <td><?= $amd['jumlah'] ?></td>
+                                                                    </tr>
+                                                                <?php } ?>
                                                             </tbody>
                                                         </table>
                                                     </div>

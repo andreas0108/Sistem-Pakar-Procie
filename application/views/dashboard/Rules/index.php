@@ -76,9 +76,11 @@
 												</tr>
 											</thead>
 											<tbody>
-												<?php foreach ($rulesp as $r) { ?>
+												<?php
+												$i = 1;
+												foreach ($rulesp as $r) { ?>
 													<tr>
-														<td class="text-center"><?= $r[''] ?></td>
+														<td class="text-center"><?= $i++ ?></td>
 														<td><?= $r['jawab'] ?></td>
 														<td><?= $r['pid'] ?></td>
 														<td><?= $r['next_pert'] ?></td>

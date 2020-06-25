@@ -19,6 +19,7 @@ class Rules extends CI_Controller
 		$this->db->select('r.id as rid, j.jawaban_content as jawab, p.id as pid, p.pertanyaan_content as next_pert');
 		$this->db->join('jawaban j', 'r.jawaban_id = j.id');
 		$this->db->join('pertanyaan p', 'r.next_pertanyaan = p.id');
+		$this->db->order_by('r.id');
 		$data['rulesp'] = $this->db->get('rulesp r')->result_array();
 		$data['rulesd'] = $this->Rumo->rulesd();
 

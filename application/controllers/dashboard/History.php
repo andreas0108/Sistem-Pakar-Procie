@@ -35,7 +35,12 @@ class History extends CI_Controller
 		$this->db->join('komponen k', 'h.hasil = k.id');
 		$this->db->order_by('id', 'DESC');
 		$data['chart'] = $this->db->get('history h')->result_array();
-
+		$data['amd'] = $this->db->select('h.manufacture, h.hasil, k.id, k.name, count(hasil) as jumlah')
+			->join('komponen k', 'h.hasil = k.id')->group_by('h.hasil')->order_by('jumlah DESC')
+			->get_where('history h', ['h.manufacture' => 1])->result_array();
+		$data['intel'] = $this->db->select('h.manufacture, h.hasil, k.id, k.name, count(hasil) as jumlah')
+			->join('komponen k', 'h.hasil = k.id')->group_by('h.hasil')->order_by('jumlah DESC')
+			->get_where('history h', ['h.manufacture' => 2])->result_array();
 		$this->load->view('Dashboard/stats', $data);
 	}
 }
