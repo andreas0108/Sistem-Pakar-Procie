@@ -390,7 +390,7 @@
 	<script>
 		const Toast = Swal.mixin({
 			toast: true,
-			position: 'top-right',
+			position: 'top',
 			showConfirmButton: false,
 			timer: 3000,
 			onOpen: (toast) => {
@@ -400,9 +400,9 @@
 		})
 
 		Toast.fire({
-			icon: 'success',
-			html: '<div style="margin-left:5px; text-align:left">' +
-				'<b>Berhasil</b><br>' +
+			icon: 'info',
+			html: '<div style="margin-left:8px; text-align:left">' +
+				'<b>Informasi</b><br>' +
 				'Selamat datang <?= $user['name'] ?>' +
 				'</div>',
 		})

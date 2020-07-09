@@ -42,9 +42,6 @@ class Home extends CI_Controller
 			$data['log'] = $this->db->select('user, keterangan, tgl_data')
 				->order_by('tgl_data', 'DESC')->limit('4')->get('log')->result_array();
 
-			// var_dump($data['history']);
-			// var_dump($data['log']);
-
 			$this->load->view('Home/index', $data);
 		} else {
 			$data['title'] = 'Landing';
