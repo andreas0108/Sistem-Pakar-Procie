@@ -1,8 +1,0 @@
-{
-    "require": {
-        "firebase/php-jwt": "^5.2"
-    },
-    "require-dev": {
-        "kenjis/ci-phpunit-test": "^0.18.0"
-    }
-}

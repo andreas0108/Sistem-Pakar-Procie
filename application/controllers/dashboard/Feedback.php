@@ -64,6 +64,6 @@ class Feedback extends CI_Controller
             'flashmsg',
             'Feedback berhasil dihapus'
         );
-        redirect('dashboard/feedback');
+        redirect('Dashboard/Feedback');
     }
 }

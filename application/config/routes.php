@@ -2,30 +2,30 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 // $ci = get_instance();
 
-$route['default_controller'] = 'home';
+$route['default_controller'] = 'Home';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['dashboard'] = 'home/redirect';
-$route['about'] = 'home/about';
-$route['blog/(:num)'] = 'blog/index/$1';
+$route['dashboard'] = 'Home/redirect';
+$route['about'] = 'Home/about';
+$route['blog/(:num)'] = 'Blog/index/$1';
 
-$route['login'] = 'auth';
-$route['logout'] = 'auth/logout';
+$route['login'] = 'Auth';
+$route['logout'] = 'Auth/logout';
 
-$route['konsultasi'] = 'home/konsultasi';
-$route['konsultasi/cancel'] = 'home/cancel';
-$route['konsultasi/proses'] = 'home/proses';
-$route['konsultasi/hasil/(:any)'] = 'dashboard/komponen/tampil/$1';
+$route['konsultasi'] = 'Home/konsultasi';
+$route['konsultasi/cancel'] = 'Home/cancel';
+$route['konsultasi/proses'] = 'Home/proses';
+$route['konsultasi/hasil/(:any)'] = 'Dashboard/Komponen/Tampil/$1';
 
-$route['komponen'] = 'dashboard/komponen/redir';
+$route['komponen'] = 'Dashboard/Komponen/redir';
 
-$route['dashboard/system/reset'] = 'dashboard/log/reset';
+$route['dashboard/system/reset'] = 'Dashboard/Log/reset';
 
 // redirect blank breadcrumbs
-$route['dashboard/komponen/ubah'] = 'dashboard/komponen/redir';
-$route['dashboard/komponen/tampil'] = 'dashboard/komponen/redir';
-$route['konsultasi/hasil'] = 'dashboard/komponen/redir';
+$route['dashboard/komponen/ubah'] = 'Dashboard/Komponen/redir';
+$route['dashboard/komponen/tampil'] = 'Dashboard/Komponen/redir';
+$route['konsultasi/hasil'] = 'Dashboard/Komponen/redir';
 
-$route['dashboard/article/ubah'] = 'dashboard/article/redir';
+$route['dashboard/article/ubah'] = 'Dashboard/Article/redir';

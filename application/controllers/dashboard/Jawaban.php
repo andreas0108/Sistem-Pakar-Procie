@@ -46,7 +46,7 @@ class Jawaban extends CI_Controller
 				'flashmsg',
 				'Jawaban berhasil disimpan.'
 			);
-			redirect('dashboard/jawaban');
+			redirect('Dashboard/Jawaban');
 		}
 	}
 
@@ -64,7 +64,7 @@ class Jawaban extends CI_Controller
 				'flasherr',
 				$this->form_validation->error_array()
 			);
-			redirect('dashboard/jawaban');
+			redirect('Dashboard/Jawaban');
 		} else {
 			$this->db->where('id', $this->input->post('id'));
 			$this->db->update('jawaban', [
@@ -77,7 +77,7 @@ class Jawaban extends CI_Controller
 				'flashmsg',
 				'Berhasil merubah jawaban.'
 			);
-			redirect('dashboard/jawaban');
+			redirect('Dashboard/Jawaban');
 		}
 	}
 
@@ -89,6 +89,6 @@ class Jawaban extends CI_Controller
 			'flashmsg',
 			'Jawaban berhasil dihapus'
 		);
-		redirect('dashboard/jawaban');
+		redirect('Dashboard/Jawaban');
 	}
 }

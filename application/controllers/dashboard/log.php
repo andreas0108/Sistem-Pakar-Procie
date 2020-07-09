@@ -18,7 +18,7 @@ class log extends CI_Controller
 		$this->db->order_by('tgl_data', 'DESC');
 		$data['log'] = $this->db->get('log')->result_array();
 
-		$this->load->view('Dashboard/log', $data);
+		$this->load->view('Dashboard/Log', $data);
 	}
 
 	public function reset()
@@ -36,6 +36,6 @@ class log extends CI_Controller
 			'flashmsg',
 			'Berhasil.'
 		);
-		redirect('dashboard');
+		redirect('Dashboard');
 	}
 }

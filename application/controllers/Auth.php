@@ -58,7 +58,7 @@ class Auth extends CI_Controller
 						'flasherr',
 						'<strong>Password yang anda masukkan salah!</strong> Priksa kembali.'
 					);
-					redirect('auth');
+					redirect('Auth');
 				}
 			} else {
 				// jika salah

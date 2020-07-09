@@ -39,7 +39,7 @@ class User extends CI_Controller
 				'flashmsg',
 				'Data berhasil diperbarui.'
 			);
-			redirect('dashboard/user');
+			redirect('Dashboard/User');
 		}
 	}
 
@@ -70,7 +70,7 @@ class User extends CI_Controller
 					'flashmsg',
 					'Data berhasil diperbarui.'
 				);
-				redirect('dashboard/user');
+				redirect('Dashboard/User');
 			} else {
 				echo $this->upload->display_errors();
 			}
@@ -137,8 +137,8 @@ class User extends CI_Controller
 		]);
 
 		if ($this->form_validation->run() === false) {
-			// $this->load->view('dashboard/user/index', $data);
-			redirect('dashboard/user');
+			// $this->load->view('Dashboard/User/index', $data);
+			redirect('Dashboard/User');
 		} else {
 			$id = $data['user']['id'];
 			$cur = $this->input->post('cpassword');
@@ -151,7 +151,7 @@ class User extends CI_Controller
 					'flasherr',
 					'Password yang anda masukkan salah!'
 				);
-				redirect('dashboard/user');
+				redirect('Dashboard/User');
 				// lolos
 			} else {
 				// cek apakah cur = new
@@ -160,14 +160,14 @@ class User extends CI_Controller
 						'flasherr',
 						'Password baru harus berbeda dengan Password saat ini!.'
 					);
-					redirect('dashboard/user');
+					redirect('Dashboard/User');
 				} else {
 					if ($new != $con) {
 						$this->session->set_flashdata(
 							'flasherr',
 							'Password Baru dan Konfirmasi Password berbeda!'
 						);
-						redirect('dashboard/user');
+						redirect('Dashboard/User');
 					} else {
 						$this->db->set('password', password_hash($new, PASSWORD_DEFAULT));
 						$this->db->where('id', $id);
@@ -191,7 +191,7 @@ class User extends CI_Controller
 		$this->form_validation->set_rules('emailb', 'Email', 'trim|valid_email', ['valid_email' => 'Periksa kembali format email anda.']);
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('dashboard/user/index', $data);
+			$this->load->view('Dashboard/User/index', $data);
 		} else {
 			// Cek email apakah sama atau tidak
 			if ($data['user']['email'] == $_POST['emailb']) {
@@ -199,7 +199,7 @@ class User extends CI_Controller
 					'flasherr',
 					'Email yang anda masukkan sama.'
 				);
-				redirect('dashboard/user');
+				redirect('Dashboard/User');
 			} else {
 				// Update email
 				$this->db->set('email', htmlspecialchars($_POST['emailb'], ENT_QUOTES));
@@ -239,7 +239,7 @@ class User extends CI_Controller
 		]);
 
 		if ($this->form_validation->run() == false) {
-			redirect('dashboard/user');
+			redirect('Dashboard/User');
 		} else {
 			$id = $_POST['id'];
 			$cur = $_POST['cpassword'];
@@ -252,7 +252,7 @@ class User extends CI_Controller
 					'flasherr',
 					'Password yang anda masukkan salah!'
 				);
-				redirect('dashboard/user');
+				redirect('Dashboard/User');
 				// lolos
 			} else {
 				// cek apakah cur = new
@@ -261,14 +261,14 @@ class User extends CI_Controller
 						'flasherr',
 						'Password baru harus berbeda dengan Password saat ini!.'
 					);
-					redirect('dashboard/user');
+					redirect('Dashboard/User');
 				} else {
 					if ($new != $con) {
 						$this->session->set_flashdata(
 							'flasherr',
 							'Password Baru dan Konfirmasi Password berbeda!'
 						);
-						redirect('dashboard/user');
+						redirect('Dashboard/User');
 					} else {
 						$this->db->set('password', password_hash($new, PASSWORD_DEFAULT));
 						$this->db->where('id', $id);

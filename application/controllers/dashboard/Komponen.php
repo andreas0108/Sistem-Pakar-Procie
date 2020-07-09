@@ -94,7 +94,7 @@ class Komponen extends CI_Controller
 				'flashmsg',
 				'Komponen telah ditambahkan.'
 			);
-			redirect('dashboard/komponen');
+			redirect('Dashboard/Komponen');
 		}
 	}
 
@@ -134,7 +134,7 @@ class Komponen extends CI_Controller
 						'flasherr',
 						$this->upload->display_errors()
 					);
-					redirect('dashboard/komponen');
+					redirect('Dashboard/Komponen');
 				}
 			}
 			$this->db->set('name', htmlspecialchars($this->input->post('nama', true)));
@@ -157,7 +157,7 @@ class Komponen extends CI_Controller
 				'flashmsg',
 				'Komponen telah diupdate.'
 			);
-			redirect('dashboard/komponen');
+			redirect('Dashboard/Komponen');
 		}
 	}
 
@@ -193,13 +193,13 @@ class Komponen extends CI_Controller
 			'flashmsg',
 			'Komponen berhasil dihapus'
 		);
-		redirect('dashboard/komponen');
+		redirect('Dashboard/Komponen');
 	}
 
 	public function redir()
 	{
 		if ($this->session->userdata('email')) {
-			redirect('dashboard/komponen');
+			redirect('Dashboard/Komponen');
 		} else {
 			redirect('konsultasi');
 		}

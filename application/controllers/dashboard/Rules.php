@@ -56,7 +56,7 @@ class Rules extends CI_Controller
 				'flashmsg',
 				'Rules berhasil disimpan.'
 			);
-			redirect('dashboard/rules');
+			redirect('Dashboard/Rules');
 		}
 	}
 
@@ -72,7 +72,7 @@ class Rules extends CI_Controller
 				'flasherr',
 				$this->form_validation->error_array()
 			);
-			redirect('dashboard/rules');
+			redirect('Dashboard/Rules');
 		} else {
 			// var_dump($_POST);
 			// die;
@@ -88,7 +88,7 @@ class Rules extends CI_Controller
 				'flashmsg',
 				'Berhasil merubah rules.'
 			);
-			redirect('dashboard/rules');
+			redirect('Dashboard/Rules');
 		}
 	}
 
@@ -105,7 +105,7 @@ class Rules extends CI_Controller
 			'flashmsg',
 			'Rule berhasil dihapus'
 		);
-		redirect('dashboard/rules');
+		redirect('Dashboard/Rules');
 	}
 
 	// Rules Pertanyaan
@@ -132,7 +132,7 @@ class Rules extends CI_Controller
 				'flashmsg',
 				'Rules berhasil disimpan.'
 			);
-			redirect('dashboard/rules');
+			redirect('Dashboard/Rules');
 		}
 	}
 
@@ -150,7 +150,7 @@ class Rules extends CI_Controller
 				'flasherr',
 				$this->form_validation->error_array()
 			);
-			redirect('dashboard/rules');
+			redirect('Dashboard/Rules');
 		} else {
 			// var_dump($_POST);
 			// die;
@@ -165,7 +165,7 @@ class Rules extends CI_Controller
 				'flashmsg',
 				'Berhasil merubah rules.'
 			);
-			redirect('dashboard/rules');
+			redirect('Dashboard/Rules');
 		}
 	}
 
@@ -177,6 +177,6 @@ class Rules extends CI_Controller
 			'flashmsg',
 			'Rule berhasil dihapus'
 		);
-		redirect('dashboard/rules');
+		redirect('Dashboard/Rules');
 	}
 }

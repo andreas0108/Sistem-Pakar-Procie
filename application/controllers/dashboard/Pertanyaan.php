@@ -32,7 +32,7 @@ class Pertanyaan extends CI_Controller
 				'flashmsg',
 				'Pertanyaan berhasil disimpan.'
 			);
-			redirect('dashboard/pertanyaan');
+			redirect('Dashboard/Pertanyaan');
 		}
 	}
 
@@ -50,7 +50,7 @@ class Pertanyaan extends CI_Controller
 				'flasherr',
 				$this->form_validation->error_array()
 			);
-			redirect('dashboard/pertanyaan');
+			redirect('Dashboard/Pertanyaan');
 		} else {
 			$this->db->where('id', $this->input->post('id'));
 			$this->db->update('pertanyaan', [
@@ -62,7 +62,7 @@ class Pertanyaan extends CI_Controller
 				'flashmsg',
 				'Berhasil merubah pertanyaan.'
 			);
-			redirect('dashboard/pertanyaan');
+			redirect('Dashboard/Pertanyaan');
 		}
 	}
 
@@ -74,6 +74,6 @@ class Pertanyaan extends CI_Controller
 			'flashmsg',
 			'Pertanyaan berhasil dihapus'
 		);
-		redirect('dashboard/pertanyaan');
+		redirect('Dashboard/Pertanyaan');
 	}
 }

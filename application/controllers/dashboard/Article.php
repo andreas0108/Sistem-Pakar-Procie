@@ -88,7 +88,7 @@ class Article extends CI_Controller
 				'flashmsg',
 				'Artikel telah ditambahkan.'
 			);
-			redirect('dashboard/article');
+			redirect('Dashboard/Article');
 		}
 	}
 
@@ -153,7 +153,7 @@ class Article extends CI_Controller
 				'flashmsg',
 				'Artikel berhasil dirubah.'
 			);
-			redirect('dashboard/article');
+			redirect('Dashboard/Article');
 		}
 	}
 
@@ -229,7 +229,7 @@ class Article extends CI_Controller
 			'flashmsg',
 			'Artikel berhasil dihapus'
 		);
-		redirect('dashboard/article');
+		redirect('Dashboard/Article');
 	}
 
 	public function hapus_semua()
@@ -240,12 +240,12 @@ class Article extends CI_Controller
 			'flashmsg',
 			'Semua Artikel berhasil dihapus'
 		);
-		redirect('dashboard/article');
+		redirect('Dashboard/Article');
 	}
 
 	public function redir()
 	{
-		redirect('dashboard/article');
+		redirect('Dashboard/Article');
 	}
 
 	public function jwten()
