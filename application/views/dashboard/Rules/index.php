@@ -60,7 +60,7 @@
 							<!-- <div class="page-inner"> -->
 							<button type="button" href="javascript:void(0)" class="btn btn-sm btn-info float-right" id="tambahRulesP" data-toggle="modal" data-target="#modalRulesP">Tambah Rules</button>
 							<div class="page-header">
-								<h4 class="page-title"><?= strtoupper($title) ?> PERTANYAAN</h4>
+								<h4 class="page-title"><?= $title ?> Pertanyaan</h4>
 							</div>
 							<div class="card">
 								<div class="card-body">
@@ -100,9 +100,9 @@
 						</div>
 						<div class="tab-pane fade" id="hasil" role="tabpanel" aria-labelledby="pills-Pengetahuan-tab-nobd">
 							<!-- <div class="page-inner"> -->
-							<button type="button" href="javascript:void(0)" class="btn btn-sm btn-info float-right" id="tambahRules" data-toggle="modal" data-target="#modalRules">Tambah Rules</button>
+							<button type="button" href="javascript:void(0)" class="btn btn-sm btn-info float-right tambahRules" id="tambahRules" data-toggle="modal" data-target="#modalRules">Tambah Rules</button>
 							<div class="page-header">
-								<h4 class="page-title"><?= strtoupper($title) ?> HASIL</h4>
+								<h4 class="page-title"><?= $title ?> Hasil</h4>
 							</div>
 							<div class="card">
 								<div class="card-body">
@@ -113,9 +113,8 @@
 													<th scope="col" style="width: 5%">#</th>
 													<th scope="col" style="width: 40%">Hasil</th>
 													<th scope="col" style="width: 5%">ID</th>
-													<th scope="col" style="width: 30%">Jika Terdapat Jawaban</th>
-													<th scope="col" style="width: 10%">Status</th>
-													<th scope="col" style="width: 5%"></th>
+													<th scope="col" style="width: 35%">Jika Terdapat Jawaban</th>
+													<th scope="col" style="width: 10%"></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -132,7 +131,6 @@
 														<?php foreach ($source2 as $s2) { ?>
 															<td class="text-center"><?= $s2['id'] ?></td>
 															<td><?= $s2['jawaban_content'] ?></td>
-															<td class="text-center"><?= $s2['status'] == 1 ? 'Enable' : 'Disable' ?></td>
 															<td class="text-center">
 																<div class="btn-group" role="group" aria-label="Basic example">
 																	<a href="#" title="ubah jawaban" data-id="<?= $s2['id'] ?>" type="button" class="btn btn-sm btn-info ubahRules" data-toggle="modal" data-target="#modalRules"><i style="color: white" class="fa fa-pen"></i></a>
@@ -230,7 +228,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="<?= base_url('dashboard/rules') ?>" method="POST">
+				<form action="<?= base_url('dashboard/rules') ?>" method="POST" novalidate>
 					<div class="modal-body">
 						<div class="form-group jawabans">
 							<label for="squareSelect">Jawaban</label> <small class="text-muted float-right"><i>(Jika terdapat jawaban ini)</i></small>
@@ -249,23 +247,25 @@
 							</select>
 						</div>
 
-						<div class="form-group">
-							<label for="squareSelect">Hasil</label> <small class="text-muted float-right"><i>(Menghasilkan)</i></small>
-							<select class="form-control single" name="komponen" id="komponen" style="width: 100%" required>
-								<option value="">Pilih</option>
-								<?php $x = $this->db->get('komponen')->result_array();
-								foreach ($x as $x) { ?>
-									<option value="<?= $x['id'] ?>"><?= $x['name'] ?></option>
+						<div class="form-group jawaban">
+							<label for="squareSelect">Jawaban</label> <small class="text-muted float-right"><i>(Jika terdapat jawaban ini)</i></small>
+							<select class="form-control single" name="jawaban" id="jawaban" style="width: 100%" required>
+								<?php $y = $this->db->get('jawaban')->result_array();
+								foreach ($y as $y) { ?>
+									<option value="<?= $y['id'] ?>"><?= $y['jawaban_content'] ?></option>
 								<?php
 								} ?>
 							</select>
 						</div>
 
 						<div class="form-group">
-							<label for="squareSelect">Status</label>
-							<select class="form-control single" name="status" id="status" style="width: 100%" required>
-								<option value="1">Enable</option>
-								<option value="0">Disable</option>
+							<label for="squareSelect">Hasil</label> <small class="text-muted float-right"><i>(Menghasilkan)</i></small>
+							<select class="form-control single" name="komponen" id="komponen" style="width: 100%" required>
+								<?php $x = $this->db->get('komponen')->result_array();
+								foreach ($x as $x) { ?>
+									<option value="<?= $x['id'] ?>"><?= $x['name'] ?></option>
+								<?php
+								} ?>
 							</select>
 						</div>
 

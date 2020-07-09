@@ -11,7 +11,7 @@ class Feedback extends CI_Controller
     public function index()
     {
         is_logged_in();
-        $data['title'] = 'Feedback';
+        $data['title'] = 'Daftar Feedback';
 
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 

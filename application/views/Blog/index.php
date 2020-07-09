@@ -40,7 +40,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="page-header">
-								<h4 class="page-title"><?= strtoupper($title) ?></h4>
+								<h4 class="page-title"><?= $title ?></h4>
 								<ul class="breadcrumbs">
 									<?php $this->load->view('_parts/breadcrumb'); ?>
 								</ul>

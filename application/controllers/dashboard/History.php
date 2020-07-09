@@ -7,40 +7,42 @@ class History extends CI_Controller
 	{
 		parent::__construct();
 		is_logged_in();
+
+		$this->load->model('Sikar_model', 'Simo');
+		$this->Simo->setsqlmode('ONLY_FULL_GROUP_BY', '');
+
+		$this->load->model('History_model', 'Himo');
 	}
 
 	public function index()
 	{
 		$data['title'] = 'Riwayat Konsultasi';
+		$data['user'] = $this->Simo->data_user();
 
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-		// History list
-		$this->db->select('h.id, h.user_name, h.email, k.name as hasil');
-		$this->db->join('komponen k', 'h.hasil = k.id');
-		$this->db->order_by('id', 'DESC');
-		$data['history'] = $this->db->get('history h')->result_array();
+		$data['history'] = $this->Himo->History_List();
 
 		$this->load->view('Dashboard/history', $data);
 	}
 
 	public function statistik()
 	{
+		// die;
 		$data['title'] = 'Statistik Komponen';
+		$data['user'] = $this->Simo->data_user();
 
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		// amd processor stats
+		$data['amd']['stats'] = arrtostr($this->Himo->amd_stats());
 
-		// History list
-		$this->db->select('h.id, h.user_name, h.email, k.name as hasil, h.manufacture, h.tanggal');
-		$this->db->join('komponen k', 'h.hasil = k.id');
-		$this->db->order_by('id', 'DESC');
-		$data['chart'] = $this->db->get('history h')->result_array();
-		$data['amd'] = $this->db->select('h.manufacture, h.hasil, k.id, k.name, count(hasil) as jumlah')
-			->join('komponen k', 'h.hasil = k.id')->group_by('h.hasil')->order_by('jumlah DESC')
-			->get_where('history h', ['h.manufacture' => 1])->result_array();
-		$data['intel'] = $this->db->select('h.manufacture, h.hasil, k.id, k.name, count(hasil) as jumlah')
-			->join('komponen k', 'h.hasil = k.id')->group_by('h.hasil')->order_by('jumlah DESC')
-			->get_where('history h', ['h.manufacture' => 2])->result_array();
+		// amd processor data
+		$data['amd']['data'] = $this->Himo->amd_data();
+
+		// intel processor stats
+		$data['intel']['stats'] = arrtostr($this->Himo->intel_stats());
+
+		// intel processor data
+		$data['intel']['data'] = $this->Himo->intel_data();
+
+		$data['label'] = arrtostr($this->Himo->statistic_label(), ', ', '"');
 		$this->load->view('Dashboard/stats', $data);
 	}
 }

@@ -291,16 +291,17 @@
 										<div class="card-header">
 											<div class="card-title">Statistik Pengguna</div>
 											<div class="float-right">
-												<h1><?= $statsper ?></h1>
+												<h1 title="Presentase perbedaan dengan hari sebelumnya."><?= $statsper ?></h1>
 											</div>
 											<div class="card-category">
-												<p>Konsultasi hari ini (<?= gmdate('d-m-Y', time() + 7 * 3600) ?>) : </p>
-												<h4 class="mb-4"><?= $statscnt ?> konsultasi</h4>
+												<p>Konsultasi hari ini (<?= unix_indo(time() + 7 * 3600) ?>) : </p>
+												<h4 class="mb-4" title="Jumlah Konsultasi hari ini."><?= $statscnt ?> konsultasi</h4>
 											</div>
 										</div>
 										<div class="card-body pt-1 pb-0">
 											<div class="pull-in">
-												<canvas id="dailySalesChart" class="chartjs-render-monitor" style="display: block; height: 28vh; width: 100%;padding-top: 5px;" data-label="<?= '[' . arrtostr(array_reverse($this->Simo->jsonlabelHasil())) . ']' ?>" data-jumlah="<?= '[' . arrtostr(array_reverse($this->Simo->jsonCountHasil())) . ']' ?>"></canvas>
+												<canvas id="dailySalesChart" class="chartjs-render-monitor" style="display: block; height: 28vh; width: 100%;padding-top: 5px;" data-label="<?= '[' . arrtostr(array_reverse($this->Simo->jsonlabelHasil())) . ']' ?>" data-jumlah="<?= '[' . arrtostr(array_reverse($this->Simo->jsonCountHasil())) . ']' ?>">
+												</canvas>
 											</div>
 										</div>
 									</div>

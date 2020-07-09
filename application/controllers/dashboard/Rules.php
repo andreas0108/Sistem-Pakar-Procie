@@ -62,6 +62,8 @@ class Rules extends CI_Controller
 
 	public function ubah()
 	{
+		var_dump($_POST);
+		die;
 		$this->form_validation->set_rules('jawaban', 'Jawaban', 'required', ['required' => 'Silahkan pilih jawaban.']);
 		$this->form_validation->set_rules('komponen', 'Komponen', 'required', ['required' => 'Silahkan pilih komponen.']);
 		$this->form_validation->set_rules('status', 'Status', 'required', ['required' => 'Silahkan pilih status pertanyaan.']);

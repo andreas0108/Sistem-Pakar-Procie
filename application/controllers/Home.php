@@ -9,6 +9,7 @@ class Home extends CI_Controller
 
 		$this->load->helper('sikar');
 		$this->load->model('Sikar_model', 'Simo');
+		$this->Simo->setsqlmode('ONLY_FULL_GROUP_BY', '');
 	}
 
 	public function redirect()
@@ -27,16 +28,19 @@ class Home extends CI_Controller
 			$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 			$data['desc'] = 'Selamat datang ' . $data['user']['name'] . ' di Dashboard Aplikasi Sistem Pakar ' . $this->config->item('site_name');
 
-			$a = $this->db->query("SELECT LEFT(id,8) AS tanggal, COUNT(LEFT(id,8)) AS jumlah FROM history GROUP BY tanggal ORDER BY tanggal DESC LIMIT 2;")->result_array();
-			if ($a != null || 0) {
+			$a = $this->db->select('DATE_FORMAT(tanggal, "%Y-%m-%d") tanggal, count(hasil) jumlah')
+				->group_by('DATE_FORMAT(tanggal, "%Y-%m-%d") DESC')->limit(2)->get('history')->result_array();
+			if ($a) {
 				$b = (($a[0]['jumlah'] / $a[1]['jumlah']) - 1) * 100;
 			} else {
 				$b = 0;
 			}
 			$data['statsper'] = intval($b) . '%';
 			$data['statscnt'] = count($this->db->get_where('history', ['left(id,8)' => gmdate('Ymd', time() + 7 * 3600)])->result_array());
-			$data['history'] = $this->db->select('h.id, h.user_name, h.email, k.name as hasil')->join('komponen k', 'h.hasil = k.id')->order_by('h.id', 'DESC')->limit('4')->get('history h')->result_array();
-			$data['log'] = $this->db->select('user, keterangan, tgl_data')->order_by('tgl_data', 'DESC')->limit('4')->get('log')->result_array();
+			$data['history'] = $this->db->select('h.id, h.user_name, h.email, k.name as hasil')
+				->join('komponen k', 'h.hasil = k.id')->order_by('h.id', 'DESC')->limit('4')->get('history h')->result_array();
+			$data['log'] = $this->db->select('user, keterangan, tgl_data')
+				->order_by('tgl_data', 'DESC')->limit('4')->get('log')->result_array();
 
 			// var_dump($data['history']);
 			// var_dump($data['log']);
@@ -78,7 +82,7 @@ class Home extends CI_Controller
 	{
 		$current_id = $this->db->select('MAX(id) as id')->get('tmp_data')->row_array();
 
-		var_dump($this->session->userdata('konsul_id'));
+		// var_dump($this->session->userdata('konsul_id'));
 		// var_dump($current_id);
 		// var_dump($_POST);
 		// die;
@@ -150,7 +154,7 @@ class Home extends CI_Controller
 			$this->db->delete('tmp_data', ['konsul_id' => $this->session->userdata('konsul_id')]);
 			$this->session->set_flashdata(
 				'flashinf',
-				'Maaf untuk saat ini, data belum ada.'
+				'Mohon maaf, Processor yang cari untuk saat ini belum tersedia di database kami.'
 			);
 			redirect('konsultasi');
 		}

@@ -40,7 +40,7 @@
 				<div class="page-inner">
 					<!-- <div class="page-inner"> -->
 					<div class="page-header">
-						<h4 class="page-title"><?= strtoupper($title) ?></h4>
+						<h4 class="page-title"><?= $title ?></h4>
 						<ul class="breadcrumbs">
 							<?php $this->load->view('_parts/breadcrumb'); ?>
 						</ul>
@@ -146,7 +146,7 @@
 											<div class="row mt-3">
 												<div class="col">
 													<div class="form-group">
-														<label>Address</label>
+														<label>Alamat</label>
 														<input type="text" class="form-control" id="address" name="address" value="<?= $user['address'] ?>" placeholder="Address" required>
 													</div>
 												</div>
@@ -166,7 +166,7 @@
 												</div>
 												<div class="col">
 													<div class="form-group">
-														<label>Phone</label>
+														<label>Nomor Telepon</label>
 														<input type="text" class="form-control" id="phone" name="phone" value="<?= $user['phone'] ?>" placeholder="Phone" required>
 													</div>
 												</div>

@@ -1,0 +1,37 @@
+language: php
+
+matrix:
+  include:
+    - php: 5.4
+      dist: trusty
+    - php: 5.5
+      dist: trusty
+    - php: 5.6
+    - php: 7.0
+    - php: 7.1
+    - php: 7.2
+    - php: 7.3
+    - php: 7.4
+
+before_script:
+  - pwd
+  - export cwd=`pwd`
+  - composer self-update
+  - cd ..
+  - pwd
+  - git clone https://github.com/kenjis/ci-app-for-ci-phpunit-test.git
+  - cd ci-app-for-ci-phpunit-test
+  - rm application/tests/_ci_phpunit_test
+  - composer update
+  - mv vendor/kenjis/ci-phpunit-test vendor/kenjis/ci-phpunit-test.tmp
+  - mv "$cwd" vendor/kenjis/ci-phpunit-test
+  - php install.php
+  - git checkout -- application/tests/Bootstrap.php
+
+script:
+  - cd application/tests
+  - ../../vendor/bin/phpunit --coverage-text
+
+after_script:
+  - cd ../..
+  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/coveralls -v; fi

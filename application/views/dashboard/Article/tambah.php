@@ -40,7 +40,7 @@
 				<div class="page-inner">
 					<!-- <div class="page-inner"> -->
 					<div class="page-header">
-						<h4 class="page-title"><?= strtoupper($title) ?></h4>
+						<h4 class="page-title"><?= $title ?></h4>
 						<ul class="breadcrumbs">
 							<?php $this->load->view('_parts/breadcrumb'); ?>
 						</ul>
@@ -53,10 +53,10 @@
 								<div class="card">
 									<div class="card-body pad">
 										<div class="form-group">
-											<input type="text" name="title" class="form-control focus" placeholder="Title" required>
+											<input type="text" name="title" class="form-control focus" placeholder="Judul" required>
 										</div>
 										<div class="form-group">
-											<textarea id="isi" name="isi" class="form-control" placeholder="Start Writing"><?= $this->input->post('isi') ?></textarea>
+											<textarea id="isi" name="isi" class="form-control" placeholder="Mulai Menulis"><?= $this->input->post('isi') ?></textarea>
 										</div>
 									</div>
 								</div>

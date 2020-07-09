@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
 	<?php if ($this->uri->segment(1) != '') : ?>
-		<div class="collapse" id="search-nav">
+		<!-- <div class="collapse" id="search-nav">
 			<form class="navbar-left navbar-form nav-search mr-md-3">
 				<div class="input-group">
 					<div class="input-group-prepend">
@@ -13,15 +13,15 @@
 					<input type="text" placeholder="Search ..." class="form-control">
 				</div>
 			</form>
-		</div>
+		</div> -->
 	<?php endif ?>
 	<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 		<!-- Search Button -->
-		<li class="nav-item toggle-nav-search hidden-caret">
+		<!-- <li class="nav-item toggle-nav-search hidden-caret">
 			<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
 				<i class="fa fa-search"></i>
 			</a>
-		</li>
+		</li> -->
 		<!-- ./Search Button -->
 
 		<!-- Quick App -->

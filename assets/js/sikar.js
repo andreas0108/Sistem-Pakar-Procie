@@ -2,29 +2,29 @@
 
 // Setting Color
 
-$(window).resize(function() {
+$(window).resize(function () {
 	$(window).width();
 });
 
 $("#showTable").DataTable({
 	ordering: false,
-	autoWidth: false
+	autoWidth: false,
 });
 
-$(".useradd").on("click", function() {
+$(".useradd").on("click", function () {
 	$("#addUserModalTitle").html("Add User");
 	$(".modal-footer button[type=button]").html("Cancel");
 	$(".modal-footer button[type=submit]").show();
 	$(".modal-footer button[type=submit]").html("Add User");
 	$.ajax({
-		success: function() {
+		success: function () {
 			var blank = "";
 			$("#menu").val(blank);
-		}
+		},
 	});
 });
 
-$(".btn-config-user").on("click", function() {
+$(".btn-config-user").on("click", function () {
 	$("#addUserModalTitle").html("User Details");
 	$(".modal-footer button[type=submit]").hide();
 	$(".modal-footer button[type=submit]").hide();
@@ -38,43 +38,44 @@ $(".btn-config-user").on("click", function() {
 	$.ajax({
 		url: burl + "dashboard/user/getUser",
 		data: {
-			id: iduser
+			id: iduser,
 		},
 		method: "POST",
 		dataicon: "JSON",
-		success: function(data) {
+		success: function (data) {
 			$("#iduser").val(data[0].id);
 			$("#name").val(data[0].name);
 			$("#email").val(data[0].email);
 			$("#role_id").val(data[0].role_id);
-		}
+		},
 	});
 });
 
 // Sweet Alert Confirm
 // Forgoy Password (WIP)
-$(".forget_password").on("click", function(e) {
+$(".forget_password").on("click", function (e) {
 	Swal.fire({
 		title: "Forget my password",
 		text: "Silahkan masukan email anda",
 		input: "email",
-		confirmButtonText: "Reset Password"
+		confirmButtonText: "Reset Password",
 	});
 });
 
 // Logout
-$(".logout").on("click", function(e) {
+$(".logout").on("click", function (e) {
 	e.preventDefault();
 	const href = $(this).attr("href");
 	Swal.fire({
-		title: "Ready to Leave ?",
-		text: 'Select "Logout" below if you are ready to end your current session.',
+		title: "Akhiri Sesi ?",
+		text: "Pilih Logout untuk mengakhiri sesi.",
 		icon: "question",
 		showCancelButton: true,
 		confirmButtonColor: "#3085d6",
 		confirmButtonText: "Logout",
-		cancelButtonColor: "#d33"
-	}).then(result => {
+		cancelButtonColor: "#d33",
+		cancelButtonText: "Batal",
+	}).then((result) => {
 		if (result.value) {
 			document.location.href = href;
 		}
@@ -82,7 +83,7 @@ $(".logout").on("click", function(e) {
 });
 
 // userman
-$(".btn-remove-user").on("click", function(e) {
+$(".btn-remove-user").on("click", function (e) {
 	e.preventDefault();
 	const href = $(this).attr("href");
 	const name = $(this).data("username");
@@ -94,8 +95,8 @@ $(".btn-remove-user").on("click", function(e) {
 		confirmButtonColor: "#3085d6",
 		confirmButtonText: "Hapus",
 		cancelButtonColor: "#d33",
-		cancelButtonText: "Batal"
-	}).then(result => {
+		cancelButtonText: "Batal",
+	}).then((result) => {
 		if (result.value) {
 			document.location.href = href;
 		}
@@ -109,7 +110,7 @@ if (flashData) {
 		title: "Berhasil",
 		text: flashData,
 		icon: "success",
-		timer: 3000
+		timer: 3000,
 	});
 }
 
@@ -118,7 +119,7 @@ if (flashError) {
 	Swal.fire({
 		title: "ERROR",
 		icon: "error",
-		html: flashError
+		html: flashError,
 	});
 }
 
@@ -127,7 +128,7 @@ if (flashInfo) {
 	Swal.fire({
 		title: "Informasi",
 		icon: "info",
-		html: flashInfo
+		html: flashInfo,
 	});
 }
 
@@ -136,11 +137,11 @@ if (flashForme) {
 	Swal.fire({
 		title: "ERROR",
 		icon: "error",
-		html: flashForme
+		html: flashForme,
 	});
 }
 
-$(".btn-remove").on("click", function(e) {
+$(".btn-remove").on("click", function (e) {
 	e.preventDefault();
 	const href = $(this).attr("href");
 	const isi = $(this).data("text");
@@ -152,15 +153,15 @@ $(".btn-remove").on("click", function(e) {
 		confirmButtonColor: "#3085d6",
 		confirmButtonText: "Hapus",
 		cancelButtonColor: "#d33",
-		cancelButtonText: "Batal"
-	}).then(result => {
+		cancelButtonText: "Batal",
+	}).then((result) => {
 		if (result.value) {
 			document.location.href = href;
 		}
 	});
 });
 
-$(".btn-reset").on("click", function(e) {
+$(".btn-reset").on("click", function (e) {
 	e.preventDefault();
 	const href = $(this).attr("href");
 	Swal.fire({
@@ -173,8 +174,8 @@ $(".btn-reset").on("click", function(e) {
 		confirmButtonColor: "#3085d6",
 		confirmButtonText: "Proses",
 		cancelButtonColor: "#d33",
-		cancelButtonText: "Batal"
-	}).then(result => {
+		cancelButtonText: "Batal",
+	}).then((result) => {
 		if (result.value) {
 			document.location.href = href;
 		}
@@ -187,7 +188,7 @@ var toggle_customSidebar = false,
 if (!toggle_customSidebar) {
 	var toggle = $(".custom-template .custom-toggle");
 
-	toggle.on("click", function() {
+	toggle.on("click", function () {
 		if (custom_open == 1) {
 			$(".custom-template").removeClass("open");
 			toggle.removeClass("toggled");
@@ -217,19 +218,13 @@ function check() {
 
 	if (emailb.value != "" && password2.value != "") {
 		if (password1.value != password2.value && cpassword.value != "") {
-			$("#submita")
-				.removeClass("animated fadeIn")
-				.addClass("animated fadeOut");
+			$("#submita").removeClass("animated fadeIn").addClass("animated fadeOut");
 		} else {
-			$("#submita")
-				.removeClass("animated fadeOut")
-				.addClass("animated fadeIn");
+			$("#submita").removeClass("animated fadeOut").addClass("animated fadeIn");
 			bta.hidden = false;
 		}
 	} else {
-		$("#submita")
-			.removeClass("animated fadeIn")
-			.addClass("animated fadeOut");
+		$("#submita").removeClass("animated fadeIn").addClass("animated fadeOut");
 	}
 }
 
@@ -245,7 +240,6 @@ var dailySalesChart = document
 var myDailySalesChart = new Chart(dailySalesChart, {
 	type: "line",
 	data: {
-		// labels: ["January",	"February",	"March", "April", "May", "June", "July", "August", "September"],
 		labels: label,
 		datasets: [
 			{
@@ -265,18 +259,17 @@ var myDailySalesChart = new Chart(dailySalesChart, {
 				pointHoverBorderWidth: 1,
 				pointRadius: 1,
 				pointHitRadius: 5,
-				// data: [65, 59, 80, 81, 56, 55, 40, 35, 30]
-				data: jumlah
-			}
-		]
+				data: jumlah,
+			},
+		],
 	},
 	options: {
 		maintainAspectRatio: !1,
 		legend: {
-			display: !1
+			display: !1,
 		},
 		animation: {
-			easing: "easeInOutBack"
+			easing: "easeInOutBack",
 		},
 		scales: {
 			yAxes: [
@@ -287,27 +280,27 @@ var myDailySalesChart = new Chart(dailySalesChart, {
 						fontStyle: "bold",
 						beginAtZero: !0,
 						maxTicksLimit: 10,
-						padding: 0
+						padding: 0,
 					},
 					gridLines: {
 						drawTicks: !1,
-						display: !1
-					}
-				}
+						display: !1,
+					},
+				},
 			],
 			xAxes: [
 				{
 					display: !1,
 					gridLines: {
-						zeroLineColor: "transparent"
+						zeroLineColor: "transparent",
 					},
 					ticks: {
 						padding: -20,
 						fontColor: "rgba(255,255,255,0.2)",
-						fontStyle: "bold"
-					}
-				}
-			]
-		}
-	}
+						fontStyle: "bold",
+					},
+				},
+			],
+		},
+	},
 });

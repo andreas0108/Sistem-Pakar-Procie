@@ -43,9 +43,9 @@
 						<div class="col-md-12">
 							<div class="tab-content mb-3" id="pills-tabContent">
 								<div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
-								<button type="button" href="<?= base_url('dashboard/system/reset') ?>" class="btn btn-sm btn-danger float-right btn-reset">Reset System</button>
+									<button type="button" href="<?= base_url('dashboard/system/reset') ?>" class="btn btn-sm btn-danger float-right btn-reset">Reset System</button>
 									<div class="page-header">
-										<h4 class="page-title"><?= strtoupper($title) ?></h4>
+										<h4 class="page-title"><?= $title ?></h4>
 										<ul class="breadcrumbs">
 											<?php $this->load->view('_parts/breadcrumb'); ?>
 										</ul>

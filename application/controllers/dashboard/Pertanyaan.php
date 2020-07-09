@@ -11,7 +11,7 @@ class Pertanyaan extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = 'Pertanyaan';
+		$data['title'] = 'Daftar Pertanyaan';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
 		$data['pert'] = $this->db->get('pertanyaan')->result_array();

@@ -10,7 +10,7 @@
         var myMultipleLineChart = new Chart(multipleLineChart, {
             type: 'line',
             data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                labels: [<?= $label ?>],
                 datasets: [{
                     label: "Intel",
                     borderColor: "#1d7af3",
@@ -23,7 +23,7 @@
                     backgroundColor: 'transparent',
                     fill: true,
                     borderWidth: 2,
-                    data: [30, 45, 45, 68, 69, 90, 100, 158, 177, 200, 245, 256]
+                    data: [<?= $intel['stats'] ?>]
                 }, {
                     label: "AMD",
                     borderColor: "#f3545d",
@@ -36,7 +36,7 @@
                     backgroundColor: 'transparent',
                     fill: true,
                     borderWidth: 2,
-                    data: [10, 30, 58, 79, 90, 105, 117, 160, 185, 210, 185, 194]
+                    data: [<?= $amd['stats'] ?>]
                 }]
             },
             options: {

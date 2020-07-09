@@ -46,7 +46,7 @@
                                 <div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
                                     <a href="<?= base_url('dashboard/history') ?>" class="btn btn-sm btn-primary float-right"><i class="fas fa-arrow-alt-circle-left mr-1"></i> History</a>
                                     <div class="page-header">
-                                        <h4 class="page-title"><?= strtoupper($title) ?></h4>
+                                        <h4 class="page-title"><?= $title ?></h4>
                                         <ul class="breadcrumbs">
                                             <?php $this->load->view('_parts/breadcrumb'); ?>
                                         </ul>
@@ -81,7 +81,7 @@
                                                             <tbody>
                                                                 <?php
                                                                 $i = 1;
-                                                                foreach ($intel as $intel) {
+                                                                foreach ($intel['data'] as $intel) {
                                                                 ?>
                                                                     <tr>
                                                                         <td scope="row"><?= $i++ ?></td>
@@ -113,7 +113,7 @@
                                                             <tbody>
                                                                 <?php
                                                                 $i = 1;
-                                                                foreach ($amd as $amd) {
+                                                                foreach ($amd['data'] as $amd) {
                                                                 ?>
                                                                     <tr>
                                                                         <td scope="row"><?= $i++ ?></td>

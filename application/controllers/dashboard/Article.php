@@ -13,7 +13,7 @@ class Article extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = 'Article';
+		$data['title'] = 'Daftar Artikel';
 
 		$data['user'] = $this->db->get_where('user', [
 			'email' => $this->session->userdata('email')
@@ -36,7 +36,7 @@ class Article extends CI_Controller
 
 	public function tambah()
 	{
-		$data['title'] = 'Tambah Article';
+		$data['title'] = 'Tambah Artikel';
 
 		$data['user'] = $this->db->get_where('user', [
 			'email' => $this->session->userdata('email')
@@ -94,7 +94,7 @@ class Article extends CI_Controller
 
 	public function ubah($id)
 	{
-		$data['title'] = 'Ubah Article';
+		$data['title'] = 'Ubah Artikel';
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 

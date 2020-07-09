@@ -146,11 +146,11 @@ function generateDateID($tab, $col = 'id')
 	return $hasil;
 }
 
-function arrtostr($arr, $sep = ', ')
+function arrtostr($arr, $sep = ', ', $mkp = '')
 {
 	$str = '';
 	foreach ($arr as $val) {
-		$str .= implode($sep, $val);
+		$str .= $mkp . implode($sep, $val) . $mkp;
 		$str .= $sep; // add separator between sub-arrays
 	}
 	$str = rtrim($str, $sep); // remove last separator

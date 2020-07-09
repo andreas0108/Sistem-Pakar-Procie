@@ -40,7 +40,7 @@
 				<div class="page-navs bg-white">
 					<div class="nav-scroller">
 						<div class="nav nav-tabs nav-line nav-color-primary d-flex align-items-center justify-contents-center w-100">
-							<a class="nav-link active show" data-toggle="tab" href="#article">Article
+							<a class="nav-link active show" data-toggle="tab" href="#article">Artikel
 								<span class="count ml-1">(<?= count($artip) ?>)</span>
 							</a>
 							<a class="nav-link mr-5" data-toggle="tab" href="#draft">Draft
@@ -66,7 +66,7 @@
 										<a href="<?= base_url('dashboard/article/tambah') ?>" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-info" href="">Tambah Artikel</button></a>
 									</div>
 									<div class="page-header">
-										<h4 class="page-title">Article List</h4>
+										<h4 class="page-title">Daftar Artikel</h4>
 									</div>
 									<div class="card">
 										<div class="card-body">
@@ -75,7 +75,7 @@
 													<thead>
 														<tr class="text-center">
 															<th scope="col" style="width:5%">#</th>
-															<th scope="col">Article</th>
+															<th scope="col">Judul Artikel</th>
 															<th scope="col" style="width: 25%">Tanggal Terbit</th>
 															<th scope="col" style="width: 5%"></th>
 														</tr>

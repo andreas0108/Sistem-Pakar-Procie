@@ -49,7 +49,7 @@
 				method: 'POST',
 				dataType: 'JSON',
 				success: function(data) {
-					$('#modalRulesTitle').html('Ubah Rules ' + data.id);
+					$('#modalRulesPTitle').html('Ubah Rules Pertanyaan ' + data.jawaban_id);
 					$('#idRulesp').val(data.id);
 					$('#rulesjid').val(data.jawaban_id).trigger('change');
 					$('#rulespid').val(data.next_pertanyaan).trigger('change');
@@ -59,11 +59,11 @@
 
 
 		// Rules Jawaban
-		$('#tambahRules').on('click', function() {
-			$('#modalRulesTitle').html('Tambah Rules');
+		$('.tambahRules').on('click', function() {
+			$('#modalRulesTitle').html('Tambah Rules Hasil');
 			$('.modal-content form').attr('action', '<?= base_url('dashboard/rules') ?>');
-			$('.jawaban').hide();
 			$('.jawabans').show();
+			$('.jawaban').hide();
 			$.ajax({
 				success: function() {
 					var blank = '';
@@ -90,10 +90,10 @@
 				method: 'POST',
 				dataType: 'JSON',
 				success: function(data) {
-					$('#modalRulesTitle').html('Ubah Rules ' + data.id);
+					$('#modalRulesTitle').html('Ubah Rules Hasil ' + data.id);
 					$('#idRules').val(data.id);
 					$('#jawaban').val(data.jawaban_id).trigger('change');
-					$('#komponen').val(data.komponen_id);
+					$('#komponen').val(data.komponen_id).trigger('change');
 					$('#status').val(data.status);
 				}
 			})

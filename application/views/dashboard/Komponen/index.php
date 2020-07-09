@@ -42,7 +42,7 @@
 					<!-- <div class="page-inner"> -->
 					<a href="<?= base_url('dashboard/komponen/tambah') ?>" class="btn btn-sm btn-info float-right">Tambah Komponen</a>
 					<div class="page-header">
-						<h4 class="page-title"><?= strtoupper($title) ?></h4>
+						<h4 class="page-title">Daftar <?= $title ?></h4>
 						<ul class="breadcrumbs">
 							<?php $this->load->view('_parts/breadcrumb'); ?>
 						</ul>
