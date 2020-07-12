@@ -11,7 +11,13 @@
 				<div class="info">
 					<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 						<span>
-							<?= $user['name'] ?>
+							<?php
+							if (strlen($user['name']) >= 14) {
+								echo substr($user['name'], 0, 14) . '...';
+							} else {
+								echo $user['name'];
+							}
+							?>
 							<span class="user-level">Administrator</span>
 							<span class="caret"></span>
 						</span>
@@ -39,20 +45,20 @@
 				<h4 class="text-section">Home</h4>
 			</li>
 			<?php if ($this->session->userdata('email')) : ?>
-				<li class="nav-item <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+				<li class="nav-item <?= strtolower($this->uri->segment(1)) == '' ? 'active' : '' ?>">
 					<a href="<?= base_url() ?>">
 						<i class="fas fa-tachometer-alt"></i>
 						<p>Dashboard</p>
 					</a>
 				</li>
-				<li class="nav-item <?= $this->uri->segment(2) == 'user' ? 'active' : '' ?>">
+				<li class="nav-item <?= strtolower($this->uri->segment(2)) == 'user' ? 'active' : '' ?>">
 					<a href="<?= base_url('dashboard/user') ?>">
 						<i class="fas fa-user"></i>
 						<p>User</p>
 					</a>
 				</li>
 			<?php else : ?>
-				<li class="nav-item <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+				<li class="nav-item <?= strtolower($this->uri->segment(1)) == '' ? 'active' : '' ?>">
 					<a href="<?= base_url() ?>">
 						<i class="fas fa-home"></i>
 						<p>Home</p>
@@ -66,19 +72,19 @@
 				</span>
 				<h4 class="text-section">Sistem Pakar</h4>
 			</li>
-			<li class="nav-item <?= $this->uri->segment(1) == 'konsultasi' ? 'active' : '' ?>">
+			<li class="nav-item <?= strtolower($this->uri->segment(1)) == 'konsultasi' ? 'active' : '' ?>">
 				<a href="<?= base_url('konsultasi') ?>">
 					<i class="fas fa-project-diagram"></i>
 					<p>Konsultasi</p>
 				</a>
 			</li>
-			<li class="nav-item <?= $this->uri->segment(1) == 'blog' ? 'active' : '' ?>">
+			<li class="nav-item <?= strtolower($this->uri->segment(1)) == 'blog' ? 'active' : '' ?>">
 				<a href="<?= base_url('blog') ?>">
 					<i class="fas fa-book"></i>
 					<p>Blog</p>
 				</a>
 			</li>
-			<li class="nav-item <?= $this->uri->segment(1) == 'about' ? 'active' : '' ?>">
+			<li class="nav-item <?= strtolower($this->uri->segment(1)) == 'about' ? 'active' : '' ?>">
 				<a href="<?= base_url('about') ?>">
 					<i class="fas fa-question"></i>
 					<p>Tentang</p>
@@ -99,7 +105,7 @@
 
 					foreach ($submenu as $sm) : ?>
 
-						<li class="nav-item <?= $this->uri->segment(2) == strtolower($sm['title']) ? 'active' : '' ?>">
+						<li class="nav-item <?= strtolower($this->uri->segment(2)) == strtolower($sm['title']) ? 'active' : '' ?>">
 							<a href="<?= base_url() . $sm['url'] ?>">
 								<i class="<?= $sm['icon'] ?>"></i>
 								<p><?= $sm['title'] ?></p>
@@ -107,7 +113,7 @@
 						</li>
 					<?php endforeach ?>
 				<?php endforeach ?>
-				<li class="nav-item <?= $this->uri->segment(2) == 'log' ? 'active' : '' ?>">
+				<li class="nav-item <?= strtolower($this->uri->segment(2)) == 'log' ? 'active' : '' ?>">
 					<a href="<?= base_url('dashboard/log') ?>">
 						<i class="fas fa-server"></i>
 						<p>System Logs</p>

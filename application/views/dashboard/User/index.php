@@ -173,7 +173,7 @@
 											</div>
 											<div class="float-right mt-3 mb-0">
 												<input type="hidden" name="id" value="<?= $user['id'] ?>">
-												<button type="submit" class="btn btn-primary"><i class="fa fa-save"> Save</i></button>
+												<button type="submit" class="btn btn-primary"><i class="fa fa-save"> Simpan</i></button>
 											</div>
 										</form>
 									</div>
@@ -197,7 +197,7 @@
 														</div>
 													</div>
 													<input type="hidden" name="id" value="<?= $user['id'] ?>">
-													<button type="submit" class="btn btn-primary float-right"><i class="fa fa-save"> Save</i></button>
+													<button type="submit" class="btn btn-primary float-right"><i class="fa fa-save"> Simpan</i></button>
 												</form>
 											</div>
 										</div>

@@ -55,10 +55,10 @@
 					</div>
 				</div>
 				<div class="page-inner">
-					<div class="tab-content mb-3" id="pills-tabContent">
+					<div class="tab-content mb-3">
 						<div class="tab-pane fade show active" id="pertanyaan" role="tabpanel" aria-labelledby="pills-Rules-tab-nobd">
 							<!-- <div class="page-inner"> -->
-							<button type="button" href="javascript:void(0)" class="btn btn-sm btn-info float-right" id="tambahRulesP" data-toggle="modal" data-target="#modalRulesP">Tambah Rules</button>
+							<button type="button" href="javascript:void(0)" class="btn btn-sm btn-info float-right" id="tambahRulesP" data-toggle="modal" data-target="#modalRulesP" title="Tambah Rules Pertanyaan"><i class="fas fa-fw fa-plus-circle mr-1"></i>Tambah Rules</button>
 							<div class="page-header">
 								<h4 class="page-title"><?= $title ?> Pertanyaan</h4>
 							</div>
@@ -87,7 +87,7 @@
 														<td class="text-center">
 															<div class="btn-group" role="group" aria-label="Basic example">
 																<a href="#" title="ubah jawaban" data-id="<?= $r['rid'] ?>" type="button" class="btn btn-sm btn-info ubahRulesP" data-toggle="modal" data-target="#modalRulesP"><i style="color: white" class="fa fa-pen"></i></a>
-																<a href="<?= base_url('dashboard/rules/hapusP/') . $r['rid']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Pertanyaan"><i style="color: white" class="fa fa-trash"></i></a>
+																<a href="<?= base_url('dashboard/rules/hapusP/') . $r['rid']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Rules Pertanyaan"><i style="color: white" class="fa fa-trash"></i></a>
 															</div>
 														</td>
 													</tr>
@@ -100,7 +100,7 @@
 						</div>
 						<div class="tab-pane fade" id="hasil" role="tabpanel" aria-labelledby="pills-Pengetahuan-tab-nobd">
 							<!-- <div class="page-inner"> -->
-							<button type="button" href="javascript:void(0)" class="btn btn-sm btn-info float-right tambahRules" id="tambahRules" data-toggle="modal" data-target="#modalRules">Tambah Rules</button>
+							<button type="button" href="javascript:void(0)" class="btn btn-sm btn-info float-right tambahRules" id="tambahRules" data-toggle="modal" data-target="#modalRules" title="Tambah Rules Hasil"><i class="fas fa-fw fa-plus-circle mr-1"></i>Tambah Rules</button>
 							<div class="page-header">
 								<h4 class="page-title"><?= $title ?> Hasil</h4>
 							</div>
@@ -134,7 +134,7 @@
 															<td class="text-center">
 																<div class="btn-group" role="group" aria-label="Basic example">
 																	<a href="#" title="ubah jawaban" data-id="<?= $s2['id'] ?>" type="button" class="btn btn-sm btn-info ubahRules" data-toggle="modal" data-target="#modalRules"><i style="color: white" class="fa fa-pen"></i></a>
-																	<a href="<?= base_url('dashboard/rules/hapus/') . $s2['id']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Pertanyaan"><i style="color: white" class="fa fa-trash"></i></a>
+																	<a href="<?= base_url('dashboard/rules/hapus/') . $s2['id']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Rules Hasil"><i style="color: white" class="fa fa-trash"></i></a>
 																</div>
 															</td>
 													</tr>

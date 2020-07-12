@@ -44,11 +44,8 @@ class Home extends CI_Controller
 
 			$this->load->view('Home/index', $data);
 		} else {
-			$data['title'] = 'Landing';
+			$data['title'] = 'PROCIE';
 			$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-			// var_dump($data['user']);
-			// die;
 
 			$this->load->view('index', $data);
 		}

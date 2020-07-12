@@ -39,7 +39,7 @@
 			<div class="container">
 				<div class="page-inner">
 					<!-- <div class="page-inner"> -->
-					<button href="javascript:void(0)" class="btn btn-sm btn-info float-right" id="tambahPertanyaan" data-toggle="modal" data-target="#modalPertanyaan">Tambah Pertanyaan</button>
+					<button href="javascript:void(0)" class="btn btn-sm btn-info float-right" id="tambahPertanyaan" data-toggle="modal" data-target="#modalPertanyaan"><i class="fas fa-fw fa-plus-circle mr-1"></i>Tambah Pertanyaan</button>
 					<div class="page-header">
 						<h4 class="page-title"><?= $title ?></h4>
 						<ul class="breadcrumbs">

@@ -18,7 +18,7 @@ class Komponen extends CI_Controller
 		$this->db->select('k.id, km.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.date_added as ditambahkan, k.core, k.thread, k.base, k.boost, k.socket');
 		$this->db->join('komponen_kategori kk', 'k.kategori = kk.id');
 		$this->db->join('komponen_manufacture km', 'k.manufacture = km.id');
-		$this->db->order_by('ditambahkan DESC');
+		$this->db->order_by('k.price');
 		$data['kompo'] = $this->db->get('komponen k')->result_array();
 
 		// var_dump($x);

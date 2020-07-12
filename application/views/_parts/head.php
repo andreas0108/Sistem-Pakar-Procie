@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<?php if ($this->uri->segment(1) == '') : ?>
+<?php if ($this->uri->segment(1) == '') { ?>
 	<title><?= ucfirst($title); ?></title>
-<?php else : ?>
+<?php } else { ?>
 	<title><?= ucfirst($title) . ' - ' . $this->config->item('site_name'); ?></title>
-<?php endif ?>
+<?php } ?>
 
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 <link rel="icon" href="<?= base_url('assets/') ?>img/icon.ico" type="image/x-icon" />

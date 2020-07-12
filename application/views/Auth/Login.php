@@ -26,7 +26,7 @@
 					</div>
 					<div class="form-group mt-0">
 						<label for="password" class="placeholder">Password</label>
-						<a href="javascript:void(0)" class="link float-right">Lupa Password ?</a>
+						<!-- <a href="javascript:void(0)" class="link float-right">Lupa Password ?</a> -->
 						<div class="input-icon">
 							<input id="password" name="password" type="password" class="form-control mt-1" required>
 							<span class="show-password input-icon-addon">

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Part of ci-phpunit-test
  *
@@ -9,17 +10,18 @@
  */
 
 // Support PHPUnit 6.0
-if (! class_exists('PHPUnit_Framework_TestCase'))
-{
-	class_alias('PHPUnit\Framework\TestCase', 'PHPUnit_Framework_TestCase');
-}
+// if (!class_exists('PHPUnit_Framework_TestCase')) {
+// 	class_alias('PHPUnit\Framework\TestCase', 'PHPUnit_Framework_TestCase');
+// }
+
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property CIPHPUnitTestRequest    $request
  * @property CIPHPUnitTestDouble     $double
  * @property CIPHPUnitTestReflection $reflection
  */
-class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
+class CIPHPUnitTestCase extends TestCase
 {
 	protected $_error_reporting = -1;
 
@@ -63,8 +65,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	public function __get($name)
 	{
-		if (isset($this->class_map[$name]))
-		{
+		if (isset($this->class_map[$name])) {
 			$this->$name = new $this->class_map[$name]($this);
 			return $this->$name;
 		}
@@ -72,7 +73,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		throw new LogicException('No such property: ' . $name);
 	}
 
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass(): void
 	{
 		// Fix CLI args, because you may set invalid URI characters
 		// For example, when you run tests on NetBeans
@@ -85,7 +86,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		chdir(FCPATH);
 	}
 
-	public static function tearDownAfterClass()
+	public static function tearDownAfterClass(): void
 	{
 		CIPHPUnitTestDbConnectionStore::destory();
 	}
@@ -99,17 +100,15 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	{
 		reset_instance();
 		CIPHPUnitTest::createCodeIgniterInstance($use_my_controller);
-		$this->CI =& get_instance();
+		$this->CI = &get_instance();
 	}
 
-	protected function tearDown()
+	protected function tearDown(): void
 	{
 		$this->disableStrictErrorCheck();
 
-		if (class_exists('MonkeyPatch', false))
-		{
-			if (MonkeyPatchManager::isEnabled('FunctionPatcher'))
-			{
+		if (class_exists('MonkeyPatch', false)) {
+			if (MonkeyPatchManager::isEnabled('FunctionPatcher')) {
 				try {
 					MonkeyPatch::verifyFunctionInvocations();
 				} catch (Exception $e) {
@@ -120,13 +119,11 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 				MonkeyPatch::resetFunctions();
 			}
 
-			if (MonkeyPatchManager::isEnabled('ConstantPatcher'))
-			{
+			if (MonkeyPatchManager::isEnabled('ConstantPatcher')) {
 				MonkeyPatch::resetConstants();
 			}
 
-			if (MonkeyPatchManager::isEnabled('MethodPatcher'))
-			{
+			if (MonkeyPatchManager::isEnabled('MethodPatcher')) {
 				try {
 					MonkeyPatch::verifyMethodInvocations();
 				} catch (Exception $e) {
@@ -245,7 +242,10 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	public function verifyInvokedMultipleTimes($mock, $method, $times, $params = null)
 	{
 		$this->double->verifyInvokedMultipleTimes(
-			$mock, $method, $times, $params
+			$mock,
+			$method,
+			$times,
+			$params
 		);
 	}
 
@@ -322,11 +322,10 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 */
 	public function assertResponseHeader($name, $value)
 	{
-		$CI =& get_instance();
+		$CI = &get_instance();
 		$actual = $CI->output->get_header($name);
 
-		if ($actual === null)
-		{
+		if ($actual === null) {
 			$this->fail("The '$name' header is not set.\nNote that `assertResponseHeader()` can only assert headers set by `\$this->output->set_header()`");
 		}
 
@@ -346,21 +345,18 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 */
 	public function assertResponseCookie($name, $value, $allow_duplicate = false)
 	{
-		$CI =& get_instance();
+		$CI = &get_instance();
 		$cookies = isset($CI->output->_cookies[$name])
 			? $CI->output->_cookies[$name] : null;
 
-		if ($cookies === null)
-		{
+		if ($cookies === null) {
 			$this->fail("The cookie '$name' is not set.\nNote that `assertResponseCookie()` can only assert cookies set by `\$this->input->set_cookie()`");
 		}
 
 		$count = count($cookies);
-		if ($count > 1 && ! $allow_duplicate)
-		{
+		if ($count > 1 && !$allow_duplicate) {
 			$values = [];
-			foreach ($cookies as $key => $val)
-			{
+			foreach ($cookies as $key => $val) {
 				$values[] = "'{$val['value']}'";
 			}
 			$values = implode(' and ', $values);
@@ -369,8 +365,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 		// Get the last cookie
 		$cookie = $cookies[$count - 1];
-		if (is_string($value))
-		{
+		if (is_string($value)) {
 			$this->assertEquals(
 				$value,
 				$cookie['value'],
@@ -383,14 +378,12 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		if (
 			$value instanceof PHPUnit_Framework_Constraint_IsAnything
 			|| $value instanceof PHPUnit\Framework\Constraint\IsAnything
-		)
-		{
+		) {
 			$this->assertTrue(true);
 			return;
 		}
 
-		foreach ($value as $key => $val)
-		{
+		foreach ($value as $key => $val) {
 			$this->assertEquals(
 				$value[$key],
 				$cookie[$key],
@@ -409,19 +402,16 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	{
 		$status = $this->request->getStatus();
 
-		if ($status['redirect'] === null)
-		{
+		if ($status['redirect'] === null) {
 			$this->fail('redirect() is not called.');
 		}
 
-		if (! function_exists('site_url'))
-		{
-			$CI =& get_instance();
+		if (!function_exists('site_url')) {
+			$CI = &get_instance();
 			$CI->load->helper('url');
 		}
 
-		if (! preg_match('#^(\w+:)?//#i', $uri))
-		{
+		if (!preg_match('#^(\w+:)?//#i', $uri)) {
 			$uri = site_url($uri);
 		}
 		$absolute_url = $uri;
@@ -433,8 +423,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 			'URL to redirect is not ' . $expected . ' but ' . $status['redirect'] . '.'
 		);
 
-		if ($code !== null)
-		{
+		if ($code !== null) {
 			$this->assertSame(
 				$code,
 				$status['code'],

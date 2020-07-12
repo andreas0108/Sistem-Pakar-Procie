@@ -39,7 +39,7 @@
 			<div class="container">
 				<div class="page-inner">
 					<!-- <div class="page-inner"> -->
-					<button type="button" href="javascript:void(0)" class="btn btn-sm btn-info float-right" id="tambahJawaban" data-toggle="modal" data-target="#modalJawaban">Tambah Jawaban</button>
+					<button type="button" href="javascript:void(0)" class="btn btn-sm btn-info float-right" id="tambahJawaban" data-toggle="modal" data-target="#modalJawaban"><i class="fas fa-fw fa-plus-circle mr-1"></i>Tambah Jawaban</button>
 					<div class="page-header">
 						<h4 class="page-title"><?= $title ?></h4>
 						<ul class="breadcrumbs">
@@ -84,7 +84,7 @@
 													<td>
 														<div class="btn-group" role="group" aria-label="Basic example">
 															<a href="#" title="ubah jawaban" data-id="<?= $s2['id'] ?>" type="button" class="btn btn-sm btn-info ubahJawaban" data-toggle="modal" data-target="#modalJawaban"><i style="color: white" class="fa fa-pen"></i></a>
-															<a href="<?= base_url('dashboard/jawaban/hapus/') . $s2['id']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Pertanyaan"><i style="color: white" class="fa fa-trash"></i></a>
+															<a href="<?= base_url('dashboard/jawaban/hapus/') . $s2['id']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Jawaban"><i style="color: white" class="fa fa-trash"></i></a>
 														</div>
 													</td>
 											</tr>
@@ -160,7 +160,7 @@
 
 						<div class="form-group float-right">
 							<input type="hidden" name="id" id="idJawaban" value="">
-							<button type="reset" class="btn btn-sm btn-secondary btnReset">Reset</button>
+							<button type="reset" class="btn btn-sm btn-secondary btnReset" id="btnReset">Reset</button>
 							<button type="submit" class="btn btn-sm btn-primary">Simpan</button>
 						</div>
 					</div>

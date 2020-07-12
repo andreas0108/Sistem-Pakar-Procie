@@ -62,8 +62,8 @@
 							<div class="tab-content mb-3" id="pills-tabContent">
 								<div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-article-tab-nobd">
 									<div class="float-right">
-										<a type="button" href="<?= base_url('dashboard/article/hapus_semua') ?>" class="btn btn-sm btn-danger btn-remove" data-text="Semua artikel">Hapus Semua</a>
-										<a href="<?= base_url('dashboard/article/tambah') ?>" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-info" href="">Tambah Artikel</button></a>
+										<a type="button" href="<?= base_url('dashboard/article/hapus_semua') ?>" class="btn btn-sm btn-danger btn-remove" data-text="Semua artikel"><i class="fas fa-fw fa-trash mr-1"></i>Hapus Semua</a>
+										<a href="<?= base_url('dashboard/article/tambah') ?>" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-info" href=""><i class="fas fa-fw fa-plus-circle mr-1"></i>Tambah Artikel</button></a>
 									</div>
 									<div class="page-header">
 										<h4 class="page-title">Daftar Artikel</h4>
@@ -111,7 +111,7 @@
 								</div>
 								<div class="tab-pane fade" id="draft" role="tabpanel" aria-labelledby="pills-draft-tab-nobd">
 									<div class="page-header">
-										<h4 class="page-title">Draft List</h4>
+										<h4 class="page-title">Daftar Draft Artikel</h4>
 									</div>
 									<div class="card">
 										<div class="card-body">

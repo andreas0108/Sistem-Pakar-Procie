@@ -24,14 +24,13 @@ class Rules extends CI_Controller
 		$data['rulesd'] = $this->Rumo->rulesd();
 
 		$this->form_validation->set_rules('komponen', 'Komponen', 'required', ['required' => 'Silahkan pilih komponen.']);
-		$this->form_validation->set_rules('status', 'Status', 'required', ['required' => 'Silahkan pilih status pertanyaan.']);
 		if ($this->form_validation->run() === false) {
 			$this->load->view('Dashboard/Rules/index', $data);
 		} else {
 			$id = generateID('rules', 'id', 'R');
 			$kid = htmlspecialchars($this->input->post('komponen', true));
 			$jw = $this->input->post('jawabans', true);
-			$sts = htmlspecialchars($this->input->post('status', true));
+			$sts = 1;
 			$a = '';
 
 			foreach ($jw as $j) {
@@ -66,7 +65,6 @@ class Rules extends CI_Controller
 		die;
 		$this->form_validation->set_rules('jawaban', 'Jawaban', 'required', ['required' => 'Silahkan pilih jawaban.']);
 		$this->form_validation->set_rules('komponen', 'Komponen', 'required', ['required' => 'Silahkan pilih komponen.']);
-		$this->form_validation->set_rules('status', 'Status', 'required', ['required' => 'Silahkan pilih status pertanyaan.']);
 		if ($this->form_validation->run() === false) {
 			$this->session->set_flashdata(
 				'flasherr',
@@ -81,7 +79,7 @@ class Rules extends CI_Controller
 			$this->db->update('rules', [
 				'komponen_id' => htmlspecialchars($this->input->post('komponen', true)),
 				'jawaban_id' => htmlspecialchars($this->input->post('jawaban', true)),
-				'status' => htmlspecialchars($this->input->post('status', true))
+				'status' => 1
 			]);
 			logs('Ubah Rule', $this->input->post('id'));
 			$this->session->set_flashdata(

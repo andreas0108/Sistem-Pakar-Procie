@@ -40,7 +40,7 @@
 				<div class="page-inner">
 					<!-- Content -->
 					<!-- <div class="page-inner"> -->
-					<a href="<?= base_url('dashboard/komponen/tambah') ?>" class="btn btn-sm btn-info float-right">Tambah Komponen</a>
+					<a href="<?= base_url('dashboard/komponen/tambah') ?>" class="btn btn-sm btn-info float-right"><i class="fas fa-fw fa-plus-circle mr-1"></i>Tambah Komponen</a>
 					<div class="page-header">
 						<h4 class="page-title">Daftar <?= $title ?></h4>
 						<ul class="breadcrumbs">

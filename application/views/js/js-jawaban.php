@@ -3,7 +3,8 @@
 		$('.single').select2({
 			tagClass: 'badge-primary',
 			theme: "bootstrap",
-			minimumResultsForSearch: Infinity
+			minimumResultsForSearch: Infinity,
+			allowClear: true
 		});
 
 		$('#modalJawaban').modal({
@@ -12,9 +13,8 @@
 			backdrop: 'static'
 		});
 
-		$('.btnReset').on('clikc', function() {
-			var blank = '';
-			$('#jawabanInput').html('');
+		$('#btnReset').on('click', function() {
+			$('#jawabanInput').tagsinput('removeAll');
 		});
 
 		$('#tambahJawaban').on('click', function() {
@@ -60,6 +60,7 @@
 		});
 
 		$('#jawabanInput').tagsinput({
+			allowClear: true,
 			tagClass: 'badge-primary'
 		});
 	});

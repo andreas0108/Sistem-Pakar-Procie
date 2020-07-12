@@ -94,9 +94,25 @@
 									<img src="<?= base_url('assets/img/profile/') . $user['img'] ?>" alt=" image profile" class="avatar-img rounded">
 								</div>
 								<div class="u-text">
-									<h4><?= $user['name'] ?></h4>
+									<h4>
+										<?php
+										if (strlen($user['name']) >= 14) {
+											echo substr($user['name'], 0, 14) . '...';
+										} else {
+											echo $user['name'];
+										}
+										?>
+									</h4>
 									<p class="text-muted">
-										<a href="mailto:<?= $user['email'] ?>"><?= substr($user['email'], 0, 15) . '...' ?></a>
+										<a href="mailto:<?= $user['email'] ?>">
+											<?php
+											if (strlen($user['name']) >= 15) {
+												echo substr($user['email'], 0, 15) . '...';
+											} else {
+												echo $user['email'];
+											}
+											?>
+										</a>
 									</p>
 									<a href="<?= base_url('dashboard/user') ?>" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
 								</div>
