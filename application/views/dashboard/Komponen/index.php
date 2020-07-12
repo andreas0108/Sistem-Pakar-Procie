@@ -40,7 +40,7 @@
 				<div class="page-inner">
 					<!-- Content -->
 					<!-- <div class="page-inner"> -->
-					<a href="<?= base_url('dashboard/komponen/tambah') ?>" class="btn btn-sm btn-info float-right"><i class="fas fa-fw fa-plus-circle mr-1"></i>Tambah Komponen</a>
+					<a href="<?= base_url('Dashboard/Komponen/tambah') ?>" class="btn btn-sm btn-info float-right"><i class="fas fa-fw fa-plus-circle mr-1"></i>Tambah Komponen</a>
 					<div class="page-header">
 						<h4 class="page-title">Daftar <?= $title ?></h4>
 						<ul class="breadcrumbs">
@@ -91,9 +91,9 @@
 												</td>
 												<td>
 													<div class="btn-group float-right" role="group" aria-label="Basic example">
-														<a href="<?= base_url('dashboard/komponen/ubah/') . $k['id']; ?>" title="update komponen" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
-														<a href="<?= base_url('dashboard/komponen/tampil/') . $k['slug']; ?>" title="lihat komponen" type="button" class="btn btn-sm btn-success" target="_blank"><i style="color: white" class="fa fa-eye"></i></a>
-														<a href="<?= base_url('dashboard/komponen/hapus/') . $k['id']; ?>" title="hapus komponen" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Komponen"><i style="color: white" class="fa fa-trash"></i></a>
+														<a href="<?= base_url('Dashboard/Komponen/ubah/') . $k['id']; ?>" title="update komponen" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
+														<a href="<?= base_url('Dashboard/Komponen/tampil/') . $k['slug']; ?>" title="lihat komponen" type="button" class="btn btn-sm btn-success" target="_blank"><i style="color: white" class="fa fa-eye"></i></a>
+														<a href="<?= base_url('Dashboard/Komponen/hapus/') . $k['id']; ?>" title="hapus komponen" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Komponen"><i style="color: white" class="fa fa-trash"></i></a>
 													</div>
 												</td>
 											</tr>

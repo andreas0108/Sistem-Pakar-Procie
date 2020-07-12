@@ -73,7 +73,7 @@
 												<td>
 													<div class="btn-group float-right" role="group" aria-label="Basic example">
 														<a href="#" title="ubah pertanyaan" data-pertid="<?= $p['id'] ?>" type="button" class="btn btn-sm btn-info ubahPertanyaan" data-toggle="modal" data-target="#modalPertanyaan"><i style="color: white" class="fa fa-pen"></i></a>
-														<a href="<?= base_url('dashboard/pertanyaan/hapus/') . $p['id']; ?>" title="hapus pertanyaan" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Pertanyaan"><i style="color: white" class="fa fa-trash"></i></a>
+														<a href="<?= base_url('Dashboard/Pertanyaan/hapus/') . $p['id']; ?>" title="hapus pertanyaan" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Pertanyaan"><i style="color: white" class="fa fa-trash"></i></a>
 													</div>
 												</td>
 											</tr>
@@ -116,7 +116,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="<?= base_url('dashboard/pertanyaan') ?>" method="POST">
+				<form action="<?= base_url('Dashboard/Pertanyaan') ?>" method="POST">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="squareInput">Pertanyaan</label>

@@ -87,7 +87,7 @@
 														<td class="text-center">
 															<div class="btn-group" role="group" aria-label="Basic example">
 																<a href="#" title="ubah jawaban" data-id="<?= $r['rid'] ?>" type="button" class="btn btn-sm btn-info ubahRulesP" data-toggle="modal" data-target="#modalRulesP"><i style="color: white" class="fa fa-pen"></i></a>
-																<a href="<?= base_url('dashboard/rules/hapusP/') . $r['rid']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Rules Pertanyaan"><i style="color: white" class="fa fa-trash"></i></a>
+																<a href="<?= base_url('Dashboard/Rules/hapusP/') . $r['rid']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Rules Pertanyaan"><i style="color: white" class="fa fa-trash"></i></a>
 															</div>
 														</td>
 													</tr>
@@ -134,7 +134,7 @@
 															<td class="text-center">
 																<div class="btn-group" role="group" aria-label="Basic example">
 																	<a href="#" title="ubah jawaban" data-id="<?= $s2['id'] ?>" type="button" class="btn btn-sm btn-info ubahRules" data-toggle="modal" data-target="#modalRules"><i style="color: white" class="fa fa-pen"></i></a>
-																	<a href="<?= base_url('dashboard/rules/hapus/') . $s2['id']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Rules Hasil"><i style="color: white" class="fa fa-trash"></i></a>
+																	<a href="<?= base_url('Dashboard/Rules/hapus/') . $s2['id']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Rules Hasil"><i style="color: white" class="fa fa-trash"></i></a>
 																</div>
 															</td>
 													</tr>
@@ -178,7 +178,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="<?= base_url('dashboard/rules') ?>" method="POST">
+				<form action="<?= base_url('Dashboard/Rules') ?>" method="POST">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="squareSelect">Jawaban</label> <small class="text-muted float-right"><i>(Jika jawaban adalah :)</i></small>

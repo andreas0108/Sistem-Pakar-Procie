@@ -62,8 +62,8 @@
 							<div class="tab-content mb-3" id="pills-tabContent">
 								<div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-article-tab-nobd">
 									<div class="float-right">
-										<a type="button" href="<?= base_url('dashboard/article/hapus_semua') ?>" class="btn btn-sm btn-danger btn-remove" data-text="Semua artikel"><i class="fas fa-fw fa-trash mr-1"></i>Hapus Semua</a>
-										<a href="<?= base_url('dashboard/article/tambah') ?>" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-info" href=""><i class="fas fa-fw fa-plus-circle mr-1"></i>Tambah Artikel</button></a>
+										<a type="button" href="<?= base_url('Dashboard/Article/hapus_semua') ?>" class="btn btn-sm btn-danger btn-remove" data-text="Semua artikel"><i class="fas fa-fw fa-trash mr-1"></i>Hapus Semua</a>
+										<a href="<?= base_url('Dashboard/Article/tambah') ?>" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-info" href=""><i class="fas fa-fw fa-plus-circle mr-1"></i>Tambah Artikel</button></a>
 									</div>
 									<div class="page-header">
 										<h4 class="page-title">Daftar Artikel</h4>
@@ -97,8 +97,8 @@
 																</td>
 																<td>
 																	<div class="btn-group float-right" role="group" aria-label="Basic example">
-																		<a href="<?= base_url('dashboard/article/ubah/') . $a['id']; ?>" title="ubah artikel" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
-																		<a href="<?= base_url('dashboard/article/hapus/') . $a['id']; ?>" title="hapus artikel" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Artikel"><i style="color: white" class="fa fa-trash"></i></a>
+																		<a href="<?= base_url('Dashboard/Article/ubah/') . $a['id']; ?>" title="ubah artikel" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
+																		<a href="<?= base_url('Dashboard/Article/hapus/') . $a['id']; ?>" title="hapus artikel" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Artikel"><i style="color: white" class="fa fa-trash"></i></a>
 																	</div>
 																</td>
 															</tr>
@@ -142,8 +142,8 @@
 																</td>
 																<td>
 																	<div class="btn-group float-right" role="group" aria-label="Basic example">
-																		<a href="<?= base_url('dashboard/article/ubah/') . $a['id']; ?>" title="ubah artikel" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
-																		<a href="<?= base_url('dashboard/article/hapus/') . $a['id']; ?>" title="hapus artikel" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Artikel"><i style="color: white" class="fa fa-trash"></i></a>
+																		<a href="<?= base_url('Dashboard/Article/ubah/') . $a['id']; ?>" title="ubah artikel" type="button" class="btn btn-sm btn-info"><i style="color: white" class="fa fa-pen"></i></a>
+																		<a href="<?= base_url('Dashboard/Article/hapus/') . $a['id']; ?>" title="hapus artikel" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Artikel"><i style="color: white" class="fa fa-trash"></i></a>
 																	</div>
 																</td>
 															</tr>

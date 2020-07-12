@@ -84,7 +84,7 @@
 													<td>
 														<div class="btn-group" role="group" aria-label="Basic example">
 															<a href="#" title="ubah jawaban" data-id="<?= $s2['id'] ?>" type="button" class="btn btn-sm btn-info ubahJawaban" data-toggle="modal" data-target="#modalJawaban"><i style="color: white" class="fa fa-pen"></i></a>
-															<a href="<?= base_url('dashboard/jawaban/hapus/') . $s2['id']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Jawaban"><i style="color: white" class="fa fa-trash"></i></a>
+															<a href="<?= base_url('Dashboard/Jawaban/hapus/') . $s2['id']; ?>" title="hapus jawaban" type="button" class="btn btn-sm btn-danger btn-remove" data-text="Jawaban"><i style="color: white" class="fa fa-trash"></i></a>
 														</div>
 													</td>
 											</tr>
@@ -128,7 +128,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="<?= base_url('dashboard/jawaban') ?>" method="POST">
+				<form action="<?= base_url('Dashboard/Jawaban') ?>" method="POST">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="squareSelect">Pertanyaan</label>
