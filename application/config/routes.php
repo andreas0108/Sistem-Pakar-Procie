@@ -7,7 +7,7 @@ $route['default_controller'] = 'Home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['dashboard'] = 'Home/redirect';
+$route['Dashboard'] = 'Home/redirect';
 $route['about'] = 'Home/about';
 $route['blog/(:num)'] = 'Blog/index/$1';
 
@@ -21,11 +21,11 @@ $route['konsultasi/hasil/(:any)'] = 'Dashboard/Komponen/Tampil/$1';
 
 $route['komponen'] = 'Dashboard/Komponen/redir';
 
-$route['dashboard/system/reset'] = 'Dashboard/Log/reset';
+$route['ashboard/system/reset'] = 'Dashboard/Log/reset';
 
 // redirect blank breadcrumbs
-$route['dashboard/komponen/ubah'] = 'Dashboard/Komponen/redir';
-$route['dashboard/komponen/tampil'] = 'Dashboard/Komponen/redir';
+$route['Dashboard/Komponen/Ubah'] = 'Dashboard/Komponen/redir';
+$route['Dashboard/Komponen/tampil'] = 'Dashboard/Komponen/redir';
 $route['konsultasi/hasil'] = 'Dashboard/Komponen/redir';
 
 $route['dashboard/article/ubah'] = 'Dashboard/Article/redir';

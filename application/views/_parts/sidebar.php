@@ -114,7 +114,7 @@
 					<?php endforeach ?>
 				<?php endforeach ?>
 				<li class="nav-item <?= strtolower($this->uri->segment(2)) == 'log' ? 'active' : '' ?>">
-					<a href="<?= base_url('dashboard/log') ?>">
+					<a href="<?= base_url('Dashboard/log') ?>">
 						<i class="fas fa-server"></i>
 						<p>System Logs</p>
 					</a>

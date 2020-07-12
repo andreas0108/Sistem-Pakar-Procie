@@ -44,7 +44,7 @@
 						<div class="col-md-12">
 							<div class="tab-content mb-3" id="pills-tabContent">
 								<div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
-									<a href="<?= base_url('dashboard/history/statistik') ?>" class="btn btn-sm btn-primary float-right"><i class="fas fa-chart-area mr-1"></i> Statistik</a>
+									<a href="<?= base_url('Dashboard/History/statistik') ?>" class="btn btn-sm btn-primary float-right"><i class="fas fa-chart-area mr-1"></i> Statistik</a>
 									<div class="page-header">
 										<h4 class="page-title"><?= $title ?></h4>
 										<ul class="breadcrumbs">

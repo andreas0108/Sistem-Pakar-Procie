@@ -98,7 +98,7 @@ class Komponen extends CI_Controller
 		}
 	}
 
-	public function ubah($id)
+	public function ubah($id = 0)
 	{
 		is_logged_in();
 		$data['title'] = 'Ubah Komponen';
@@ -106,66 +106,74 @@ class Komponen extends CI_Controller
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['kompo'] = $this->db->get_where('komponen', ['id' => $id])->row_array();
 
-		$this->form_validation->set_rules('nama', 'Nama Komponen', 'required', ['required' => '{field} wajib diisi']);
-		$this->form_validation->set_rules('isi', 'Deskripsi', 'required', ['required' => '{field} wajib diisi']);
-		$this->form_validation->set_rules('manuf', 'Manufaktur', 'required', ['required' => 'Silhakan pilih {field}']);
-		$this->form_validation->set_rules('kate', 'Deskripsi', 'required', ['required' => 'Silhakan pilih {field}']);
-
-		if ($this->form_validation->run() === false) {
-			$this->load->view('Dashboard/Komponen/ubah', $data);
-		} else {
-			$image = $_FILES['image']['name'];
-
-			if ($image) {
-				$config['allowed_types'] = 'jpeg|jpg|png';
-				$config['max_size'] 	 = '2048';
-				$config['encrypt_name']	 = TRUE;
-				$config['upload_path'] 	 = './assets/img/komponen/';
-				$this->load->library('upload', $config);
-
-				if ($this->upload->do_upload('image')) {
-					$prevImg = $data['kompo']['gambar'];
-					if ($prevImg != '' || null) {
-						unlink(FCPATH . 'assets/img/komponen/' . $prevImg);
-					}
-					$this->db->set('img', $this->upload->data('file_name'));
-				} else {
-					$this->session->set_flashdata(
-						'flasherr',
-						$this->upload->display_errors()
-					);
-					redirect('Dashboard/Komponen');
-				}
-			}
-			$this->db->set('name', htmlspecialchars($this->input->post('nama', true)));
-			$this->db->set('slug', slug(htmlspecialchars($this->input->post('nama', true))));
-			$this->db->set('price', htmlspecialchars(str_replace('.', '', $this->input->post('harga', true))));
-			$this->db->set('desc', $this->input->post('isi'));
-			$this->db->set('manufacture', htmlspecialchars($this->input->post('manuf', true)));
-			$this->db->set('kategori', htmlspecialchars($this->input->post('kate', true)));
-			$this->db->set('core', htmlspecialchars($this->input->post('core', true)));
-			$this->db->set('thread', htmlspecialchars($this->input->post('thread', true)));
-			$this->db->set('base', htmlspecialchars($this->input->post('base', true)));
-			$this->db->set('boost', htmlspecialchars($this->input->post('boost', true)));
-			$this->db->set('date_added', time());
-			$this->db->where('id', $id);
-			$this->db->update('komponen');
-
-			logs('Update Komponen', htmlspecialchars($this->input->post('nama', true)));
-
-			$this->session->set_flashdata(
-				'flashmsg',
-				'Komponen telah diupdate.'
-			);
+		if ($id == 0) {
 			redirect('Dashboard/Komponen');
+		} else {
+			$this->form_validation->set_rules('nama', 'Nama Komponen', 'required', ['required' => '{field} wajib diisi']);
+			$this->form_validation->set_rules('isi', 'Deskripsi', 'required', ['required' => '{field} wajib diisi']);
+			$this->form_validation->set_rules('manuf', 'Manufaktur', 'required', ['required' => 'Silhakan pilih {field}']);
+			$this->form_validation->set_rules('kate', 'Deskripsi', 'required', ['required' => 'Silhakan pilih {field}']);
+
+			if ($this->form_validation->run() === false) {
+				$this->load->view('Dashboard/Komponen/ubah', $data);
+			} else {
+				$image = $_FILES['image']['name'];
+
+				if ($image) {
+					$config['allowed_types'] = 'jpeg|jpg|png';
+					$config['max_size'] 	 = '2048';
+					$config['encrypt_name']	 = TRUE;
+					$config['upload_path'] 	 = './assets/img/komponen/';
+					$this->load->library('upload', $config);
+
+					if ($this->upload->do_upload('image')) {
+						$prevImg = $data['kompo']['gambar'];
+						if ($prevImg != '' || null) {
+							unlink(FCPATH . 'assets/img/komponen/' . $prevImg);
+						}
+						$this->db->set('img', $this->upload->data('file_name'));
+					} else {
+						$this->session->set_flashdata(
+							'flasherr',
+							$this->upload->display_errors()
+						);
+						redirect('Dashboard/Komponen');
+					}
+				}
+				$this->db->set('name', htmlspecialchars($this->input->post('nama', true)));
+				$this->db->set('slug', slug(htmlspecialchars($this->input->post('nama', true))));
+				$this->db->set('price', htmlspecialchars(str_replace('.', '', $this->input->post('harga', true))));
+				$this->db->set('desc', $this->input->post('isi'));
+				$this->db->set('manufacture', htmlspecialchars($this->input->post('manuf', true)));
+				$this->db->set('kategori', htmlspecialchars($this->input->post('kate', true)));
+				$this->db->set('core', htmlspecialchars($this->input->post('core', true)));
+				$this->db->set('thread', htmlspecialchars($this->input->post('thread', true)));
+				$this->db->set('base', htmlspecialchars($this->input->post('base', true)));
+				$this->db->set('boost', htmlspecialchars($this->input->post('boost', true)));
+				$this->db->set('date_added', time());
+				$this->db->where('id', $id);
+				$this->db->update('komponen');
+
+				logs('Update Komponen', htmlspecialchars($this->input->post('nama', true)));
+
+				$this->session->set_flashdata(
+					'flashmsg',
+					'Komponen telah diupdate.'
+				);
+				redirect('Dashboard/Komponen');
+			}
 		}
 	}
 
-	public function tampil($slug)
+	public function tampil($slug = 0)
 	{
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		if ($slug == '' || null) {
-			redirect('konsultasi');
+		if ($slug == 0) {
+			if ($this->session->userdata('email')) {
+				redirect('Dashboard/Komponen');
+			} else {
+				redirect('konsultasi');
+			}
 		} else {
 			$this->db->select('k.img, k.id, k.manufacture as kmanufid, km.manufacture, k.name, kk.name as kategori, k.desc, k.price, k.slug, k.date_added as ditambahkan, k.core, k.thread, k.base, k.boost, k.socket, k.referensi as ref, k.link1, k.link2, k.link3');
 			$this->db->join('komponen_kategori kk', 'k.kategori = kk.id');
