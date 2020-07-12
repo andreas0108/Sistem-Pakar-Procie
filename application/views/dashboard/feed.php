@@ -43,6 +43,9 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="tab-content mb-3" id="pills-tabContent">
+								<div class="float-right">
+									<a type="button" href="<?= base_url('Dashboard/Feedback/hapus_semua') ?>" class="btn btn-sm btn-danger btn-remove" data-text="Semua feedback"><i class="fas fa-fw fa-trash mr-1"></i>Hapus Semua</a>
+								</div>
 								<div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
 									<div class="page-header">
 										<h4 class="page-title"><?= $title ?></h4>

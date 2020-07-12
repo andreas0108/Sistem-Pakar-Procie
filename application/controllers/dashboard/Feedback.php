@@ -66,4 +66,15 @@ class Feedback extends CI_Controller
         );
         redirect('Dashboard/Feedback');
     }
+
+    public function hapus_semua()
+    {
+        logs('Hapus Semua Feedback', null);
+        $this->db->truncate('feedback');
+        $this->session->set_flashdata(
+            'flashmsg',
+            'Semua Feedback berhasil dihapus'
+        );
+        redirect('Dashboard/Feedback');
+    }
 }
