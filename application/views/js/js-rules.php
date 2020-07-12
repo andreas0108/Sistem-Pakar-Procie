@@ -21,7 +21,7 @@
 		// Rules Pertanyaan
 		$('#tambahRulesP').on('click', function() {
 			$('#modalRulesPTitle').html('Tambah Rules Pertanyaan');
-			$('.modal-content form').attr('action', '<?= base_url('dashboard/rules/tambahP') ?>');
+			$('.modal-content form').attr('action', '<?= base_url('Dashboard/Rules/tambahP') ?>');
 			// $('.jawaban').hide();
 			// $('.jawabans').show();
 			$.ajax({
@@ -36,13 +36,13 @@
 
 		$('.ubahRulesP').on('click', function() {
 			$('#modalRulesPTitle').html('Ubah Rules Pertanyaan');
-			$('.modal-content form').attr('action', '<?= base_url('dashboard/rules/ubahP') ?>');
+			$('.modal-content form').attr('action', '<?= base_url('Dashboard/Rules/ubahP') ?>');
 			// $('.jawaban').show();
 			// $('.jawabans').hide();
 
 			const id = $(this).data('id')
 			$.ajax({
-				url: '<?= base_url('dashboard/rules/getP'); ?>',
+				url: '<?= base_url('Dashboard/Rules/getP'); ?>',
 				data: {
 					id: id
 				},
@@ -61,7 +61,7 @@
 		// Rules Jawaban
 		$('.tambahRules').on('click', function() {
 			$('#modalRulesTitle').html('Tambah Rules Hasil');
-			$('.modal-content form').attr('action', '<?= base_url('dashboard/rules') ?>');
+			$('.modal-content form').attr('action', '<?= base_url('Dashboard/Rules') ?>');
 			$('.jawabans').show();
 			$('.jawaban').hide();
 			$.ajax({
@@ -77,13 +77,13 @@
 
 		$('.ubahRules').on('click', function() {
 			$('#modalRulesTitle').html('Ubah Rules');
-			$('.modal-content form').attr('action', '<?= base_url('dashboard/rules/ubah') ?>');
+			$('.modal-content form').attr('action', '<?= base_url('Dashboard/Rules/ubah') ?>');
 			$('.jawaban').show();
 			$('.jawabans').hide();
 
 			const id = $(this).data('id')
 			$.ajax({
-				url: '<?= base_url('dashboard/rules/get'); ?>',
+				url: '<?= base_url('Dashboard/Rules/get'); ?>',
 				data: {
 					id: id
 				},
@@ -97,6 +97,14 @@
 					$('#status').val(data.status);
 				}
 			})
+		});
+
+		$('.btnReset').on('click', function() {
+			$('#rulesjid').trigger('change');
+			$('#rulespid').trigger('change');
+			$('#jawaban').trigger('change');
+			$('#jawabans').trigger('change');
+			$('#komponen').val('').trigger('change');
 		});
 	});
 </script>

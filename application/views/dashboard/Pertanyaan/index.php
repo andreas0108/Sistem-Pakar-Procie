@@ -132,7 +132,7 @@
 						</div>
 						<div class="form-group float-right">
 							<input type="hidden" name="id" id="idPertanyaan" value="">
-							<button type="reset" class="btn btn-sm btn-secondary">Reset</button>
+							<button type="reset" class="btn btn-sm btn-secondary btnreset">Reset</button>
 							<button type="submit" class="btn btn-sm btn-primary">Simpan</button>
 						</div>
 					</div>

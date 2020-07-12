@@ -128,7 +128,7 @@
 								</div>
 								<div class="card-body tab-content mt-0 mb-3" id="user-tabContent">
 									<div class="tab-pane fade show active mb-0 pb-0 mt--3" id="user-settings" role="tabpanel" aria-labelledby="user-settings-tab">
-										<form action="<?= base_url('dashboard/user') ?>" method="post" id="uservalidate">
+										<form action="<?= base_url('Dashboard/User') ?>" method="post" id="uservalidate">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
@@ -187,7 +187,7 @@
 												</div>
 											</div>
 											<div class="col-md-8 col-sm-12">
-												<form action="<?= base_url('dashboard/user/updateimg') ?>" method="post" enctype="multipart/form-data">
+												<form action="<?= base_url('Dashboard/User/updateimg') ?>" method="post" enctype="multipart/form-data">
 													<!-- <input type="file" name="img[]" class="file" accept="image/*" style="visibility: hidden;position: absolute;"> -->
 													<input type="file" name="image" class="file" accept="image/*" style="visibility: hidden;position: absolute;">
 													<div class="input-group my-2">
@@ -205,7 +205,7 @@
 									<div class="tab-pane fade" id="password-settings" role="tabpanel" aria-labelledby="password-settings-tab">
 										<div class="row">
 											<div class="col-md-12">
-												<form action="<?= base_url('dashboard/user/updatemail') ?>" method="post" enctype="multipart/form-data">
+												<form action="<?= base_url('Dashboard/User/updatemail') ?>" method="post" enctype="multipart/form-data">
 													<h2>Email</h2>
 													<hr>
 													<div class="form-group px-0">
@@ -225,7 +225,7 @@
 										<br>
 										<div class="row">
 											<div class="col-md-12">
-												<form action="<?= base_url('dashboard/user/updatepass') ?>" method="post">
+												<form action="<?= base_url('Dashboard/User/updatepass') ?>" method="post">
 													<h2>Password</h2>
 													<small class="text-info">*Gunakan kombinasi huruf-angka-simbol agar password anda tidak mudah dibajak.</small>
 													<hr>

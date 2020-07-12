@@ -14,7 +14,10 @@
 		});
 
 		$('#btnReset').on('click', function() {
+			$('#pertanyaan').trigger('change');
+			$('#jawaban').trigger('change');
 			$('#jawabanInput').tagsinput('removeAll');
+			$('#status').val('1').trigger('change');
 		});
 
 		$('#tambahJawaban').on('click', function() {

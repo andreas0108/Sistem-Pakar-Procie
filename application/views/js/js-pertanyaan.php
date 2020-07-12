@@ -40,5 +40,9 @@
 				}
 			})
 		});
+
+		$('.btnreset').on('click', function() {
+			$('#status').val('1').trigger('change')
+		});
 	});
 </script>

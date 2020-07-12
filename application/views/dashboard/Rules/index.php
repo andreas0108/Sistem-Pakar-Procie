@@ -210,7 +210,7 @@
 
 						<div class="form-group float-right">
 							<input type="hidden" name="id" id="idRulesp" value="">
-							<button type="reset" class="btn btn-sm btn-secondary">Reset</button>
+							<button type="reset" class="btn btn-sm btn-secondary btnReset">Reset</button>
 							<button type="submit" class="btn btn-sm btn-primary">Simpan</button>
 						</div>
 					</div>
@@ -228,7 +228,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="<?= base_url('dashboard/rules') ?>" method="POST" novalidate>
+				<form action="<?= base_url('Dashboard/Rules') ?>" method="POST" novalidate>
 					<div class="modal-body">
 						<div class="form-group jawabans">
 							<label for="squareSelect">Jawaban</label> <small class="text-muted float-right"><i>(Jika terdapat jawaban ini)</i></small>
@@ -271,7 +271,7 @@
 
 						<div class="form-group float-right">
 							<input type="hidden" name="id" id="idRules" value="">
-							<button type="reset" class="btn btn-sm btn-secondary">Reset</button>
+							<button type="reset" class="btn btn-sm btn-secondary btnReset">Reset</button>
 							<button type="submit" class="btn btn-sm btn-primary">Simpan</button>
 						</div>
 					</div>
