@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="0" errors="0" warnings="1" failures="0" skipped="0" time="0.012929">
+    <testsuite name="Welcome_test" file="D:\Data\Local Site\Sikar\application\tests\controllers\Welcome_test.php" tests="1" assertions="0" errors="0" warnings="1" failures="0" skipped="0" time="0.012929">
+      <testcase name="Warning" assertions="0" time="0.012929">
+        <warning type="PHPUnit\Framework\Warning">Warning
+No tests found in class "Welcome_test".
+
+</warning>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testsuites>
