@@ -37,14 +37,19 @@ if (!function_exists('unix_indo2')) {
 	 * "jam" = 10:20:30
 	 * 
 	 * "tgl"  = 10 Desember 2019
+	 * "tjs"  = 10 Desember 2019 10:20:30
 	 * "htg"  = Selasa, 10 Desember 2019
 	 * "htj"  = Selasa, 10 Desember 2019 10:20
 	 * "htjs" = Selasa, 10 Desember 2019 10:20:30
 	 */
 
-	function unix_indo2($tgl, $format)
+	function unix_indo2($tgl, $format, $gmt7 = true)
 	{
-		$tgl = $tgl + (7 * 60 * 60);
+		if ($gmt7 == true) {
+			$tgl = $tgl + (7 * 60 * 60);
+		} else {
+			$tgl = $tgl;
+		}
 
 		switch ($format) {
 				// Single Digit
@@ -90,12 +95,20 @@ if (!function_exists('unix_indo2')) {
 				return $x[0] . ' ' . bulan($x[1]) . ' ' . $x[2];
 				break;
 
+			case "tjs":
+				$x = explode("-", gmdate("d-m-Y", $tgl));
+				$b = $x[0] . ' ' . bulan($x[1]) . ' ' . $x[2];
+				$c = gmdate("H:i:s", $tgl);
+				return  $b . ' ' . $c;
+				break;
+
 			case "htg":
 				$a = hari(gmdate("l", $tgl));
 				$x = explode("-", gmdate("d-m-Y", $tgl));
 				$b = $x[0] . ' ' . bulan($x[1]) . ' ' . $x[2];
 				return $a . ', ' . $b;
 				break;
+
 
 			case "htjs":
 				$a = hari(gmdate("l", $tgl));

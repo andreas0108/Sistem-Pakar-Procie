@@ -17,7 +17,7 @@ $route['logout'] = 'Auth/logout';
 $route['konsultasi'] = 'Home/konsultasi';
 $route['konsultasi/cancel'] = 'Home/cancel';
 $route['konsultasi/proses'] = 'Home/proses';
-$route['konsultasi/hasil/(:any)'] = 'Dashboard/Komponen/Tampil/$1';
+$route['konsultasi/hasil'] = 'Home/hasil';
 
 $route['komponen'] = 'Dashboard/Komponen/redir';
 
@@ -26,6 +26,6 @@ $route['ashboard/system/reset'] = 'Dashboard/Log/reset';
 // redirect blank breadcrumbs
 $route['Dashboard/Komponen/Ubah'] = 'Dashboard/Komponen/redir';
 $route['Dashboard/Komponen/tampil'] = 'Dashboard/Komponen/redir';
-$route['konsultasi/hasil'] = 'Dashboard/Komponen/redir';
+// $route['konsultasi/hasil'] = 'Dashboard/Komponen/redir';
 
 $route['dashboard/article/ubah'] = 'Dashboard/Article/redir';

@@ -6,9 +6,9 @@ class History_model extends CI_Model
     // History 
     public function History_List()
     {
-        $this->db->select('h.id, h.user_name, h.email, k.name as hasil');
+        $this->db->select('h.id, h.konsul_id, h.user_name, h.email, k.name as hasil, h.tanggal');
         $this->db->join('komponen k', 'h.hasil = k.id');
-        $this->db->order_by('id', 'DESC');
+        $this->db->order_by('tanggal', 'DESC');
 
         return $this->db->get('history h')->result_array();
     }
@@ -30,7 +30,7 @@ class History_model extends CI_Model
 
         $this->db->select('h.manufacture, h.hasil, k.id, k.name, count(hasil) as jumlah')
             ->join('komponen k', 'h.hasil = k.id')->group_by('h.hasil')->order_by('jumlah DESC')
-            ->where('h.manufacture', 1)->where("h.id >='$ly'");
+            ->where('h.manufacture', 1)->where("h.konsul_id >='$ly'");
 
         return $this->db->get('history h')->result_array();
     }
@@ -51,7 +51,7 @@ class History_model extends CI_Model
 
         $this->db->select('h.manufacture, h.hasil, k.id, k.name, count(hasil) as jumlah')
             ->join('komponen k', 'h.hasil = k.id')->group_by('h.hasil')->order_by('jumlah DESC')
-            ->where('h.manufacture', 2)->where("h.id >='$ly'");
+            ->where('h.manufacture', 2)->where("h.konsul_id >='$ly'");
 
         return $this->db->get('history h')->result_array();
     }

@@ -57,7 +57,8 @@
 												<table id="table-komponen" class="display table table-bordered table-striped table-hover table-head-bg-primary" cellspacing="0" width="100%">
 													<thead>
 														<tr class="text-center">
-															<th scope="col" style="width:15%">ID</th>
+															<th scope="col" style="width:5%">ID</th>
+															<th scope="col" style="width:10%">ID</th>
 															<th scope="col" style="width:15%">Pengguna</th>
 															<th scope="col" style="width:15%">Email</th>
 															<th scope="col" style="width:40%">Hasil</th>
@@ -70,7 +71,10 @@
 														foreach ($history as $h) : ?>
 															<tr>
 																<td>
-																	<p class="card-text mb-0"><?= $h['id'] ?></p>
+																	<p class="card-text mb-0"><?= $i++ ?></p>
+																</td>
+																<td>
+																	<p class="card-text mb-0"><?= $h['konsul_id'] ?></p>
 																</td>
 																<td>
 																	<p class="card-text mb-0"><?= $h['user_name'] ?></p>
@@ -82,11 +86,8 @@
 																	<p class="card-text mb-0"><?= $h['hasil'] ?></p>
 																</td>
 																<td>
-																	<p class="card-text mb-0">
-																		<?php
-																		$tmp = strtotime(substr($h['id'], 0, 4) . '/' . substr($h['id'], 4, 2) . '/' . substr($h['id'], 6, 2));
-																		echo unix_indo2($tmp, 'htg');
-																		?>
+																	<p class="card-text mb-0" title="<?= unix_indo2(strtotime($h['tanggal']), 'tjs', false) ?> WIB">
+																		<?= unix_indo2(strtotime($h['tanggal']), 'tgl', false) ?>
 																	</p>
 																</td>
 															</tr>

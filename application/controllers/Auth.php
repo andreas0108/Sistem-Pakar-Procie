@@ -39,7 +39,7 @@ class Auth extends CI_Controller
 					$data = [
 						'email' => $user['email'],
 						'umail' => $user['email'],
-						'konsul_id' => generateID('tmp_data', 'konsul_id', gmdate('Ymd', time() + (7 * 3600)), 8),
+						'konsul_id' => generateUniqueString(),
 						'id' => $user['id'],
 						'name' => $user['name']
 					];
@@ -85,6 +85,6 @@ class Auth extends CI_Controller
 			'flashmsg',
 			'Anda telah logout dari aplikasi ini.'
 		);
-		redirect(base_url());
+		redirect('login');
 	}
 }

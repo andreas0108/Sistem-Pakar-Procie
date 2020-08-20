@@ -10,14 +10,8 @@ function is_logged_in()
 			'flashinf',
 			'Silahkan login sebagai Administrator'
 		);
-		$ci->session->userdata(['redir_url' => current_url()]);
 		redirect('login');
 	}
-}
-
-function _check($s1, $s2)
-{
-	$CI = get_instance();
 }
 
 // Fungsi menambahkan data logs
@@ -64,8 +58,10 @@ function logs($msg, $item = null)
 	}
 }
 
-// Core Sistem Pakar
-// By ANDREAS ARDI
+// Prototype Core Sistem Pakar //
+// Tidak Digunakan dikarenakan langsung di controller //
+// Hanya untuk dokumentasi //
+// By ANDREAS ARDI //
 function think($me)
 {
 	$datamasuk = "'" . arrtostr($me) . "'";
@@ -144,6 +140,32 @@ function generateDateID($tab, $col = 'id')
 
 	$hasil = $prefix . $id;
 	return $hasil;
+}
+function generateUniqueID($tab, $col = 'id')
+{
+	$CI = get_instance();
+
+	$prefix = date('YmdHis', (time() + 7 * 3600));
+	$CI->db->select_max($col, $col);
+	$data = $CI->db->get_where($tab, ['left(' . $col . ',8)' => $prefix])->row_array();
+
+	$id = sprintf(
+		"%02s",
+		intval(
+			substr($data[$col], 8)
+		) + 1
+	);
+
+	$hasil = $prefix . $id;
+	return $hasil;
+}
+
+function generateUniqueString()
+{
+	$date = date('Ymd', (time() + 7 * 3600));
+	$rstr = strtoupper(base64_encode(random_bytes(3)));
+
+	return $date . $rstr;
 }
 
 function arrtostr($arr, $sep = ', ', $mkp = '')

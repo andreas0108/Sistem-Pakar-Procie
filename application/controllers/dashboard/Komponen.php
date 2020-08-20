@@ -165,10 +165,10 @@ class Komponen extends CI_Controller
 		}
 	}
 
-	public function tampil($slug = 0)
+	public function tampil($slug)
 	{
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		if ($slug == 0) {
+		if (!$slug) {
 			if ($this->session->userdata('email')) {
 				redirect('Dashboard/Komponen');
 			} else {

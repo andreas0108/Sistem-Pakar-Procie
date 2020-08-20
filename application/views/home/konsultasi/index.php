@@ -112,6 +112,25 @@
 				})
 			};
 
+			$('#cancel').on('click', function(e) {
+				e.preventDefault();
+				const href = $(this).attr("href");
+				Swal.fire({
+					title: "Batal ?",
+					text: "Anda yakin ingin membatalkan konsultasi ? jawaban yang anda submit akan dihapus dari sistem.",
+					icon: "question",
+					showCancelButton: true,
+					confirmButtonText: "Batal",
+					confirmButtonColor: "#1a2035",
+					cancelButtonText: "Lanjutkan",
+					cancelButtonColor: "#48ABF7"
+				}).then((result) => {
+					if (result.value) {
+						document.location.href = href;
+					}
+				});
+			});
+
 			$('.pilihan').click(function() {
 				var checked_status = this.checked;
 				if (checked_status == true) {

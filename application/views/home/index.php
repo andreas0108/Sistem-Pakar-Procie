@@ -316,7 +316,7 @@
 												<div class="d-flex">
 													<div class="flex-1">
 														<small class="text-info pl-1 float-right">
-															ID : <?= $h['id'] ?>
+															ID : <?= $h['konsul_id'] ?>
 														</small>
 														<h6 class="fw-bold mb-1" title="<?= $h['email'] ?>">
 															<?= ucfirst($h['user_name']) ?>
