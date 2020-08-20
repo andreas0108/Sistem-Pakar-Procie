@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="CodeIgniter Application Test Suite" tests="6" assertions="20" errors="0" warnings="0" failures="0" skipped="0" time="3.320492">
-    <testsuite name="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" tests="6" assertions="20" errors="0" warnings="0" failures="0" skipped="0" time="3.320492">
-      <testcase name="test_index" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="26" assertions="2" time="0.545134"/>
-      <testcase name="test_konsultasi" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="33" assertions="3" time="0.448739"/>
-      <testcase name="test_data_pertanyaan" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="44" assertions="3" time="0.335818"/>
-      <testcase name="test_list_jawaban" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="53" assertions="3" time="0.340275"/>
-      <testcase name="test_step" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="63" assertions="4" time="0.590222"/>
-      <testcase name="test_proses" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="82" assertions="5" time="1.060304"/>
+  <testsuite name="CodeIgniter Application Test Suite" tests="6" assertions="20" errors="0" warnings="0" failures="0" skipped="0" time="3.359669">
+    <testsuite name="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" tests="6" assertions="20" errors="0" warnings="0" failures="0" skipped="0" time="3.359669">
+      <testcase name="test_index" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="26" assertions="2" time="0.545435"/>
+      <testcase name="test_konsultasi" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="33" assertions="3" time="0.462921"/>
+      <testcase name="test_data_pertanyaan" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="44" assertions="3" time="0.352297"/>
+      <testcase name="test_list_jawaban" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="53" assertions="3" time="0.344379"/>
+      <testcase name="test_step" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="63" assertions="4" time="0.586562"/>
+      <testcase name="test_proses" class="Konsultasi_test" classname="Konsultasi_test" file="D:\Data\Local\Sikar\application\tests\controllers\Konsultasi_test.php" line="82" assertions="5" time="1.068075"/>
     </testsuite>
   </testsuite>
 </testsuites>

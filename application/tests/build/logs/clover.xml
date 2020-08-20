@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1597782041">
-  <project timestamp="1597782041">
+<coverage generated="1597930266">
+  <project timestamp="1597930266">
     <file name="D:\Data\Local\Sikar\application\controllers\Auth.php">
       <class name="Auth" namespace="global">
         <metrics complexity="8" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="62" coveredstatements="0" elements="65" coveredelements="0"/>
